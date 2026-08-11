@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GSP Admin - Courses</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body data-page="courses">
+<header class="topbar">
+    <div class="wrap topbar-inner">
+        <div class="brand">GSP Admin</div>
+
+        <nav class="topnav">
+            <a href="index.html" data-page="dashboard">Dashboard</a>
+            <a href="members.html" data-page="members">Members</a>
+            <a href="results.html" data-page="results">Results</a>
+            <a href="enquiries.html" data-page="enquiries">Enquiries</a>
+            <a href="courses.html" data-page="courses">Courses</a>
+            <a href="news.html" data-page="news">News</a>
+        </nav>
+
+        <div class="actions">
+            <button id="btnReload" class="small-btn">Reload</button>
+            <button id="btnExport" class="small-btn">Export</button>
+        </div>
+    </div>
+</header>
+
+<main class="wrap main main--single">
+
+    <section class="content card">
+        <div class="card-header-row">
+            <h2>Courses</h2>
+            <button id="btnAddCourse" class="small-btn">Add Course</button>
+        </div>
+        <div class="toolbar">
+            <input id="cfilter" placeholder="Search title/duration">
+        </div>
+        <div class="table-wrapper">
+            <table class="data-table" id="coursesTable">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Duration</th>
+                        <th>Category</th>
+                        <th>Rating</th>
+                        <th>Price</th>
+                        <th>Offer</th>
+                        <th>Status</th>
+                        <th style="width:80px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="pagination">
+            <div class="pagination-buttons">
+                <button id="cPrev" class="small-btn">Prev</button>
+                <button id="cNext" class="small-btn">Next</button>
+            </div>
+            <span id="cPageInfo" class="muted">Page 1</span>
+        </div>
+    </section>
+
+</main>
+
+<div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <header>
+            <h3 id="modalTitle">Modal</h3>
+            <button id="modalClose" class="small-btn">✕</button>
+        </header>
+        <div class="modal-body" id="modalBody"></div>
+        <footer><button id="modalSave">Save</button></footer>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="wrap">GSP Admin • Fixed Footer</div>
+</footer>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

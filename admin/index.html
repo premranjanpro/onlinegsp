@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GSP Admin - Dashboard</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body data-page="dashboard">
+<header class="topbar">
+    <div class="wrap topbar-inner">
+        <div class="brand">GSP Admin</div>
+
+        <nav class="topnav">
+            <a href="index.html" data-page="dashboard">Dashboard</a>
+            <a href="members.html" data-page="members">Members</a>
+            <a href="results.html" data-page="results">Results</a>
+            <a href="enquiries.html" data-page="enquiries">Enquiries</a>
+            <a href="courses.html" data-page="courses">Courses</a>
+            <a href="news.html" data-page="news">News</a>
+        </nav>
+
+        <div class="actions">
+            <button id="btnReload" class="small-btn">Reload</button>
+            <button id="btnExport" class="small-btn">Export</button>
+        </div>
+    </div>
+</header>
+
+<main class="wrap main main--single">
+
+    <section class="content card">
+        <h2>Dashboard</h2>
+        <p class="muted">Quick navigation</p>
+        <div class="grid">
+            <a class="button-link" href="members.html"><button>Members</button></a>
+            <a class="button-link" href="results.html"><button>Results</button></a>
+            <a class="button-link" href="courses.html"><button>Courses</button></a>
+            <a class="button-link" href="enquiries.html"><button>Enquiries</button></a>
+            <a class="button-link" href="news.html"><button>News</button></a>
+        </div>
+    </section>
+
+</main>
+
+<div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <header>
+            <h3 id="modalTitle">Modal</h3>
+            <button id="modalClose" class="small-btn">✕</button>
+        </header>
+        <div class="modal-body" id="modalBody"></div>
+        <footer><button id="modalSave">Save</button></footer>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="wrap">GSP Admin • Fixed Footer</div>
+</footer>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

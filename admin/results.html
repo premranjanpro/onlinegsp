@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GSP Admin - Results</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body data-page="results">
+<header class="topbar">
+    <div class="wrap topbar-inner">
+        <div class="brand">GSP Admin</div>
+
+        <nav class="topnav">
+            <a href="index.html" data-page="dashboard">Dashboard</a>
+            <a href="members.html" data-page="members">Members</a>
+            <a href="results.html" data-page="results">Results</a>
+            <a href="enquiries.html" data-page="enquiries">Enquiries</a>
+            <a href="courses.html" data-page="courses">Courses</a>
+            <a href="news.html" data-page="news">News</a>
+        </nav>
+
+        <div class="actions">
+            <button id="btnReload" class="small-btn">Reload</button>
+            <button id="btnExport" class="small-btn">Export</button>
+        </div>
+    </div>
+</header>
+
+<main class="wrap main main--single">
+
+    <section class="content card">
+        <div class="card-header-row">
+            <h2>Results</h2>
+            <button id="btnAddResult" class="small-btn">Add Result</button>
+        </div>
+        <div class="toolbar">
+            <input id="rfilter" placeholder="Search enrol/roll/name">
+        </div>
+        <div class="table-wrapper">
+            <table class="data-table" id="resultsTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Course</th>
+                        <th>Duration</th>
+                        <th>Enrol No</th>
+                        <th>Roll No</th>
+                        <th>DOJ</th>
+                        <th>DOC</th>
+                        <th>Issue Date</th>
+                        <th style="width:80px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="pagination">
+            <div class="pagination-buttons">
+                <button id="rPrev" class="small-btn">Prev</button>
+                <button id="rNext" class="small-btn">Next</button>
+            </div>
+            <span id="rPageInfo" class="muted">Page 1</span>
+        </div>
+    </section>
+
+</main>
+
+<div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <header>
+            <h3 id="modalTitle">Modal</h3>
+            <button id="modalClose" class="small-btn">✕</button>
+        </header>
+        <div class="modal-body" id="modalBody"></div>
+        <footer><button id="modalSave">Save</button></footer>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="wrap">GSP Admin • Fixed Footer</div>
+</footer>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
