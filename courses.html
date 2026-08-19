@@ -1,798 +1,1140 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Gurukul The School Of Professionals</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" id="meta-desc" content="Empowering learners with knowledge, confidence, and purpose — shaping tomorrow’s leaders today.">
-    <meta name="keyword" content="Empowering learners with knowledge, confidence, and purpose — shaping tomorrow’s leaders today.">
+    <title>Certified Courses & Skill Programs | Gurukul The School Of Professionals</title>
+    <meta name="description" content="Explore ISO 9001:2015 accredited vocational, computer application, financial accounting, teaching, and technical diploma courses at Gurukul Educational Board.">
+    <meta name="keywords" content="Gurukul Courses, ADCA, DCA, Nursery Teacher Training, Tally Prime, Vocational Skill Courses, Yoga Diploma, Beautician Course, Electrician Trade">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/style-mob.css" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/portal-theme.css" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           COLORFUL, NEAT & CLEAN COURSE CATALOG STYLES
+           ========================================================================== */
+        .courses-hero-section {
+            background: radial-gradient(circle at 10% 20%, #0d213e 0%, #09192f 60%, #050d1a 100%);
+            color: #ffffff;
+            padding: 55px 0 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .courses-hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .courses-hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .courses-hero-title {
+            font-family: var(--portal-font-main);
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .courses-hero-title span {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Search Bar & Stats */
+        .search-hero-box {
+            max-width: 680px;
+            margin: 28px auto 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-hero-input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border-radius: 50px;
+            padding: 6px 8px 6px 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), 0 0 0 3px rgba(251, 191, 36, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .search-hero-input-wrap:focus-within {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 0 4px rgba(251, 191, 36, 0.5);
+        }
+
+        .search-hero-input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 15px;
+            font-weight: 600;
+            color: #0f172a;
+            padding: 8px 10px;
+        }
+
+        .search-hero-input::placeholder {
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        .search-hero-btn {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 40px;
+            padding: 10px 24px;
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .search-hero-btn:hover {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            transform: scale(1.02);
+            color: #ffffff;
+        }
+
+        /* Filter Pills Bar */
+        .filter-pills-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .filter-pill-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #cbd5e1;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(8px);
+        }
+
+        .filter-pill-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .filter-pill-btn.active {
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+            border-color: #f59e0b;
+            color: #09192f;
+            font-weight: 700;
+            box-shadow: 0 6px 18px rgba(217, 119, 6, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .filter-pill-count {
+            background: rgba(0, 0, 0, 0.2);
+            font-size: 11px;
+            padding: 2px 7px;
+            border-radius: 12px;
+            font-weight: 800;
+        }
+
+        .filter-pill-btn.active .filter-pill-count {
+            background: rgba(9, 25, 47, 0.2);
+            color: #09192f;
+        }
+
+        /* Stats Bar Below Hero */
+        .catalog-stats-banner {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 0;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+        }
+
+        .stat-item-col {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .stat-item-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Course Card Grid */
+        .course-card-item {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+            position: relative;
+        }
+
+        .course-card-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+            border-color: #cbd5e1;
+        }
+
+        /* Card Banner with Dynamic Color Themes */
+        .course-card-banner {
+            padding: 24px 22px 20px;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card-banner::after {
+            content: '';
+            position: absolute;
+            right: -25px;
+            bottom: -25px;
+            width: 110px;
+            height: 110px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .course-header-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .course-category-badge {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+        }
+
+        .course-icon-badge {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        .course-card-title {
+            font-size: 17px;
+            font-weight: 800;
+            line-height: 1.35;
+            margin: 0;
+            color: #ffffff;
+            min-height: 46px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .course-card-body {
+            padding: 20px 22px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #ffffff;
+        }
+
+        .course-pills-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .course-info-pill {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .pill-duration {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fde68a;
+        }
+
+        .pill-eligibility {
+            background: #f1f5f9;
+            color: #334155;
+            border: 1px solid #e2e8f0;
+        }
+
+        .pill-iso {
+            background: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .course-skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 18px;
+        }
+
+        .skill-tag {
+            font-size: 11px;
+            font-weight: 600;
+            background: #f8fafc;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        /* Card Action Buttons */
+        .card-actions-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 16px;
+        }
+
+        .btn-enquire-primary {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13.5px;
+            border: none;
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+        }
+
+        .btn-enquire-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+            color: #ffffff;
+        }
+
+        .btn-details-secondary {
+            background: #f1f5f9;
+            color: #334155;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-details-secondary:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        /* Program Highlights Section */
+        .why-choose-banner {
+            background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 40px 30px;
+            margin-top: 60px;
+        }
+
+        .feature-box-item {
+            text-align: center;
+            padding: 20px 15px;
+        }
+
+        .feature-box-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 14px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+    </style>
 </head>
 <body>
-    <section>
-        <div class="ed-mob-menu">
-            <div class="ed-mob-menu-con">
-                <div class="ed-mm-left">
-                    <div class="wed-logo">
-                        <a href="index.html">
-                            <img src="images/gurukul_logo.png" alt="" />
-                        </a>
-                    </div>
-                </div>
-                <div class="ed-mm-right">
-                    <div class="ed-mm-menu">
-                        <a href="#!" class="ed-micon"><i class="fab fa-bars"></i></a>
-                        <div class="ed-mm-inn">
-                            <a href="#!" class="ed-mi-close"><i class="fab fa-times"></i></a>
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="/aboutus.html">About us</a></li>
-                                <li><a href="/chairman-message.html">Chairman Message</a></li>
-                                <li><a href="/faq.html">FAQ</a></li>
-                                <li><a href="/courses.html">Courses</a></li>
-                                <li><a href="/affiliation-location.html">Branch</a></li>
-                                <li><a href="/result.html">Result</a></li>
-                                <li><a href="/news.html">News</a></li>
-                                <li><a href="/contact.html">Contact</a></li>
-                            </ul>
-                            <h4>User Account</h4>
-                            <ul>
-                                <li><a href="#!" data-bs-toggle="modal" data-bs-target="#modal1">Sign In</a></li>
-                                <li><a href="#!" data-bs-toggle="modal" data-bs-target="#modal2">Register</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section>
-        <!-- TOP BAR -->
-        <div class="ed-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="ed-com-t1-left">
-                            <ul>
-                                <li>
-                                    <a href="#">Contact: gptiindia@yahoo.in</a>
-                                </li>
-                                <li>
-                                    <a href="tel:+918800959688">Phone:  +91-88009-59688 </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="ed-com-t1-right">
-                            <ul>
-                                <li>
-                                    <a href="#!" data-bs-toggle="modal" data-bs-target="#modal1">Sign In</a>
-                                </li>
-                                <li>
-                                    <a href="#!" data-bs-toggle="modal" data-bs-target="#modal2">Sign Up</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="ed-com-t1-social">
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fab fa-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-x-twitter"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- LOGO AND MENU SECTION -->
-        <div class="top-logo" data-spy="affix" data-offset-top="250">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="wed-logo">
-                            <a href="index.html">
-                                <h2 style="color: #8b4282; background: -webkit-linear-gradient(45deg, #ef6838, #4a29b2 80%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"><img src="images/gurukul_logo.png" alt="" /> <strong>Onine GSP</strong></h2>
-                            </a>
-                        </div>
-                        <div class="main-menu">
-                            <ul>
-                                <li>
-                                    <a href="index.html">Home</a>
-                                </li>
-                                <li class="about-menu">
-                                    <a href="/aboutus.html" class="mm-arr">About us</a>
-                                    <!-- MEGA MENU 1 -->
-                                    <div class="mm-pos">
-                                        <div class="about-mm m-menu">
-                                            <div class="m-menu-inn">
-                                                <div class="mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay menu-about" href="index.html">
-                                                            <img src="images/deepak-sapra.jpeg" alt="">
-                                                            <span>Chairman</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="mm1-com mm1-s4">
-                                                    <p>
-                                                        Gurukul the School of Professionals, an ISO 9001:2015 Certified Institute, was established with the vision of delivering the highest quality services in the fields of Professional, Vocational, Technical, and Management education.
-                                                    </p>
-                                                    <a href="/aboutus.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-
-                                                <div class="mm1-com mm1-s4">
-                                                    <ul>
-                                                        <li><a href="/aboutus.html">About us</a></li>
-                                                        <li><a href="/chairman-message.html">Chairman Message</a></li>
-                                                        <li><a href="/courses-list.html">Courses</a></li>
-                                                        <li><a href="/faq.html">FAQ</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="cour-menu">
-                                    <a href="/courses.html" class="mm-arr">Courses</a>
-                                    <div class="mm-pos">
-                                        <div class="cour-mm m-menu">
-                                            <div class="m-menu-inn">
-                                                <div class="mm2-com mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay" href="/courses.html">
-                                                            <img src="images/coursescroll/4.jpg" alt="">
-                                                            <!--<span>Vocational Courses</span>-->
-                                                        </a>
-                                                    </div>
-                                                    <p>Vocational Courses prepares learners for jobs that are based in manual or practical activities, traditionally non-academic</p>
-                                                    <a href="/courses.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-                                                <div class="mm2-com mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay" href="/courses.html">
-                                                            <img src="images/coursescroll/5.jpg" alt="">
-                                                            <!--<span>Non Engineering Trades</span>-->
-                                                        </a>
-                                                    </div>
-                                                    <p>Bachelor of Science (B.Sc), Integrated law courses, Bachelor of Architecture, Teaching Courses, Fashion Design Courses.</p>
-                                                    <a href="/courses.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-                                                <div class="mm2-com mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay" href="/courses.html">
-                                                            <img src="images/coursescroll/8.jpg" alt="">
-                                                            <!--<span>Management Courses</span>-->
-                                                        </a>
-                                                    </div>
-                                                    <p>Design Management is a two-year post-graduate program divided into four semesters offering knowledge about various concepts of design.</p>
-                                                    <a href="/courses.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-                                                <div class="mm2-com mm1-com mm1-s4">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay" href="/courses.html">
-                                                            <img src="images/coursescroll/7.jpg" alt="">
-                                                            <!--<span>Financial Services</span>-->
-                                                        </a>
-                                                    </div>
-                                                    <p>Chartered Financial Analysts (CFA) , Certified Financial Planner (CFP) , Financial Risk Manager (FRM) , Chartered Alternative Investment Analyst (CAIA)</p>
-                                                    <a href="/courses.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="admi-menu">
-                                    <a href="/affiliation-location.html">Branch</a>
-                                    <div class="mm-pos">
-                                        <div class="admi-mm m-menu">
-                                            <div class="m-menu-inn">
-                                                <div class="mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay menu-about" href="/affiliation-register.html">
-                                                            <img src="images/affilation-certficate.jpeg" alt="">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="mm1-com mm1-s4">
-                                                    <p>
-                                                        We build local partnerships and work with community champions to promote programs at the grassroots level. Our emphasis is on skill proficiency, employability, and connecting training to local opportunities�bridging modern techniques with local contexts
-                                                    </p>
-                                                    <a href="/aboutus.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-
-                                                <div class="mm1-com mm1-s4">
-                                                    <ul>
-                                                        <li><a href="/affiliation-location.html">Affiliation Location</a></li>
-                                                        <li><a href="/affiliation-register.html">Affiliation Register</a></li>
-                                                        <li><a href="/affiliation-status.html">Affiliation Status</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li><a href="/result.html">Result</a></li>
-                                <li><a href="/news.html">News</a></li>
-                                <li><a href="/contact.html">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="all-drop-down-menu">
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="search-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="search-form">
-                            <form>
-                                <div class="sf-type">
-                                    <div class="sf-input">
-                                        <input type="text" id="sf-box" placeholder="Search course and discount courses">
-                                    </div>
-                                    <div class="sf-list">
-                                        <ul>
-                                            <li><a href="/courses.html?cid=1_VOCATIONAL_COURSES">VOCATIONAL COURSES</a></li>
-                                            <li><a href="/courses.html?cid=2_NON_ENGINERRING_TRADES">NON ENGINERRING TRADES</a></li>
-                                            <li><a href="/courses.html?cid=3_MANAGEMENT_COURSES">MANAGEMENT COURSES</a></li>
-                                            <li><a href="/courses.html?cid=4_FINANCIAL_SERVICES">FINANCIAL SERVICES</a></li>
-                                            <li><a href="/courses.html?cid=5_ENGINERRING_TRADES">ENGINERRING TRADES</a></li>
-                                            <li><a href="/courses.html?cid=6_COMPUTER_LITERACY_PROGRAMME">COMPUTER LITERACY PROGRAMME</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="sf-submit">
-                                    <input type="submit" value="Search Course">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <main id="app" class="content" aria-live="polite">
-
-
-        <div class="sec-cour pop-cour">
-            <div class="con-title">
-                <h1>
-                    All <span>Online & Off-line</span> Courses
-                </h1>
-                <p>ISO 9001:2015 Certified Institute � Professional � Vocational � Technical � Management</p>
-            </div>
-            <div class="inn">
-                <div class="cal-3">
-                    <div class="courss-wrap">
-                        <div class="ser-inp">
-                            <input type="text" placeholder="Search course..." class="search_courses">
-                            <i class="search-ic">&nbsp;</i>
-                        </div>
-                        <h4>All courses</h4>
-                        <div class="cours-min-show">
-                            <label>
-                                <input type="checkbox" name="se-cours" value="vc">
-                                Vocational Courses
-                                <span class="mche">&nbsp;</span>
-                            </label>
-
-                            <label>
-                                <input type="checkbox" name="se-cours" value="ne">
-                                Non Engineering Trades
-                                <span class="mche">&nbsp;</span>
-                            </label>
-
-                            <label>
-                                <input type="checkbox" name="se-cours" value="mc">
-                                Management Courses
-                                <span class="mche">&nbsp;</span>
-                            </label>
-
-                            <label>
-                                <input type="checkbox" name="se-cours" value="fs">
-                                Financial Services
-                                <span class="mche">&nbsp;</span>
-                            </label>
-
-                            <label>
-                                <input type="checkbox" name="se-cours" value="et">
-                                Engineering Trades
-                                <span class="mche">&nbsp;</span>
-                            </label>
-
-                            <label>
-                                <input type="checkbox" name="se-cours" value="cl">
-                                Computer Literacy Programme
-                                <span class="mche">&nbsp;</span>
-                            </label>
-                        </div>
-
-
-                        <h4 class="mT-40">Ratings</h4>
-                        <div>
-                            <label>
-                                <input type="checkbox" name="se-cours" value="rating5">★ ★ ★ ★ ★<span class="mche">&nbsp;</span>
-                            </label>
-                            <label>
-                                <input type="checkbox" name="se-cours" value="rating4">★ ★ ★ ★ ☆<span class="mche">&nbsp;</span>
-                            </label>
-                            <label>
-                                <input type="checkbox" name="se-cours" value="rating3">★ ★ ★ ☆ ☆<span class="mche">&nbsp;</span>
-                            </label>
-                            <label>
-                                <input type="checkbox" name="se-cours" value="rating2">★ ★ ☆ ☆ ☆<span class="mche">&nbsp;</span>
-                            </label>
-                            <label>
-                                <input type="checkbox" name="se-cours" value="rating1">★ ☆ ☆ ☆ ☆<span class="mche">&nbsp;</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="cal-9">
-                    <div class="fil-tit" style="display:none;">
-                        <div class="ser-inp">
-                            <input type="text" placeholder="Search course..." class="search_courses">
-                            <i class="search-ic">&nbsp;</i>
-                        </div>
-                        <div class="filter-tags-main">
-                            <div class="filter-section">
-                                <span class="cours-count">&nbsp;</span>
-                                <div class="filter-tags">
-                                    <span class="clear-all">Clear all</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="courss" id="courss">
-
-                    </div>
-                    <div class="no-results">No results found</div>
-                </div>
-            </div>
-        </div>
-        <div class="main-page new-integ-form">&nbsp;</div>
-
-
-
-    </main>
-
-
-    <!-- FOOTER COURSE BOOKING -->
-    <section>
-        <div class="full-bot-book">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2 bb-img">
-                        <img src="images/3.png" alt="">
-                    </div>
-                    <div class="col-md-7 bb-text">
-                        <h4>Gurukul The School Of Professionals</h4>
-                        <p>GURUKUL's spirit is teamwork and a commitment to quality training, helping learners reach their career goals with confidence and modern skills.</p>
-                    </div>
-                    <div class="col-md-3 bb-link">
-                        <a href="/courses.html">Book This Course</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <section class="wed-hom-footer">
+    <!-- 1. TOP GOVERNMENT / BOARD BAR -->
+    <div class="gov-top-bar">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>About Us</h4>
-                    <p>Gurukul the School of Professionals is an ISO 9001:2015 certified institute founded to deliver industry-focused education and training across Professional, Vocational, Technical, and Management disciplines. We are committed to providing modern, practical learning that prepares students for real careers.</p>
-                    <p>Our goal is to build a strong nationwide network so quality training reaches learners across India � urban and rural alike. We currently operate offices in Delhi, Uttar Pradesh, and Uttarakhand, and we partner with trusted members and centers in many other states.</p>
-                    <p>We build local partnerships and work with community champions to promote programs at the grassroots level. Our emphasis is on skill proficiency, employability, and connecting training to local opportunities�bridging modern techniques with local contexts.</p>
-                    <p></p>
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div class="d-flex align-items-center flex-wrap">
+                    <span class="gov-badge me-3"><i class="fa-solid fa-shield-halved me-1"></i> ISO 9001:2015 Certified</span>
+                    <span class="info-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:gptiindia@yahoo.in">gptiindia@yahoo.in</a></span>
+                    <span class="info-item"><i class="fa-solid fa-phone"></i> <a href="tel:+918800959688">+91-88009-59688</a></span>
                 </div>
-            </div>
-            <div class="row wed-foot-link">
-                <div class="col-md-4 foot-tc-mar-t-o">
-                    <h4>Top Courses</h4>
-                    <ul>
-                        <li><a href="/course.html">Vocational Courses</a></li>
-                        <li><a href="/course.html">Non Engineering Trades</a></li>
-                        <li><a href="/course.html">Management Courses</a></li>
-                        <li><a href="/course.html">Financial Services</a></li>
-                        <li><a href="/course.html">Engineering Trades</a></li>
-                        <li><a href="/course.html">Computer Literacy</a></li>
-                    </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="result.html" class="text-white text-decoration-none small"><i class="fa-solid fa-file-signature text-warning me-1"></i> Search Result</a>
+                    <span class="text-white-50">|</span>
+                    <a href="verify.html" class="text-white text-decoration-none small"><i class="fa-solid fa-qrcode me-1"></i> Certificate Verification</a>
                 </div>
-                <div class="col-md-4">
-                    <h4>New Courses</h4>
-                    <ul>
-                        <li><a href="/course.html">IT Management</a></li>
-                        <li><a href="/course.html">Business Management</a></li>
-                        <li><a href="/course.html">IT and System Management</a></li>
-                        <li><a href="/course.html">Financial Accounting</a></li>
-                        <li><a href="/course.html">Computer Application</a></li>
-                        <li><a href="/course.html">Hardware & Networking</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4>HELP & SUPPORT</h4>
-                    <ul>
-                        <li>
-                            <a href="/contact.html">24x7 Live help</a>
-                        </li>
-                        <li>
-                            <a href="/contact.html">Contact us</a>
-                        </li>
-                        <li>
-                            <a href="/contact.html">Feedback</a>
-                        </li>
-                        <li>
-                            <a href="/faq.html">FAQs</a>
-                        </li>
-                        <li>
-                            <a href="/contact.html">Safety Tips</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row wed-foot-link-1">
-                <div class="col-md-4 foot-tc-mar-t-o">
-                    <h4>Get In Touch</h4>
-                    <p>Address: WZ-85, Ram Nagar, Tilak Nagar, Delhi - 18</p>
-                    <p>Phone: <a href="#!">+91-88009-59688</a></p>
-                    <p>Email: <a href="#!">gptiindia@yahoo.in</a></p>
-                </div>
-                <div class="col-md-4">
-                    <h4>DOWNLOAD OUR FREE MOBILE APPS</h4>
-                    <ul>
-                        <li>
-                            <a href="#"><span class="sprite sprite-android"></span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="sprite sprite-ios"></span></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4>SOCIAL MEDIA</h4>
-                    <ul>
-                        <li>
-                            <a href="#"><i class="fab fa-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-x-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-google-plus"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COPY RIGHTS -->
-    <section class="wed-rights">
-        <div class="container">
-            <div class="row">
-                <div class="copy-right">
-                    <p>Copyrights © 2025 GIndiaHR. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--SECTION LOGIN, REGISTER AND FORGOT PASSWORD-->
-    <section>
-        <!-- LOGIN SECTION -->
-        <div class="modal fade" id="modal1">
-            <div class="log-in-pop modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="log-in-pop-left">
-                        <h1>Hello...</h1>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <h4>Login with social media</h4>
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-google"></i> Google</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="log-in-pop-right">
-                        <a href="#" class="pop-close" data-bs-dismiss="modal">
-                            <img src="images/cancel.png" alt="" />
-                        </a>
-                        <h4>Login</h4>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <form class="s12">
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-                                <label for="email">Email</label>
-                            </div>
-                            <div class="form-floating mt-3 mb-3">
-                                <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-                                <label for="pwd">Password</label>
-                            </div>
-                            <div class="form-check mb-3">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" name="remember"> Remember me
-                                </label>
-                            </div>
-                            <div>
-                                <div class="input-field s4">
-                                    <input type="submit" value="Login" class="btn btn-primary log-in-btn">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="input-field s12"> <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal3">Forgot password</a> | <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal2">Create a new account</a> </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- REGISTER SECTION -->
-        <div class="modal fade" id="modal2">
-            <div class="log-in-pop modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="log-in-pop-left">
-                        <h1>Hello...</h1>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <h4>Login with social media</h4>
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-google"></i> Google</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="log-in-pop-right">
-                        <a href="#" class="pop-close" data-bs-dismiss="modal">
-                            <img src="images/cancel.png" alt="" />
-                        </a>
-                        <h4>Create an Account</h4>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <form class="s12">
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="username" placeholder="Enter user name" name="text">
-                                <label for="username">User name</label>
-                            </div>
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-                                <label for="email">Email</label>
-                            </div>
-                            <div class="form-floating mt-3 mb-3">
-                                <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-                                <label for="pwd">Password</label>
-                            </div>
-                            <div class="form-floating mt-3 mb-3">
-                                <input type="text" class="form-control" id="pwdconf" placeholder="Confirm password" name="pwdconf">
-                                <label for="pwdconf">Confirm password</label>
-                            </div>
-                            <div>
-                                <div class="input-field s4">
-                                    <input type="submit" value="Register now" class="btn btn-primary log-in-btn">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="input-field s12"> <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal1">Are you a already member ? Login</a> </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- FORGOT SECTION -->
-        <div class="modal fade" id="modal3">
-            <div class="log-in-pop modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="log-in-pop-left">
-                        <h1>Hello...</h1>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <h4>Login with social media</h4>
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-google"></i> Google</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="log-in-pop-right">
-                        <a href="#" class="pop-close" data-bs-dismiss="modal">
-                            <img src="images/cancel.png" alt="" />
-                        </a>
-                        <h4>Forgot password</h4>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <form class="s12">
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-                                <label for="email">Email</label>
-                            </div>
-                            <div>
-                                <div class="input-field s4">
-                                    <input type="submit" value="Login" class="btn btn-primary log-in-btn">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="input-field s12"><a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal2">Create a new account</a> </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SOCIAL MEDIA SHARE -->
-    <section>
-        <div class="icon-float">
-            <ul>
-                <li><a href="#" class="sh">1k <br> Share</a> </li>
-
-                <li><a href="#" class="fb1"><i class="fab fa-facebook"></i></a> </li>
-                <li><a href="#" class="wa1"><i class="fab fa-whatsapp"></i></a> </li>
-                <li><a href="#" class="tw1"><i class="fab fa-x-twitter"></i></a> </li>
-                <li><a href="#" class="li1"><i class="fab fa-linkedin"></i></a> </li>
-
-                <li><a href="#" class="sh1"><i class="fa-regular fa-message"></i></a> </li>
-            </ul>
-        </div>
-    </section>
-
-
-
-    <!-- Enquiry Modal -->
-    <!-- Modal -->
-    <div class="modal-backdrop" id="enquiryModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <div class="modal" role="document">
-            <div class="modal-header">
-                <div>
-                    <div class="modal-title" id="modalTitle">Course Enquiry</div>
-                    <div class="modal-course" id="modalCourseInfo">Full Stack - Web Development</div>
-                </div>
-                <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Close">&times;</button>
-            </div>
-
-            <div style="position:relative;">
-                <div class="modal-body" id="modalBody">
-                    <div>
-                        <label for="en_name">Name</label>
-                        <input type="text" id="en_name" placeholder="Enter your name" />
-                    </div>
-
-                    <div>
-                        <label for="en_email">Email</label>
-                        <input type="email" id="en_email" placeholder="Enter your email" />
-                    </div>
-
-                    <div>
-                        <label for="en_mobile">Mobile</label>
-                        <input type="text" id="en_mobile" placeholder="Enter your mobile number" />
-                    </div>
-
-                    <div>
-                        <label for="en_state">State</label>
-                        <select id="en_state"><option value="">Select state</option></select>
-                    </div>
-
-                    <div>
-                        <label for="en_city">City</label>
-                        <input type="text" id="en_city" placeholder="City" />
-                    </div>
-
-                    <div>
-                        <label for="en_district">District</label>
-                        <input type="text" id="en_district" placeholder="District" />
-                    </div>
-
-
-
-                    <div class="field-full">
-                        <label for="en_remarks">Notes / Remarks</label>
-                        <textarea id="en_remarks" placeholder="Any specific query or details..."></textarea>
-                    </div>
-                </div>
-
-                <!-- message overlay -->
-                <div class="message-wrap" id="messageWrap" aria-live="polite">
-                    <div class="message-card" id="messageCard">
-                        <!-- content inserted by JS -->
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn-secondary" id="modalCancel">Cancel</button>
-                <button type="button" class="btn-primary-modal" id="modalSubmit">Submit Enquiry</button>
             </div>
         </div>
     </div>
 
-    <script src="js/main.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/HomeScripts.js"></script>
+    <!-- 2. ANNOUNCEMENT TICKER MARQUEE -->
+    <div class="portal-ticker-wrap">
+        <div class="portal-ticker-title">
+            <i class="fa-solid fa-bullhorn"></i> Course Admissions
+        </div>
+        <div class="portal-ticker-content">
+            <div class="portal-ticker-item">
+                <i class="fa-solid fa-graduation-cap"></i> Admission Open for 2026-2027 Professional & Vocational Certification Programs.
+            </div>
+            <div class="portal-ticker-item">
+                <i class="fa-solid fa-certificate"></i> All Diplomas & Certificates are ISO 9001:2015 accredited and nationwide valid.
+            </div>
+            <div class="portal-ticker-item">
+                <i class="fa-solid fa-building-columns"></i> Gurukul The School Of Professionals - Empowering Skill Education & Vocational Training Across India.
+            </div>
+        </div>
+    </div>
 
-    <script type="text/javascript">
+    <!-- 3. MAIN PORTAL HEADER & NAVIGATION -->
+    <header class="portal-header">
+        <div class="container">
+            <div class="portal-header-inner">
+                <a href="index.html" class="board-brand">
+                    <img src="images/gurukul_logo.png" alt="Gurukul Logo">
+                    <div class="board-brand-text">
+                        <span class="board-title">GURUKUL</span>
+                        <span class="board-subtitle">The School Of Professionals</span>
+                    </div>
+                </a>
 
-        (function () {
+                <nav class="d-none d-lg-block">
+                    <ul class="portal-nav">
+                        <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                        <li><a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+                        <li class="active"><a href="courses.html"><i class="fa-solid fa-book-open"></i> Courses</a></li>
+                        <li><a href="affiliation-location.html"><i class="fa-solid fa-network-wired"></i> Branches</a></li>
+                        <li><a href="gallery.html"><i class="fa-solid fa-images"></i> Gallery</a></li>
+                        <li><a href="news.html"><i class="fa-solid fa-newspaper"></i> News</a></li>
+                        <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+                        <li class="ms-2"><a href="verify.html" class="btn-verify-nav"><i class="fa-solid fa-qrcode"></i> Verify Record</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-            console.log("initCoursesPage", coursesData);
-            renderCourseList(coursesData);
-            const searchInputs = document.querySelectorAll('.search_courses');
-            searchInputs.forEach(si => {
-                si.addEventListener('input', debounce(() => {
-                    renderCourseList(filterCourses());
-                }, 250));
-            });
+    <main>
+        <!-- 4. COURSES HERO & SEARCH BAR -->
+        <section class="courses-hero-section text-center">
+            <div class="container">
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-pill mb-3">
+                    <span class="badge bg-warning text-dark rounded-pill fw-bold">ISO 9001:2015</span>
+                    <span class="small text-white-50">Nationwide Recognized Curriculum</span>
+                </div>
 
-            const allCheckboxes = document.querySelectorAll('.cours-min-show input[type="checkbox"], .cal-3 input[type="checkbox"]');
-            allCheckboxes.forEach(cb => {
-                cb.addEventListener('change', () => {
-                    renderCourseList(filterCourses());
-                });
-            });
+                <h1 class="courses-hero-title">Certified <span>Skill & Professional</span> Programs</h1>
+                <p class="text-white-50 max-w-700 mx-auto fs-6" style="max-width: 680px;">
+                    Empowering careers with industry-ready certifications in Computer Applications, Financial Accounting, Teaching, Fashion & Vocational Trades.
+                </p>
 
-            // Clear All
-            const clearAll = document.querySelector('.clear-all');
-            if (clearAll) {
-                clearAll.addEventListener('click', () => {
-                    // uncheck all checkboxes
-                    const boxes = document.querySelectorAll('.cours-min-show input[type="checkbox"], .cal-3 input[type="checkbox"]');
-                    boxes.forEach(b => b.checked = false);
-                    // clear searches
-                    document.querySelectorAll('.search_courses').forEach(i => i.value = '');
-                    renderCourseList(coursesData);
-                });
+                <!-- Search Input Field -->
+                <div class="search-hero-box">
+                    <div class="search-hero-input-wrap">
+                        <i class="fa-solid fa-magnifying-glass text-warning fs-5 me-2"></i>
+                        <input type="text" id="courseSearchInput" class="search-hero-input" placeholder="Search course by name (e.g. ADCA, Tally, Yoga, NTT, Cutting & Tailoring...)" autocomplete="off">
+                        <button type="button" id="btnSearchCourse" class="search-hero-btn">
+                            <span>Search</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filter Category Pills -->
+                <div class="filter-pills-bar">
+                    <button type="button" class="filter-pill-btn active" data-cat="all">
+                        <i class="fa-solid fa-grid-2"></i> All Programs <span class="filter-pill-count" id="countAll">21</span>
+                    </button>
+                    <button type="button" class="filter-pill-btn" data-cat="computer">
+                        <i class="fa-solid fa-laptop-code"></i> Computer & IT <span class="filter-pill-count" id="countComputer">7</span>
+                    </button>
+                    <button type="button" class="filter-pill-btn" data-cat="vocational">
+                        <i class="fa-solid fa-certificate"></i> Vocational Trades <span class="filter-pill-count" id="countVocational">9</span>
+                    </button>
+                    <button type="button" class="filter-pill-btn" data-cat="teaching">
+                        <i class="fa-solid fa-graduation-cap"></i> Teaching & Education <span class="filter-pill-count" id="countTeaching">2</span>
+                    </button>
+                    <button type="button" class="filter-pill-btn" data-cat="technical">
+                        <i class="fa-solid fa-bolt"></i> Engineering & Safety <span class="filter-pill-count" id="countTechnical">3</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4.1 STATS HIGHLIGHTS STRIP -->
+        <section class="catalog-stats-banner">
+            <div class="container">
+                <div class="row g-3 text-center text-md-start">
+                    <div class="col-lg-3 col-6">
+                        <div class="stat-item-col justify-content-center justify-content-md-start">
+                            <div class="stat-item-icon bg-primary bg-opacity-10 text-primary">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold text-navy fs-6">20+ Accredited Courses</div>
+                                <div class="small text-muted">Diploma & Certificate</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="stat-item-col justify-content-center justify-content-md-start">
+                            <div class="stat-item-icon bg-success bg-opacity-10 text-success">
+                                <i class="fa-solid fa-shield-check"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold text-navy fs-6">ISO 9001:2015</div>
+                                <div class="small text-muted">Govt. Registered Board</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="stat-item-col justify-content-center justify-content-md-start">
+                            <div class="stat-item-icon bg-warning bg-opacity-10 text-warning">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold text-navy fs-6">Career-Oriented</div>
+                                <div class="small text-muted">100% Practical Training</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="stat-item-col justify-content-center justify-content-md-start">
+                            <div class="stat-item-icon bg-danger bg-opacity-10 text-danger">
+                                <i class="fa-solid fa-qrcode"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold text-navy fs-6">Online Verification</div>
+                                <div class="small text-muted">Instant QR Authentication</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. COURSES CATALOG GRID -->
+        <section class="container py-5">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+                <div>
+                    <h3 class="fw-bold text-navy mb-1" id="sectionHeading">All Available Programs</h3>
+                    <p class="text-muted small mb-0">Select any program to view details or apply for admission through our authorized centers.</p>
+                </div>
+                <div>
+                    <span class="badge bg-light text-navy border px-3 py-2 fw-bold" id="totalCoursesBadge">Showing 21 Courses</span>
+                </div>
+            </div>
+
+            <div id="courseLoading" class="text-center py-5 text-muted fw-bold">
+                <div class="spinner-border text-primary me-2" role="status"></div>
+                Loading official course catalog...
+            </div>
+
+            <div class="row g-4" id="coursesGrid" style="display: none;"></div>
+
+            <div id="noCourseFound" class="text-center py-5 text-muted" style="display: none;">
+                <div class="bg-light d-inline-flex p-4 rounded-circle mb-3">
+                    <i class="fa-solid fa-folder-open fs-1 text-warning"></i>
+                </div>
+                <h5 class="fw-bold text-navy">No courses match your search</h5>
+                <p class="text-muted">Try searching with a different keyword (e.g. "DCA", "Yoga", "Computer", "Tailoring") or select "All Programs".</p>
+                <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-4" onclick="resetCourseSearch()">Clear Search</button>
+            </div>
+
+            <!-- Program Highlights Section -->
+            <div class="why-choose-banner">
+                <div class="text-center mb-4">
+                    <span class="badge bg-primary bg-opacity-10 text-primary fw-bold text-uppercase px-3 py-1 mb-2">Gurukul Advantages</span>
+                    <h3 class="fw-bold text-navy">Why Choose Gurukul Certification?</h3>
+                    <p class="text-muted small max-w-600 mx-auto">Our skill training ecosystem bridges the gap between academic theory and practical industry requirements.</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="feature-box-item">
+                            <div class="feature-box-icon bg-primary text-white">
+                                <i class="fa-solid fa-certificate"></i>
+                            </div>
+                            <h6 class="fw-bold text-navy">Government Registered</h6>
+                            <p class="small text-muted mb-0">ISO 9001:2015 certified board with nationwide legal validity for job applications.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="feature-box-item">
+                            <div class="feature-box-icon bg-success text-white">
+                                <i class="fa-solid fa-laptop-file"></i>
+                            </div>
+                            <h6 class="fw-bold text-navy">Hands-on Lab Curriculum</h6>
+                            <p class="small text-muted mb-0">Modern syllabus updated with latest software, accounting modules, and practical tools.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="feature-box-item">
+                            <div class="feature-box-icon bg-warning text-dark">
+                                <i class="fa-solid fa-shield-check"></i>
+                            </div>
+                            <h6 class="fw-bold text-navy">Instant QR Verification</h6>
+                            <p class="small text-muted mb-0">Every certificate includes digital security codes and live QR online authentication.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="feature-box-item">
+                            <div class="feature-box-icon bg-danger text-white">
+                                <i class="fa-solid fa-network-wired"></i>
+                            </div>
+                            <h6 class="fw-bold text-navy">Pan-India Exam Centers</h6>
+                            <p class="small text-muted mb-0">Study and appear for exams across hundreds of authorized affiliated study centers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- 6. COURSE ENQUIRY & DETAILS MODAL -->
+    <div class="modal fade" id="courseEnquiryModal" tabindex="-1" aria-labelledby="enquiryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-header text-white p-4" id="modalHeaderBanner" style="background: linear-gradient(135deg, #09192f 0%, #1e3a8a 100%);">
+                    <div>
+                        <span class="badge bg-warning text-dark fw-bold mb-1" id="modalCategoryBadge">Vocational Course</span>
+                        <h5 class="modal-title fw-bold text-white fs-5" id="enquiryModalLabel">Course Information</h5>
+                        <p class="small text-white-50 mb-0" id="modalCourseTitle">Program Information Request</p>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <!-- Course Key Details Box -->
+                    <div class="p-3 bg-light rounded-3 border mb-3">
+                        <div class="d-flex justify-content-between align-items-center small mb-2">
+                            <div><i class="fa-solid fa-clock text-warning me-1"></i> Duration: <strong id="modalDuration">12 Months</strong></div>
+                            <div><i class="fa-solid fa-shield-check text-success me-1"></i> <strong class="text-success">ISO 9001:2015 Verified</strong></div>
+                        </div>
+                        <p id="modalCourseDesc" class="text-muted small mb-0 pt-2 border-top" style="line-height: 1.5;"></p>
+                    </div>
+
+                    <form id="enquiryForm">
+                        <div class="mb-3">
+                            <label for="eq_name" class="form-label small fw-bold text-uppercase text-muted">Full Name *</label>
+                            <input type="text" id="eq_name" class="form-control" placeholder="Enter candidate full name" required>
+                        </div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-6">
+                                <label for="eq_phone" class="form-label small fw-bold text-uppercase text-muted">Mobile Number *</label>
+                                <input type="tel" id="eq_phone" class="form-control" placeholder="10-digit mobile" required>
+                            </div>
+                            <div class="col-6">
+                                <label for="eq_email" class="form-label small fw-bold text-uppercase text-muted">Email Address</label>
+                                <input type="email" id="eq_email" class="form-control" placeholder="Email id">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="eq_city" class="form-label small fw-bold text-uppercase text-muted">City / Preferred Branch</label>
+                            <input type="text" id="eq_city" class="form-control" placeholder="e.g. New Delhi, Pehowa, Qutubgarh...">
+                        </div>
+                        <div class="mb-3">
+                            <label for="eq_msg" class="form-label small fw-bold text-uppercase text-muted">Message / Question</label>
+                            <textarea id="eq_msg" class="form-control" rows="2" placeholder="Any specific questions regarding admission or syllabus..."></textarea>
+                        </div>
+
+                        <div id="enquirySuccessMsg" class="alert alert-success small fw-bold" style="display: none;">
+                            <i class="fa-solid fa-circle-check me-2"></i> Thank you! Your admission enquiry has been submitted. Our center representative will contact you shortly.
+                        </div>
+
+                        <button type="submit" class="btn btn-warning btn-lg w-100 fw-bold rounded-3 shadow">
+                            <i class="fa-solid fa-paper-plane me-2"></i> Submit Course Enquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. ULTRA-PREMIUM GLOBAL FOOTER -->
+    <footer class="portal-global-footer">
+        <div class="portal-footer-top">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <a href="index.html" class="d-flex align-items-center gap-3 text-decoration-none mb-3">
+                            <img src="images/gurukul_logo.png" alt="Gurukul Logo" style="height: 55px; width: auto;">
+                            <div>
+                                <div class="footer-brand-title">GURUKUL</div>
+                                <div class="footer-brand-sub">The School Of Professionals</div>
+                            </div>
+                        </a>
+                        <p class="footer-about-text">
+                            Gurukul The School Of Professionals is an ISO 9001:2015 certified premier education board dedicated to delivering industry-aligned technical, computer, management, and vocational training across India.
+                        </p>
+                        <div class="d-flex align-items-center gap-2 mt-2">
+                            <span class="badge bg-warning text-dark fw-bold"><i class="fa-solid fa-shield-halved me-1"></i> ISO 9001:2015 Accredited Board</span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6">
+                        <h5 class="footer-heading">Quick Links</h5>
+                        <ul class="footer-links-list">
+                            <li><a href="index.html"><i class="fa-solid fa-angle-right"></i> Home Portal</a></li>
+                            <li><a href="aboutus.html"><i class="fa-solid fa-angle-right"></i> About Board</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Course Catalog</a></li>
+                            <li><a href="result.html"><i class="fa-solid fa-angle-right"></i> Examination Result</a></li>
+                            <li><a href="verify.html"><i class="fa-solid fa-angle-right"></i> Certificate Verify</a></li>
+                            <li><a href="contact.html"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Programs</h5>
+                        <ul class="footer-links-list">
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Computer Applications & IT</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Financial Accounting & Tally</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Vocational Skill Certification</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Business Management</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Hardware & Networking</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Head Office</h5>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="footer-contact-text">
+                                WZ-85, Ram Nagar, Tilak Nagar,<br>New Delhi - 110018
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div class="footer-contact-text">
+                                <a href="tel:+918800959688">+91-88009-59688</a>
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="footer-contact-text">
+                                <a href="mailto:gptiindia@yahoo.in">gptiindia@yahoo.in</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portal-footer-bottom text-center">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div>
+                        Copyright © 2026 <strong>Gurukul The School Of Professionals</strong>. All Rights Reserved.
+                    </div>
+                    <div>
+                        <span>ISO 9001:2015 Certified Board</span> | 
+                        <a href="verify.html" class="text-warning text-decoration-none ms-1">Digital Verification System</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle for Modals -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Client Side Dynamic Courses Data, Themes & Filtering Script -->
+    <script>
+        const JSON_COURSES = 'db/courses.json';
+        let allCourses = [];
+
+        const coursesGrid = document.getElementById('coursesGrid');
+        const courseLoading = document.getElementById('courseLoading');
+        const noCourseFound = document.getElementById('noCourseFound');
+        const courseSearchInput = document.getElementById('courseSearchInput');
+        const filterBtns = document.querySelectorAll('.filter-pill-btn');
+        const totalCoursesBadge = document.getElementById('totalCoursesBadge');
+        const sectionHeading = document.getElementById('sectionHeading');
+
+        const modalCourseTitle = document.getElementById('modalCourseTitle');
+        const modalCategoryBadge = document.getElementById('modalCategoryBadge');
+        const modalDuration = document.getElementById('modalDuration');
+        const modalHeaderBanner = document.getElementById('modalHeaderBanner');
+        const enquiryForm = document.getElementById('enquiryForm');
+        const enquirySuccessMsg = document.getElementById('enquirySuccessMsg');
+
+        let activeCategory = 'all';
+
+        // Dynamic Color Theme Resolver for each course
+        function getCourseTheme(c) {
+            const title = (c.Title || '').toUpperCase();
+            const cat = (c.CourseCategory || '').toUpperCase();
+
+            // 1. Computer & IT Programs (Sapphire Blue / Cyan)
+            if (title.includes('COMPUTER') || title.includes('EXCEL') || title.includes('DIGITAL MARKETING') || title.includes('TYPING') || title.includes('SHORTHAND') || cat.includes('COMPUTER')) {
+                if (title.includes('ACCOUNTING') || title.includes('FINANCIAL') || title.includes('TALLY') || title.includes('EXCEL')) {
+                    return {
+                        group: 'computer',
+                        badgeText: 'Accounting & IT',
+                        gradient: 'linear-gradient(135deg, #3730a3 0%, #4f46e5 50%, #6366f1 100%)',
+                        btnGradient: 'linear-gradient(135deg, #4f46e5 0%, #3730a3 100%)',
+                        icon: 'fa-solid fa-calculator',
+                        skills: ['Tally Prime', 'GST Accounting', 'MS Excel', 'Financial Reports'],
+                        eligibility: '10th / 12th Pass'
+                    };
+                }
+                if (title.includes('DIGITAL MARKETING')) {
+                    return {
+                        group: 'computer',
+                        badgeText: 'Digital Media',
+                        gradient: 'linear-gradient(135deg, #0e7490 0%, #06b6d4 100%)',
+                        btnGradient: 'linear-gradient(135deg, #0891b2 0%, #0e7490 100%)',
+                        icon: 'fa-solid fa-chart-pie',
+                        skills: ['SEO & SMM', 'Content Strategy', 'Ad Campaigns', 'Analytics'],
+                        eligibility: '12th / Graduation'
+                    };
+                }
+                return {
+                    group: 'computer',
+                    badgeText: 'Computer & IT',
+                    gradient: 'linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%)',
+                    btnGradient: 'linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%)',
+                    icon: 'fa-solid fa-laptop-code',
+                    skills: ['MS Office Suite', 'Internet Concepts', 'Database / DTP', 'Programming Basics'],
+                    eligibility: '10th / 12th Pass'
+                };
             }
 
-            // if you want to support clicking a category nav (tabs earlier) to map to these results,
-            // you can call renderCourseList(coursesData.filter(c=>c.tab===N)) from that handler.
-      
-         }) ();
+            // 2. Teaching & Early Education (Rose / Magenta)
+            if (title.includes('TEACHER') || title.includes('NURSERY') || title.includes('CHILDHOOD') || title.includes('ECCE') || title.includes('NTT')) {
+                return {
+                    group: 'teaching',
+                    badgeText: 'Teaching & Education',
+                    gradient: 'linear-gradient(135deg, #9d174d 0%, #db2777 50%, #f43f5e 100%)',
+                    btnGradient: 'linear-gradient(135deg, #db2777 0%, #9d174d 100%)',
+                    icon: 'fa-solid fa-hands-holding-child',
+                    skills: ['Child Psychology', 'Montessori Method', 'Lesson Planning', 'Activity Education'],
+                    eligibility: '12th Pass / Graduate'
+                };
+            }
 
+            // 3. Technical & Engineering / Fire Safety (Amber / Orange / Red)
+            if (title.includes('ELECTRICIAN') || title.includes('FIRE') || title.includes('SAFETY') || title.includes('ENGINEERING') || cat.includes('ENGINEERING')) {
+                return {
+                    group: 'technical',
+                    badgeText: 'Engineering & Safety',
+                    gradient: 'linear-gradient(135deg, #9a3412 0%, #ea580c 50%, #f97316 100%)',
+                    btnGradient: 'linear-gradient(135deg, #ea580c 0%, #c2410c 100%)',
+                    icon: 'fa-solid fa-bolt',
+                    skills: ['Industrial Safety', 'Wiring & Circuits', 'Hazard Prevention', 'Practical Workshop'],
+                    eligibility: '10th / 12th Pass'
+                };
+            }
+
+            // 4. Yoga, Wellness & Beautician / Culinary / Tailoring (Emerald Green / Teal)
+            if (title.includes('YOGA') || title.includes('BEAUTY') || title.includes('BEAUTICIAN') || title.includes('WELLNESS')) {
+                return {
+                    group: 'vocational',
+                    badgeText: 'Health & Wellness',
+                    gradient: 'linear-gradient(135deg, #065f46 0%, #059669 50%, #10b981 100%)',
+                    btnGradient: 'linear-gradient(135deg, #059669 0%, #065f46 100%)',
+                    icon: 'fa-solid fa-spa',
+                    skills: ['Asanas & Anatomy', 'Skin & Hair Therapy', 'Holistic Care', 'Salon Management'],
+                    eligibility: 'All Streams Eligible'
+                };
+            }
+
+            if (title.includes('TAILORING') || title.includes('CUTTING') || title.includes('CULINARY') || title.includes('COOKERY') || title.includes('JOURNALISM')) {
+                return {
+                    group: 'vocational',
+                    badgeText: 'Vocational Skill',
+                    gradient: 'linear-gradient(135deg, #0f766e 0%, #14b8a6 100%)',
+                    btnGradient: 'linear-gradient(135deg, #0d9488 0%, #0f766e 100%)',
+                    icon: 'fa-solid fa-scissors',
+                    skills: ['Garment Drafting', 'Pattern Cutting', 'Finishing & Styling', 'Commercial Workshop'],
+                    eligibility: 'All Streams Eligible'
+                };
+            }
+
+            // Default fallback
+            return {
+                group: 'vocational',
+                badgeText: 'Vocational Program',
+                gradient: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)',
+                btnGradient: 'linear-gradient(135deg, #334155 0%, #0f172a 100%)',
+                icon: 'fa-solid fa-certificate',
+                skills: ['Core Concepts', 'Practical Application', 'Exam Preparation', 'Board Certificate'],
+                eligibility: '10th / 12th Pass'
+            };
+        }
+
+        // Load Courses from JSON
+        async function fetchCourses() {
+            try {
+                const res = await fetch(JSON_COURSES + '?v=' + Date.now());
+                if (res.ok) {
+                    allCourses = await res.json();
+                }
+            } catch (e) {
+                console.warn('Fallback courses dataset');
+            }
+
+            if (!Array.isArray(allCourses) || allCourses.length === 0) {
+                allCourses = [
+                    { Title: "ADVANCE DIPLOMA IN COMPUTER APPLICATION", CourseCategory: "Vocational_Courses", Duration: "12 Months" },
+                    { Title: "CERTIFICATE IN COMPUTER APPLICATION", CourseCategory: "Vocational_Courses", Duration: "12 Months" },
+                    { Title: "DIPLOMA IN NURSERY TEACHER TRAINING", CourseCategory: "Vocational_Courses", Duration: "24 Months" },
+                    { Title: "DIPLOMA IN YOGA", CourseCategory: "Vocational_Courses", Duration: "12 Months" },
+                    { Title: "ADVANCE CERTIFICATE IN COMPUTER APPLICATION", CourseCategory: "Vocational_Courses", Duration: "12 Months" },
+                    { Title: "DIPLOMA IN EARLY CHILDHOOD CARE & EDUCATION", CourseCategory: "Vocational_Courses", Duration: "12 Months" },
+                    { Title: "DIPLOMA IN JOURNALISM", CourseCategory: "Vocational_Courses", Duration: "12 Months" },
+                    { Title: "DIPLOMA IN FIRE AND SAFETY", CourseCategory: "Vocational_Courses", Duration: "12 Months" },
+                    { Title: "CERTIFICATE IN COMPUTER TYPING", CourseCategory: "Vocational_Courses", Duration: "06 Months" },
+                    { Title: "CERTIFICATE IN CUTTING & TAILORING", CourseCategory: "Vocational_Courses", Duration: "03 Months" },
+                    { Title: "Diploma In Computerized Accounting", CourseCategory: "Vocational_Courses", Duration: "12 Months" },
+                    { Title: "CERTIFICATE IN CULINARY ARTS ( COOKERY)", CourseCategory: "Vocational_Courses", Duration: "06 Months" },
+                    { Title: "Certificate in Beautician Training Programme", CourseCategory: "Vocational_Courses", Duration: "06 Months" },
+                    { Title: "COMPUTER TRAINING PROGRAMME", CourseCategory: "Computer_Literacy_Programme", Duration: "01 Month" },
+                    { Title: "CERTIFICATE IN ADVANCE EXCEL", CourseCategory: "Computer_Literacy_Programme", Duration: "03 Months" },
+                    { Title: "DIPLOMA IN DIGITAL MARKETING", CourseCategory: "Computer_Literacy_Programme", Duration: "12 Months" },
+                    { Title: "INDUSTRIAL TRADE CERTIFCATE - ELECTRICIAN", CourseCategory: "Engineering_Trades", Duration: "24 Months" },
+                    { Title: "DIPLOMA IN COMPUTER APPLICATION", CourseCategory: "Computer_Literacy_Programme", Duration: "12 Months" },
+                    { Title: "CERTIFICATE IN FINANCIAL ACCOUNTING", CourseCategory: "Computer_Literacy_Programme", Duration: "03 Months" },
+                    { Title: "CERTIFICATE IN SHORTHAND / COMPUTER TYPING", CourseCategory: "Computer_Literacy_Programme", Duration: "06 Months" },
+                    { Title: "DIPLOMA IN BEAUTY & WELLNESS", CourseCategory: "Vocational_Courses", Duration: "12 Months" }
+                ];
+            }
+
+            updateCategoryCounts();
+            courseLoading.style.display = 'none';
+            coursesGrid.style.display = 'flex';
+            renderCourses();
+        }
+
+        // Count for Filter Badges
+        function updateCategoryCounts() {
+            let counts = { all: allCourses.length, computer: 0, vocational: 0, teaching: 0, technical: 0 };
+            allCourses.forEach(c => {
+                const theme = getCourseTheme(c);
+                if (counts[theme.group] !== undefined) {
+                    counts[theme.group]++;
+                }
+            });
+            document.getElementById('countAll').textContent = counts.all;
+            document.getElementById('countComputer').textContent = counts.computer;
+            document.getElementById('countVocational').textContent = counts.vocational;
+            document.getElementById('countTeaching').textContent = counts.teaching;
+            document.getElementById('countTechnical').textContent = counts.technical;
+        }
+
+        // Render Courses List
+        function renderCourses() {
+            const query = (courseSearchInput.value || '').toLowerCase().trim();
+            coursesGrid.innerHTML = '';
+
+            const filtered = allCourses.filter(c => {
+                const titleMatch = (c.Title || '').toLowerCase().includes(query);
+                const theme = getCourseTheme(c);
+                const catMatch = (activeCategory === 'all') || (theme.group === activeCategory);
+                return titleMatch && catMatch;
+            });
+
+            totalCoursesBadge.textContent = `Showing ${filtered.length} of ${allCourses.length} Courses`;
+
+            if (filtered.length === 0) {
+                noCourseFound.style.display = 'block';
+                return;
+            }
+
+            noCourseFound.style.display = 'none';
+
+            filtered.forEach(c => {
+                const theme = getCourseTheme(c);
+                const col = document.createElement('div');
+                col.className = 'col-lg-4 col-md-6 animate-fade-up';
+
+                const skillsHtml = theme.skills.map(s => `<span class="skill-tag">${s}</span>`).join('');
+
+                col.innerHTML = `
+                    <div class="course-card-item">
+                        <div class="course-card-banner" style="background: ${theme.gradient};">
+                            <div class="course-header-top-row">
+                                <span class="course-category-badge">${theme.badgeText}</span>
+                                <div class="course-icon-badge">
+                                    <i class="${theme.icon}"></i>
+                                </div>
+                            </div>
+                            <h3 class="course-card-title" title="${c.Title}">${c.Title || 'Certification Program'}</h3>
+                        </div>
+
+                        <div class="course-card-body">
+                            <div>
+                                <div class="course-pills-row">
+                                    <span class="course-info-pill pill-duration">
+                                        <i class="fa-regular fa-clock"></i> ${c.Duration || '12 Months'}
+                                    </span>
+                                    <span class="course-info-pill pill-eligibility">
+                                        <i class="fa-solid fa-user-check"></i> ${theme.eligibility}
+                                    </span>
+                                    <span class="course-info-pill pill-iso">
+                                        <i class="fa-solid fa-shield-check"></i> ISO Valid
+                                    </span>
+                                </div>
+
+                                <p class="course-short-desc mb-2" style="font-size: 12.5px; line-height: 1.45; color: #475569; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                    ${c.ShortDesc || 'Industry-aligned certified diploma program designed for practical skill development and career advancement.'}
+                                </p>
+
+                                <div class="small fw-bold text-muted mb-1" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;">Key Skills & Syllabus:</div>
+                                <div class="course-skills-list">
+                                    ${skillsHtml}
+                                </div>
+                            </div>
+
+                            <div class="card-actions-row">
+                                <button type="button" class="btn-enquire-primary" style="background: ${theme.btnGradient};" onclick="openEnquiryModal('${encodeURIComponent(c.Title)}', '${theme.badgeText}', '${c.Duration || '12 Months'}', '${theme.gradient}', '${encodeURIComponent(c.ShortDesc || '')}')">
+                                    <i class="fa-solid fa-paper-plane"></i> Apply / Enquire
+                                </button>
+                                <button type="button" class="btn-details-secondary" title="View Syllabus Info" onclick="openEnquiryModal('${encodeURIComponent(c.Title)}', '${theme.badgeText}', '${c.Duration || '12 Months'}', '${theme.gradient}', '${encodeURIComponent(c.ShortDesc || '')}')">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                coursesGrid.appendChild(col);
+            });
+        }
+
+        // Open Enquiry Modal
+        function openEnquiryModal(encodedTitle, categoryText, durationText, gradientBg, encodedDesc) {
+            const courseTitle = decodeURIComponent(encodedTitle);
+            const courseDesc = encodedDesc ? decodeURIComponent(encodedDesc) : '';
+            modalCourseTitle.textContent = courseTitle;
+            modalCategoryBadge.textContent = categoryText || 'Certified Course';
+            modalDuration.textContent = durationText || '12 Months';
+            if (gradientBg) modalHeaderBanner.style.background = gradientBg;
+            
+            const descEl = document.getElementById('modalCourseDesc');
+            if (descEl && courseDesc) {
+                descEl.textContent = courseDesc;
+                descEl.style.display = 'block';
+            } else if (descEl) {
+                descEl.style.display = 'none';
+            }
+            enquirySuccessMsg.style.display = 'none';
+            const modal = new bootstrap.Modal(document.getElementById('courseEnquiryModal'));
+            modal.show();
+        }
+
+        // Reset Search
+        function resetCourseSearch() {
+            courseSearchInput.value = '';
+            activeCategory = 'all';
+            filterBtns.forEach(b => b.classList.remove('active'));
+            document.querySelector('[data-cat="all"]').classList.add('active');
+            renderCourses();
+        }
+
+        // Filter Pills Event Listeners
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeCategory = btn.getAttribute('data-cat');
+                renderCourses();
+            });
+        });
+
+        // Search Input Event Listener
+        courseSearchInput.addEventListener('input', renderCourses);
+
+        // Form Submit Simulation
+        enquiryForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            enquirySuccessMsg.style.display = 'block';
+            setTimeout(() => {
+                enquiryForm.reset();
+            }, 1000);
+        });
+
+        // Init
+        fetchCourses();
     </script>
-
 </body>
 </html>

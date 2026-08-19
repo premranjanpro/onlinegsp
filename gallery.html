@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Photo Gallery & Campus Life | Gurukul The School Of Professionals</title>
+    <meta name="description" content="Explore photos of our modern smart classrooms, vocational trade studios, graduation ceremonies, lab infrastructure, and student events at Gurukul.">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/portal-theme.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --portal-navy-dark: #09192f;
+            --portal-navy-mid: #0f2a4a;
+            --portal-blue-accent: #1e3a8a;
+            --portal-gold-primary: #d97706;
+            --portal-gold-light: #fbbf24;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* Page Sub Hero */
+        .page-sub-hero {
+            background: linear-gradient(135deg, var(--portal-navy-dark) 0%, var(--portal-navy-mid) 60%, var(--portal-blue-accent) 100%);
+            padding: 55px 0 45px;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .page-hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 34px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .page-hero-title span {
+            color: var(--portal-gold-light);
+        }
+
+        .page-hero-sub {
+            color: #cbd5e1;
+            font-size: 15px;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* Gallery Filter Navigation Tabs */
+        .gallery-filter-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 40px 0 30px;
+        }
+
+        .gallery-filter-btn {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            color: #475569;
+            font-weight: 700;
+            font-size: 13.5px;
+            padding: 10px 22px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .gallery-filter-btn:hover {
+            border-color: var(--portal-gold-primary);
+            color: var(--portal-navy-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+        }
+
+        .gallery-filter-btn.active {
+            background: linear-gradient(135deg, var(--portal-navy-dark) 0%, var(--portal-navy-mid) 100%);
+            color: #fbbf24;
+            border-color: var(--portal-navy-dark);
+            box-shadow: 0 6px 18px rgba(9, 25, 47, 0.25);
+        }
+
+        .gallery-filter-btn .badge-count {
+            background: rgba(255, 255, 255, 0.18);
+            color: inherit;
+            font-size: 11px;
+            padding: 2px 7px;
+            border-radius: 12px;
+        }
+
+        .gallery-filter-btn:not(.active) .badge-count {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        /* Gallery Grid Item Cards */
+        .gallery-card {
+            background: #ffffff;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            height: 100%;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+            border-color: var(--portal-gold-primary);
+        }
+
+        .gallery-img-wrap {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+            background: #0f172a;
+        }
+
+        .gallery-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-card:hover .gallery-img-wrap img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(9, 25, 47, 0.85);
+            backdrop-filter: blur(8px);
+            color: #fbbf24;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            z-index: 2;
+        }
+
+        .gallery-zoom-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #09192f;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .gallery-card:hover .gallery-zoom-btn {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .gallery-card-body {
+            padding: 20px;
+        }
+
+        .gallery-card-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #09192f;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .gallery-card-desc {
+            font-size: 12.5px;
+            color: #64748b;
+            line-height: 1.45;
+            margin: 0;
+        }
+
+        /* Lightbox Modal Styles */
+        .lightbox-modal .modal-dialog {
+            max-width: 900px;
+        }
+
+        .lightbox-modal .modal-content {
+            background: #09192f;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        .lightbox-img-container {
+            width: 100%;
+            max-height: 540px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000000;
+        }
+
+        .lightbox-img-container img {
+            max-width: 100%;
+            max-height: 540px;
+            object-fit: contain;
+        }
+
+        .lightbox-info-bar {
+            padding: 20px 24px;
+            background: #09192f;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: gap-2;
+        }
+
+        .lightbox-nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+
+        .lightbox-nav-btn:hover {
+            background: #fbbf24;
+            color: #09192f;
+            border-color: #fbbf24;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. TOP GOVERNMENT / BOARD BAR -->
+    <div class="gov-top-bar">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div class="d-flex align-items-center flex-wrap">
+                    <span class="gov-badge me-3"><i class="fa-solid fa-shield-halved me-1"></i> ISO 9001:2015 Certified</span>
+                    <span class="info-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:gptiindia@yahoo.in">gptiindia@yahoo.in</a></span>
+                    <span class="info-item"><i class="fa-solid fa-phone"></i> <a href="tel:+918800959688">+91-88009-59688</a></span>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="result.html" class="text-white text-decoration-none small"><i class="fa-solid fa-file-signature text-warning me-1"></i> Search Result</a>
+                    <span class="text-white-50">|</span>
+                    <a href="verify.html" class="text-white text-decoration-none small"><i class="fa-solid fa-qrcode me-1"></i> Certificate Verification</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. ANNOUNCEMENT TICKER MARQUEE -->
+    <div class="portal-ticker-wrap">
+        <div class="portal-ticker-title">
+            <i class="fa-solid fa-images"></i> Media Gallery
+        </div>
+        <div class="portal-ticker-content">
+            <div class="portal-ticker-item">
+                <i class="fa-solid fa-camera"></i> Campus & Vocational Trade Studio Showcase: Computer Labs, Fashion Studios, Electrical Workshops & NTT Training.
+            </div>
+            <div class="portal-ticker-item">
+                <i class="fa-solid fa-graduation-cap"></i> Celebrating 50,000+ Certified Graduates and Annual Convocation Ceremonies Across India.
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. MAIN PORTAL HEADER & NAVIGATION -->
+    <header class="portal-header">
+        <div class="container">
+            <div class="portal-header-inner">
+                <a href="index.html" class="board-brand">
+                    <img src="images/gurukul_logo.png" alt="Gurukul Logo">
+                    <div class="board-brand-text">
+                        <span class="board-title">GURUKUL</span>
+                        <span class="board-subtitle">The School Of Professionals</span>
+                    </div>
+                </a>
+
+                <nav class="d-none d-lg-block">
+                    <ul class="portal-nav">
+                        <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                        <li><a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+                        <li><a href="courses.html"><i class="fa-solid fa-book-open"></i> Courses</a></li>
+                        <li><a href="affiliation-location.html"><i class="fa-solid fa-network-wired"></i> Branches</a></li>
+                        <li class="active"><a href="gallery.html"><i class="fa-solid fa-images"></i> Gallery</a></li>
+                        <li><a href="news.html"><i class="fa-solid fa-newspaper"></i> News</a></li>
+                        <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+                        <li class="ms-2"><a href="result.html" class="btn-verify-nav"><i class="fa-solid fa-magnifying-glass"></i> Check Result</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 4. PAGE HERO -->
+        <section class="page-sub-hero">
+            <div class="container text-center">
+                <div class="badge bg-warning text-dark fw-bold px-3 py-1 text-uppercase mb-2">
+                    <i class="fa-solid fa-camera-retro me-1"></i> Visual Highlights & Campus Life
+                </div>
+                <h1 class="page-hero-title">Gurukul <span>Photo Gallery</span></h1>
+                <p class="page-hero-sub">
+                    Explore high-tech smart classrooms, practical trade studios, annual convocation ceremonies, and academic activities across our nationwide branches.
+                </p>
+            </div>
+        </section>
+
+        <!-- 5. GALLERY FILTER TABS -->
+        <section class="container">
+            <div class="gallery-filter-wrap">
+                <button type="button" class="gallery-filter-btn active" data-filter="all">
+                    <i class="fa-solid fa-border-all"></i> All Photos <span class="badge-count" id="countAll">0</span>
+                </button>
+                <button type="button" class="gallery-filter-btn" data-filter="trades">
+                    <i class="fa-solid fa-chalkboard-user"></i> Trade Studios & Labs <span class="badge-count" id="countTrades">0</span>
+                </button>
+                <button type="button" class="gallery-filter-btn" data-filter="campus">
+                    <i class="fa-solid fa-school"></i> Campus & Infrastructure <span class="badge-count" id="countCampus">0</span>
+                </button>
+                <button type="button" class="gallery-filter-btn" data-filter="graduation">
+                    <i class="fa-solid fa-graduation-cap"></i> Convocations & Students <span class="badge-count" id="countGraduation">0</span>
+                </button>
+                <button type="button" class="gallery-filter-btn" data-filter="events">
+                    <i class="fa-solid fa-calendar-check"></i> Seminars & Events <span class="badge-count" id="countEvents">0</span>
+                </button>
+            </div>
+
+            <!-- GALLERY CARDS GRID -->
+            <div class="row g-4 mb-5" id="galleryGrid"></div>
+        </section>
+    </main>
+
+    <!-- 6. LIGHTBOX MODAL -->
+    <div class="modal fade lightbox-modal" id="lightboxModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0 p-3 bg-dark">
+                    <div>
+                        <span class="badge bg-warning text-dark fw-bold mb-1" id="modalImgCat">Trade Studio</span>
+                        <h6 class="modal-title fw-bold text-white mb-0" id="modalImgTitle">Image Preview</h6>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="lightbox-img-container">
+                    <img src="" alt="Full view" id="lightboxImg">
+                </div>
+                <div class="lightbox-info-bar">
+                    <p class="small text-white-50 mb-0" id="modalImgDesc" style="max-width: 60%;"></p>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="lightbox-nav-btn" onclick="navLightbox(-1)"><i class="fa-solid fa-arrow-left me-1"></i> Prev</button>
+                        <button type="button" class="lightbox-nav-btn" onclick="navLightbox(1)">Next <i class="fa-solid fa-arrow-right ms-1"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. ULTRA-PREMIUM GLOBAL FOOTER -->
+    <footer class="portal-global-footer">
+        <div class="portal-footer-top">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <a href="index.html" class="d-flex align-items-center gap-3 text-decoration-none mb-3">
+                            <img src="images/gurukul_logo.png" alt="Gurukul Logo" style="height: 55px; width: auto;">
+                            <div>
+                                <div class="footer-brand-title">GURUKUL</div>
+                                <div class="footer-brand-sub">The School Of Professionals</div>
+                            </div>
+                        </a>
+                        <p class="footer-about-text">
+                            Gurukul The School Of Professionals is an ISO 9001:2015 certified premier education board dedicated to delivering industry-aligned technical, computer, management, and vocational training across India.
+                        </p>
+                        <div class="d-flex align-items-center gap-2 mt-2">
+                            <span class="badge bg-warning text-dark fw-bold"><i class="fa-solid fa-shield-halved me-1"></i> ISO 9001:2015 Accredited Board</span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6">
+                        <h5 class="footer-heading">Quick Links</h5>
+                        <ul class="footer-links-list">
+                            <li><a href="index.html"><i class="fa-solid fa-angle-right"></i> Home Portal</a></li>
+                            <li><a href="aboutus.html"><i class="fa-solid fa-angle-right"></i> About Board</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Course Catalog</a></li>
+                            <li><a href="affiliation-location.html"><i class="fa-solid fa-angle-right"></i> Branches & Map</a></li>
+                            <li><a href="gallery.html"><i class="fa-solid fa-angle-right"></i> Photo Gallery</a></li>
+                            <li><a href="result.html"><i class="fa-solid fa-angle-right"></i> Examination Result</a></li>
+                            <li><a href="verify.html"><i class="fa-solid fa-angle-right"></i> Certificate Verify</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Programs</h5>
+                        <ul class="footer-links-list">
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Computer Applications & IT</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Financial Accounting & Tally</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Fashion Designing & Tailoring</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Teacher Training (NTT / ECCE)</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Electrical & Industrial Trades</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Head Office</h5>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="footer-contact-text">
+                                WZ-85, Ram Nagar, Tilak Nagar,<br>New Delhi - 110018
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div class="footer-contact-text">
+                                <a href="tel:+918800959688">+91-88009-59688</a>
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="footer-contact-text">
+                                <a href="mailto:gptiindia@yahoo.in">gptiindia@yahoo.in</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portal-footer-bottom text-center">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div>
+                        Copyright © 2026 <strong>Gurukul The School Of Professionals</strong>. All Rights Reserved.
+                    </div>
+                    <div>
+                        <span>ISO 9001:2015 Certified Board</span> | 
+                        <a href="verify.html" class="text-warning text-decoration-none ms-1">Digital Verification System</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Gallery Data & Lightbox Script -->
+    <script>
+        const galleryItems = [
+            // 4 Core Trade Classrooms
+            {
+                src: 'images/trade_computer_lab.jpg',
+                category: 'trades',
+                badgeText: 'IT & Computer Science',
+                title: 'High-Tech Computer & IT Lab',
+                desc: 'Smart computer lab with modern workstations for DCA, ADCA, Tally Prime & Web Development.'
+            },
+            {
+                src: 'images/trade_fashion_tailoring_lab.jpg',
+                category: 'trades',
+                badgeText: 'Vocational & Tailoring',
+                title: 'Fashion Designing & Tailoring Studio',
+                desc: 'Garment drafting tables, electric sewing machines & fashion design pattern making studio.'
+            },
+            {
+                src: 'images/trade_electrical_lab.jpg',
+                category: 'trades',
+                badgeText: 'Engineering & Technical',
+                title: 'Electrical & Technical Trades Lab',
+                desc: 'Circuit testing benches, motor wiring, multimeter diagnostics & industrial electrical safety.'
+            },
+            {
+                src: 'images/trade_teacher_training_lab.jpg',
+                category: 'trades',
+                badgeText: 'NTT & Early Education',
+                title: 'Nursery Teacher Training (NTT) Studio',
+                desc: 'Montessori aids, puppet theaters, early child pedagogy & storytelling activity classroom.'
+            },
+
+            // Campus & Infrastructure
+            {
+                src: 'images/about_campus_education.jpg',
+                category: 'campus',
+                badgeText: 'Main Campus',
+                title: 'Gurukul Smart Classrooms & Center Hub',
+                desc: 'Modern air-conditioned learning rooms equipped with digital projectors and study aids.'
+            },
+            {
+                src: 'images/gallery/1.jpg',
+                category: 'campus',
+                badgeText: 'Study Infrastructure',
+                title: 'Digital Computer Training Wing',
+                desc: 'Dedicated technical training center for hands-on student practical assessments.'
+            },
+            {
+                src: 'images/gallery/2.jpg',
+                category: 'campus',
+                badgeText: 'Student Labs',
+                title: 'Interactive Practical Session',
+                desc: 'Students engaged in accounting, software automation and commercial typing practice.'
+            },
+            {
+                src: 'images/facilities/1.jpg',
+                category: 'campus',
+                badgeText: 'Facilities',
+                title: 'Student Library & Resource Center',
+                desc: 'Rich reference curriculum books, study modules & past examination paper archives.'
+            },
+            {
+                src: 'images/facilities/3.jpg',
+                category: 'campus',
+                badgeText: 'Facilities',
+                title: 'Audio-Visual Seminar Room',
+                desc: 'Equipped for guest lectures, career guidance counseling & corporate placement drives.'
+            },
+
+            // Convocations & Students
+            {
+                src: 'images/about_graduation_students.jpg',
+                category: 'graduation',
+                badgeText: 'Graduation Day',
+                title: 'Proud Certified Graduates Ceremony',
+                desc: 'Students celebrating diploma awards with official Gurukul ISO 9001:2015 credentials.'
+            },
+            {
+                src: 'images/gallery/6.jpg',
+                category: 'graduation',
+                badgeText: 'Certification',
+                title: 'Annual Diploma Distribution',
+                desc: 'Merit certificates & official statement of marks presented to top ranking students.'
+            },
+            {
+                src: 'images/gallery/7.jpg',
+                category: 'graduation',
+                badgeText: 'Alumni',
+                title: 'Batch Convocation Celebration',
+                desc: 'Over 50,000 students successfully certified and placed in corporate and government sectors.'
+            },
+
+            // Seminars & Events
+            {
+                src: 'images/event/1.jpg',
+                category: 'events',
+                badgeText: 'Workshop',
+                title: 'Vocational Skill Development Summit',
+                desc: 'Center heads and technical instructors meeting for annual curriculum updates.'
+            },
+            {
+                src: 'images/event/2.jpg',
+                category: 'events',
+                badgeText: 'Guest Lecture',
+                title: 'Industry Career Orientation Drive',
+                desc: 'Leading employers briefing students on real-world IT and accounting opportunities.'
+            },
+            {
+                src: 'images/gallery/8.jpg',
+                category: 'events',
+                badgeText: 'Exhibition',
+                title: 'Annual Student Project Showcase',
+                desc: 'Live exhibition of garment designs, electrical prototypes & software applications.'
+            }
+        ];
+
+        let currentFiltered = [...galleryItems];
+        let currentModalIndex = 0;
+
+        const galleryGrid = document.getElementById('galleryGrid');
+        const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+
+        // Update Category Counters
+        function updateCounters() {
+            document.getElementById('countAll').textContent = galleryItems.length;
+            document.getElementById('countTrades').textContent = galleryItems.filter(i => i.category === 'trades').length;
+            document.getElementById('countCampus').textContent = galleryItems.filter(i => i.category === 'campus').length;
+            document.getElementById('countGraduation').textContent = galleryItems.filter(i => i.category === 'graduation').length;
+            document.getElementById('countEvents').textContent = galleryItems.filter(i => i.category === 'events').length;
+        }
+
+        // Render Gallery Items
+        function renderGallery(filter = 'all') {
+            galleryGrid.innerHTML = '';
+            currentFiltered = (filter === 'all') ? galleryItems : galleryItems.filter(i => i.category === filter);
+
+            currentFiltered.forEach((item, idx) => {
+                const col = document.createElement('div');
+                col.className = 'col-lg-4 col-md-6 animate-fade-up';
+
+                col.innerHTML = `
+                    <div class="gallery-card" onclick="openLightbox(${idx})">
+                        <div class="gallery-img-wrap">
+                            <span class="gallery-overlay-badge">${item.badgeText}</span>
+                            <div class="gallery-zoom-btn"><i class="fa-solid fa-expand"></i></div>
+                            <img src="${item.src}" alt="${item.title}" loading="lazy" onerror="this.src='images/about_campus_education.jpg'">
+                        </div>
+                        <div class="gallery-card-body">
+                            <h4 class="gallery-card-title">${item.title}</h4>
+                            <p class="gallery-card-desc">${item.desc}</p>
+                        </div>
+                    </div>
+                `;
+                galleryGrid.appendChild(col);
+            });
+        }
+
+        // Filter Click Handlers
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+                renderGallery(filter);
+            });
+        });
+
+        // Lightbox Functions
+        function openLightbox(index) {
+            currentModalIndex = index;
+            updateLightboxContent();
+            const modal = new bootstrap.Modal(document.getElementById('lightboxModal'));
+            modal.show();
+        }
+
+        function updateLightboxContent() {
+            const item = currentFiltered[currentModalIndex];
+            if (!item) return;
+
+            document.getElementById('lightboxImg').src = item.src;
+            document.getElementById('modalImgTitle').textContent = item.title;
+            document.getElementById('modalImgCat').textContent = item.badgeText;
+            document.getElementById('modalImgDesc').textContent = item.desc;
+        }
+
+        function navLightbox(direction) {
+            currentModalIndex += direction;
+            if (currentModalIndex < 0) currentModalIndex = currentFiltered.length - 1;
+            if (currentModalIndex >= currentFiltered.length) currentModalIndex = 0;
+            updateLightboxContent();
+        }
+
+        // Keyboard navigation for Lightbox
+        document.addEventListener('keydown', (e) => {
+            const modalEl = document.getElementById('lightboxModal');
+            if (modalEl.classList.contains('show')) {
+                if (e.key === 'ArrowLeft') navLightbox(-1);
+                if (e.key === 'ArrowRight') navLightbox(1);
+            }
+        });
+
+        // Init
+        updateCounters();
+        renderGallery('all');
+    </script>
+</body>
+</html>

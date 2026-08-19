@@ -1,735 +1,578 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Gurukul The School Of Professionals</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" id="meta-desc" content="Empowering learners with knowledge, confidence, and purpose — shaping tomorrow’s leaders today.">
-    <meta name="keyword" content="Empowering learners with knowledge, confidence, and purpose — shaping tomorrow’s leaders today.">
+    <title>Affiliated Branch Locations & Study Centers | Gurukul The School Of Professionals</title>
+    <meta name="description" content="Search verified affiliated training centers and study center branches across India with interactive OpenStreetMap geolocation and masked security filters.">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/style-mob.css" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/portal-theme.css" rel="stylesheet">
+
+    <!-- Leaflet CSS for OpenStreetMap (OSM) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+    <style>
+        :root {
+            --portal-navy-dark: #09192f;
+            --portal-navy-mid: #0f2a4a;
+            --portal-blue-accent: #1e3a8a;
+            --portal-gold-primary: #d97706;
+            --portal-gold-light: #fbbf24;
+            --portal-emerald: #059669;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* Page Sub Hero */
+        .page-sub-hero {
+            background: linear-gradient(135deg, var(--portal-navy-dark) 0%, var(--portal-navy-mid) 60%, var(--portal-blue-accent) 100%);
+            padding: 55px 0 45px;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .page-hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .page-hero-title span {
+            color: var(--portal-gold-light);
+        }
+
+        .page-hero-sub {
+            color: #cbd5e1;
+            font-size: 15px;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* Search & Filter Card */
+        .branch-filter-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+            border: 1px solid #e2e8f0;
+            margin-top: -30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .filter-label {
+            font-size: 11.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+
+        .branch-select-input {
+            border-radius: 10px;
+            border: 1.5px solid #cbd5e1;
+            padding: 10px 14px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #0f172a;
+            background-color: #ffffff;
+            transition: all 0.2s ease;
+        }
+
+        .branch-select-input:focus {
+            border-color: var(--portal-blue-accent);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+            outline: none;
+        }
+
+        /* Center Card Item */
+        .center-card-item {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+            transition: all 0.25s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .center-card-item:hover, .center-card-item.active-center {
+            border-color: var(--portal-gold-primary);
+            box-shadow: 0 12px 28px rgba(217, 119, 6, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .center-card-item.active-center {
+            border-left: 5px solid var(--portal-gold-primary);
+            background: #fffdfa;
+        }
+
+        .center-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .center-masked-title {
+            font-size: 17px;
+            font-weight: 800;
+            color: #09192f;
+            line-height: 1.3;
+            margin: 0;
+            letter-spacing: 0.3px;
+        }
+
+        .center-code-badge {
+            background: linear-gradient(135deg, #09192f 0%, #1e3a8a 100%);
+            color: #fbbf24;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+
+        .masked-address-box {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 13px;
+            color: #334155;
+            margin-bottom: 12px;
+            border: 1px dashed #cbd5e1;
+        }
+
+        .center-meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .pill-city-tag {
+            background: #e0e7ff;
+            color: #3730a3;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+        }
+
+        .pill-state-tag {
+            background: #fef3c7;
+            color: #92400e;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+        }
+
+        .btn-pin-map {
+            background: transparent;
+            border: 1px solid #cbd5e1;
+            color: #1e3a8a;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-pin-map:hover {
+            background: #1e3a8a;
+            color: #ffffff;
+            border-color: #1e3a8a;
+        }
+
+        /* Map Container */
+        .map-sticky-wrap {
+            position: sticky;
+            top: 90px;
+            background: #ffffff;
+            border-radius: 18px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+            overflow: hidden;
+        }
+
+        .map-header-bar {
+            background: linear-gradient(135deg, #09192f 0%, #0f2a4a 100%);
+            color: #ffffff;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #osmMap {
+            height: 540px;
+            width: 100%;
+            z-index: 1;
+        }
+
+        @media (max-width: 991px) {
+            #osmMap {
+                height: 380px;
+            }
+            .map-sticky-wrap {
+                position: static;
+                margin-top: 24px;
+            }
+        }
+
+        /* Trade Classroom Showcase Grid */
+        .trade-gallery-section {
+            background: #ffffff;
+            padding: 70px 0;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 60px;
+        }
+
+        .trade-photo-card {
+            background: #ffffff;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .trade-photo-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
+            border-color: var(--portal-gold-primary);
+        }
+
+        .trade-img-wrap {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            background: #0f172a;
+        }
+
+        .trade-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .trade-photo-card:hover .trade-img-wrap img {
+            transform: scale(1.06);
+        }
+
+        .trade-badge-overlay {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(9, 25, 47, 0.85);
+            backdrop-filter: blur(8px);
+            color: #fbbf24;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(251, 191, 36, 0.4);
+        }
+
+        .trade-card-content {
+            padding: 20px;
+        }
+
+        .trade-card-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #09192f;
+            margin-bottom: 6px;
+        }
+
+        .trade-card-desc {
+            font-size: 12.5px;
+            color: #64748b;
+            line-height: 1.45;
+            margin-bottom: 0;
+        }
+
+        /* Custom Leaflet Map Marker Styling */
+        .custom-map-pin {
+            background: linear-gradient(135deg, #d97706, #fbbf24);
+            color: #09192f;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .leaflet-popup-content-wrapper {
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .leaflet-popup-content {
+            margin: 12px 14px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+    </style>
 </head>
 <body>
-    <section>
-        <div class="ed-mob-menu">
-            <div class="ed-mob-menu-con">
-                <div class="ed-mm-left">
-                    <div class="wed-logo">
-                        <a href="index.html">
-                            <img src="images/gurukul_logo.png" alt="" />
-                        </a>
-                    </div>
+
+    <!-- 1. TOP GOVERNMENT / BOARD BAR -->
+    <div class="gov-top-bar">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div class="d-flex align-items-center flex-wrap">
+                    <span class="gov-badge me-3"><i class="fa-solid fa-shield-halved me-1"></i> ISO 9001:2015 Certified</span>
+                    <span class="info-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:gptiindia@yahoo.in">gptiindia@yahoo.in</a></span>
+                    <span class="info-item"><i class="fa-solid fa-phone"></i> <a href="tel:+918800959688">+91-88009-59688</a></span>
                 </div>
-                <div class="ed-mm-right">
-                    <div class="ed-mm-menu">
-                        <a href="#!" class="ed-micon"><i class="fab fa-bars"></i></a>
-                        <div class="ed-mm-inn">
-                            <a href="#!" class="ed-mi-close"><i class="fab fa-times"></i></a>
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="/aboutus.html">About us</a></li>
-                                <li><a href="/chairman-message.html">Chairman Message</a></li>
-                                <li><a href="/faq.html">FAQ</a></li>
-                                <li><a href="/courses.html">Courses</a></li>
-                                <li><a href="/affiliation-location.html">Branch</a></li>
-                                <li><a href="/result.html">Result</a></li>
-                                <li><a href="/news.html">News</a></li>
-                                <li><a href="/contact.html">Contact</a></li>
-                            </ul>
-                            <h4>User Account</h4>
-                            <ul>
-                                <li><a href="#!" data-bs-toggle="modal" data-bs-target="#modal1">Sign In</a></li>
-                                <li><a href="#!" data-bs-toggle="modal" data-bs-target="#modal2">Register</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="result.html" class="text-white text-decoration-none small"><i class="fa-solid fa-file-signature text-warning me-1"></i> Search Result</a>
+                    <span class="text-white-50">|</span>
+                    <a href="verify.html" class="text-white text-decoration-none small"><i class="fa-solid fa-qrcode me-1"></i> Certificate Verification</a>
                 </div>
             </div>
         </div>
-    </section>
-    <section>
-        <!-- TOP BAR -->
-        <div class="ed-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="ed-com-t1-left">
-                            <ul>
-                                <li>
-                                    <a href="#">Contact: gptiindia@yahoo.in</a>
-                                </li>
-                                <li>
-                                    <a href="tel:+918800959688">Phone:  +91-88009-59688 </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="ed-com-t1-right">
-                            <ul>
-                                <li>
-                                    <a href="#!" data-bs-toggle="modal" data-bs-target="#modal1">Sign In</a>
-                                </li>
-                                <li>
-                                    <a href="#!" data-bs-toggle="modal" data-bs-target="#modal2">Sign Up</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="ed-com-t1-social">
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fab fa-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-x-twitter"></i></a>
-                                </li>
-                            </ul>
-                        </div>
+    </div>
+
+    <!-- 2. ANNOUNCEMENT TICKER MARQUEE -->
+    <div class="portal-ticker-wrap">
+        <div class="portal-ticker-title">
+            <i class="fa-solid fa-bullhorn"></i> Affiliated Centers
+        </div>
+        <div class="portal-ticker-content">
+            <div class="portal-ticker-item">
+                <i class="fa-solid fa-network-wired"></i> Verified Study Center Network & Skill Partner Locations Across India.
+            </div>
+            <div class="portal-ticker-item">
+                <i class="fa-solid fa-shield-check"></i> Center names and exact addresses are partially masked for data privacy & security.
+            </div>
+            <div class="portal-ticker-item">
+                <i class="fa-solid fa-school"></i> For full branch affiliation status & enrollment queries, contact Gurukul Central Board.
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. MAIN PORTAL HEADER & NAVIGATION -->
+    <header class="portal-header">
+        <div class="container">
+            <div class="portal-header-inner">
+                <a href="index.html" class="board-brand">
+                    <img src="images/gurukul_logo.png" alt="Gurukul Logo">
+                    <div class="board-brand-text">
+                        <span class="board-title">GURUKUL</span>
+                        <span class="board-subtitle">The School Of Professionals</span>
+                    </div>
+                </a>
+
+                <nav class="d-none d-lg-block">
+                    <ul class="portal-nav">
+                        <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                        <li><a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+                        <li><a href="courses.html"><i class="fa-solid fa-book-open"></i> Courses</a></li>
+                        <li class="active"><a href="affiliation-location.html"><i class="fa-solid fa-network-wired"></i> Branches</a></li>
+                        <li><a href="news.html"><i class="fa-solid fa-newspaper"></i> News</a></li>
+                        <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+                        <li class="ms-2"><a href="result.html" class="btn-verify-nav"><i class="fa-solid fa-magnifying-glass"></i> Check Result</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 4. PAGE HERO -->
+        <section class="page-sub-hero">
+            <div class="container text-center">
+                <div class="badge bg-warning text-dark fw-bold px-3 py-1 text-uppercase mb-2">
+                    <i class="fa-solid fa-location-dot me-1"></i> Pan-India Center Directory
+                </div>
+                <h1 class="page-hero-title">Affiliated <span>Branch Locations</span></h1>
+                <p class="page-hero-sub">
+                    Explore certified training partners, computer centers, and vocational study branches with interactive OpenStreetMap geolocation.
+                </p>
+            </div>
+        </section>
+
+        <!-- 5. FILTER CARD -->
+        <section class="container mb-4">
+            <div class="branch-filter-card">
+                <div class="row g-3 align-items-end">
+                    <div class="col-lg-4 col-md-6">
+                        <label for="stateSelect" class="filter-label">
+                            <i class="fa-solid fa-map-location-dot text-warning me-1"></i> Select State
+                        </label>
+                        <select id="stateSelect" class="form-select branch-select-input">
+                            <option value="ALL">All States (India)</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <label for="citySelect" class="filter-label">
+                            <i class="fa-solid fa-city text-primary me-1"></i> Select City / District
+                        </label>
+                        <select id="citySelect" class="form-select branch-select-input">
+                            <option value="ALL">All Cities</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3 col-md-9">
+                        <label for="branchSearchInput" class="filter-label">
+                            <i class="fa-solid fa-magnifying-glass text-success me-1"></i> Search Center / Code
+                        </label>
+                        <input type="text" id="branchSearchInput" class="form-control branch-select-input" placeholder="Search by city or branch...">
+                    </div>
+
+                    <div class="col-lg-1 col-md-3 text-end">
+                        <button type="button" class="btn btn-outline-secondary w-100 rounded-3 py-2 fw-bold" onclick="resetBranchFilters()" title="Reset Filters">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- LOGO AND MENU SECTION -->
-        <div class="top-logo" data-spy="affix" data-offset-top="250">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="wed-logo">
-                            <a href="index.html">
-                                <h2 style="color: #8b4282; background: -webkit-linear-gradient(45deg, #ef6838, #4a29b2 80%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"><img src="images/gurukul_logo.png" alt="" /> <strong>Onine GSP</strong></h2>
-                            </a>
-                        </div>
-                        <div class="main-menu">
-                            <ul>
-                                <li>
-                                    <a href="index.html">Home</a>
-                                </li>
-                                <li class="about-menu">
-                                    <a href="/aboutus.html" class="mm-arr">About us</a>
-                                    <!-- MEGA MENU 1 -->
-                                    <div class="mm-pos">
-                                        <div class="about-mm m-menu">
-                                            <div class="m-menu-inn">
-                                                <div class="mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay menu-about" href="index.html">
-                                                            <img src="images/deepak-sapra.jpeg" alt="">
-                                                            <span>Chairman</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="mm1-com mm1-s4">
-                                                    <p>
-                                                        Gurukul the School of Professionals, an ISO 9001:2015 Certified Institute, was established with the vision of delivering the highest quality services in the fields of Professional, Vocational, Technical, and Management education.
-                                                    </p>
-                                                    <a href="/aboutus.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-
-                                                <div class="mm1-com mm1-s4">
-                                                    <ul>
-                                                        <li><a href="/aboutus.html">About us</a></li>
-                                                        <li><a href="/chairman-message.html">Chairman Message</a></li>
-                                                        <li><a href="/courses-list.html">Courses</a></li>
-                                                        <li><a href="/faq.html">FAQ</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="cour-menu">
-                                    <a href="/courses.html" class="mm-arr">Courses</a>
-                                    <div class="mm-pos">
-                                        <div class="cour-mm m-menu">
-                                            <div class="m-menu-inn">
-                                                <div class="mm2-com mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay" href="/courses.html">
-                                                            <img src="images/coursescroll/4.jpg" alt="">
-                                                            <!--<span>Vocational Courses</span>-->
-                                                        </a>
-                                                    </div>
-                                                    <p>Vocational Courses prepares learners for jobs that are based in manual or practical activities, traditionally non-academic</p>
-                                                    <a href="/courses.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-                                                <div class="mm2-com mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay" href="/courses.html">
-                                                            <img src="images/coursescroll/5.jpg" alt="">
-                                                            <!--<span>Non Engineering Trades</span>-->
-                                                        </a>
-                                                    </div>
-                                                    <p>Bachelor of Science (B.Sc), Integrated law courses, Bachelor of Architecture, Teaching Courses, Fashion Design Courses.</p>
-                                                    <a href="/courses.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-                                                <div class="mm2-com mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay" href="/courses.html">
-                                                            <img src="images/coursescroll/8.jpg" alt="">
-                                                            <!--<span>Management Courses</span>-->
-                                                        </a>
-                                                    </div>
-                                                    <p>Design Management is a two-year post-graduate program divided into four semesters offering knowledge about various concepts of design.</p>
-                                                    <a href="/courses.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-                                                <div class="mm2-com mm1-com mm1-s4">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay" href="/courses.html">
-                                                            <img src="images/coursescroll/7.jpg" alt="">
-                                                            <!--<span>Financial Services</span>-->
-                                                        </a>
-                                                    </div>
-                                                    <p>Chartered Financial Analysts (CFA) , Certified Financial Planner (CFP) , Financial Risk Manager (FRM) , Chartered Alternative Investment Analyst (CAIA)</p>
-                                                    <a href="/courses.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="admi-menu">
-                                    <a href="/affiliation-location.html">Branch</a>
-                                    <div class="mm-pos">
-                                        <div class="admi-mm m-menu">
-                                            <div class="m-menu-inn">
-                                                <div class="mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay menu-about" href="/affiliation-register.html">
-                                                            <img src="images/affilation-certficate.jpeg" alt="">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="mm1-com mm1-s4">
-                                                    <p>
-                                                        We build local partnerships and work with community champions to promote programs at the grassroots level. Our emphasis is on skill proficiency, employability, and connecting training to local opportunities�bridging modern techniques with local contexts
-                                                    </p>
-                                                    <a href="/aboutus.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-
-                                                <div class="mm1-com mm1-s4">
-                                                    <ul>
-                                                        <li><a href="/affiliation-location.html">Affiliation Location</a></li>
-                                                        <li><a href="/affiliation-register.html">Affiliation Register</a></li>
-                                                        <li><a href="/affiliation-status.html">Affiliation Status</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li><a href="/result.html">Result</a></li>
-                                <li><a href="/news.html">News</a></li>
-                                <li><a href="/contact.html">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="all-drop-down-menu">
-
+        <!-- 6. MAIN DIRECTORY & INTERACTIVE OSM MAP SECTION -->
+        <section class="container pb-5">
+            <div class="row g-4">
+                <!-- Left Column: Filtered Masked Center Cards List -->
+                <div class="col-lg-6">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="fw-bold text-navy mb-0 fs-5">
+                            <i class="fa-solid fa-building-columns text-warning me-2"></i> Verified Study Centers
+                        </h4>
+                        <span class="badge bg-primary text-white fw-bold px-3 py-2" id="branchCountBadge">
+                            Loading centers...
+                        </span>
                     </div>
 
-                </div>
-            </div>
-        </div>
-        <div class="search-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="search-form">
-                            <form>
-                                <div class="sf-type">
-                                    <div class="sf-input">
-                                        <input type="text" id="sf-box" placeholder="Search course and discount courses">
-                                    </div>
-                                    <div class="sf-list">
-                                        <ul>
-                                            <li><a href="/courses.html?cid=1_VOCATIONAL_COURSES">VOCATIONAL COURSES</a></li>
-                                            <li><a href="/courses.html?cid=2_NON_ENGINERRING_TRADES">NON ENGINERRING TRADES</a></li>
-                                            <li><a href="/courses.html?cid=3_MANAGEMENT_COURSES">MANAGEMENT COURSES</a></li>
-                                            <li><a href="/courses.html?cid=4_FINANCIAL_SERVICES">FINANCIAL SERVICES</a></li>
-                                            <li><a href="/courses.html?cid=5_ENGINERRING_TRADES">ENGINERRING TRADES</a></li>
-                                            <li><a href="/courses.html?cid=6_COMPUTER_LITERACY_PROGRAMME">COMPUTER LITERACY PROGRAMME</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="sf-submit">
-                                    <input type="submit" value="Search Course">
-                                </div>
-                            </form>
-                        </div>
+                    <div id="branchListLoading" class="text-center py-5 text-muted fw-bold">
+                        <div class="spinner-border text-primary me-2" role="status"></div> Loading branch records...
+                    </div>
+
+                    <div id="branchListContainer" style="max-height: 560px; overflow-y: auto; padding-right: 6px;"></div>
+
+                    <div id="noBranchFound" class="text-center py-5 bg-white rounded-4 border p-4" style="display: none;">
+                        <i class="fa-solid fa-map-pin fs-1 text-warning mb-3"></i>
+                        <h5 class="fw-bold text-navy">No Centers Found In This Filter</h5>
+                        <p class="text-muted small">Try selecting another State or City from the dropdown above.</p>
+                        <button type="button" class="btn btn-primary btn-sm rounded-pill px-3 fw-bold" onclick="resetBranchFilters()">View All Centers</button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <main id="app" class="content" aria-live="polite">
-        <style>
-            :root {
-                --primary: #2563eb;
-                --primary-dark: #1d4ed8;
-                --secondary: #64748b;
-                --success: #059669;
-                --danger: #dc2626;
-                --warning: #d97706;
-                --light: #f8fafc;
-                --dark: #0f172a;
-                --glass: rgba(37, 99, 235, 0.06);
-                --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-                --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-                --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-                --border: #e2e8f0;
-                --gradient: linear-gradient(135deg, #FCD34D 0%, #F59E0B 50%, #D97706 100%);
-            }
-
-
-            header {
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(20px);
-                border-radius: 20px;
-                padding: 32px;
-                margin-bottom: 28px;
-                box-shadow: var(--shadow-lg);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-            }
-
-                header h1 {
-                    font-size: 2.25rem;
-                    font-weight: 800;
-                    background: linear-gradient(135deg, var(--primary), #3b82f6);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    background-clip: text;
-                    margin: 0 0 12px 0;
-                    letter-spacing: -0.025em;
-                }
-
-            .top-desc {
-                color: #64748b;
-                font-size: 1.125rem;
-                line-height: 1.6;
-                margin-bottom: 8px;
-                font-weight: 400;
-            }
-
-            .small-muted {
-                color: #94a3b8;
-                font-size: 0.875rem;
-                font-weight: 500;
-            }
-
-            .controls {
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(20px);
-                border-radius: 16px;
-                padding: 24px;
-                margin-bottom: 28px;
-                box-shadow: var(--shadow-lg);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                display: flex;
-                gap: 16px;
-                align-items: center;
-                flex-wrap: wrap;
-            }
-
-            /* Search Form - Top */
-            .search-section {
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(20px);
-                border-radius: 24px;
-                padding: 40px;
-                box-shadow: var(--shadow-xl);
-                border: 1px solid rgba(255, 255, 255, 0.3);
-                margin-bottom: 40px;
-                position: relative;
-                overflow: hidden;
-                display: flex;
-                gap: 20px;
-            }
-
-                .search-section::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    height: 5px;
-                    background: var(--gradient);
-                }
-
-                .search-section h2 {
-                    margin: 0 0 20px;
-                    font-size: 1.75rem;
-                    font-weight: 800;
-                    color: var(--primary);
-                    display: flex;
-                    align-items: center;
-                    gap: 12px;
-                    justify-content: center;
-                }
-
-                    .search-section h2 i {
-                        color: var(--primary-dark);
-                        font-size: 2rem;
-                    }
-
-            .search-subtitle {
-                text-align: center;
-                color: #6B7280;
-                font-size: 1rem;
-                margin-bottom: 32px;
-            }
-
-            select, button {
-                padding: 12px 20px;
-                border-radius: 12px;
-                border: 2px solid #e2e8f0;
-                font-size: 0.95rem;
-                font-weight: 600;
-                background: white;
-                transition: all 0.2s ease;
-                height: 48px;
-            }
-
-            select {
-                min-width: 280px;
-                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-                background-position: right 12px center;
-                background-repeat: no-repeat;
-                background-size: 16px;
-                padding-right: 48px;
-                appearance: none;
-            }
-
-                select:focus, button:focus {
-                    outline: none;
-                    border-color: var(--primary);
-                    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-                }
-
-            .btn {
-                background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-                color: white;
-                border: none;
-                cursor: pointer;
-                font-weight: 700;
-                box-shadow: var(--shadow-md);
-                position: relative;
-                overflow: hidden;
-            }
-
-                .btn:hover {
-                    transform: translateY(-1px);
-                    box-shadow: var(--shadow-lg);
-                }
-
-                .btn.secondary {
-                    background: transparent;
-                    color: var(--primary);
-                    border: 2px solid rgba(37, 99, 235, 0.2);
-                    box-shadow: none;
-                }
-
-                    .btn.secondary:hover {
-                        background: rgba(37, 99, 235, 0.08);
-                        border-color: var(--primary);
-                    }
-
-            #countInfo {
-                margin-left: auto;
-                font-weight: 600;
-                color: #475569;
-            }
-
-            .grid {
-                display: grid;
-                gap: 20px;
-                grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-            }
-
-            .card {
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(20px);
-                border-radius: 20px;
-                padding: 24px;
-                box-shadow: var(--shadow-lg);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                display: flex;
-                gap: 20px;
-                align-items: flex-start;
-                transition: all 0.3s ease;
-                position: relative;
-                overflow: hidden;
-            }
-
-                .card::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    height: 4px;
-                    background: linear-gradient(90deg, var(--primary), #3b82f6);
-                }
-
-                .card:hover {
-                    transform: translateY(-4px);
-                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-                }
-
-            .thumb {
-                width: 80px;
-                height: 80px;
-                border-radius: 16px;
-                background: linear-gradient(135deg, #eff6ff, #dbeafe);
-                object-fit: contain !important;
-                border: 2px solid rgba(37, 99, 235, 0.1);
-                flex-shrink: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 2rem;
-                color: #60a5fa;
-                position: relative;
-            }
-
-                .thumb img {
-                    border-radius: 14px;
-                }
-
-            .info {
-                flex: 1;
-                min-width: 0;
-            }
-
-            .name {
-                font-weight: 800;
-                color: var(--dark);
-                font-size: 1.125rem;
-                margin-bottom: 12px;
-                display: flex;
-                align-items: flex-start;
-                gap: 12px;
-                line-height: 1.3;
-            }
-
-            .badge {
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
-                padding: 6px 12px;
-                border-radius: 20px;
-                background: linear-gradient(135deg, var(--success), #059669);
-                color: white;
-                font-weight: 700;
-                font-size: 0.75rem;
-                text-transform: uppercase;
-                letter-spacing: 0.05em;
-                flex-shrink: 0;
-                box-shadow: 0 2px 8px rgba(5, 150, 105, 0.3);
-            }
-
-            .meta-line {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                font-size: 0.875rem;
-                color: #475569;
-                margin-bottom: 8px;
-                font-weight: 500;
-            }
-
-                .meta-line i {
-                    width: 18px;
-                    color: var(--primary);
-                    font-size: 1rem;
-                    flex-shrink: 0;
-                }
-
-                .meta-line strong {
-                    color: var(--dark);
-                    margin-right: 8px;
-                    font-weight: 700;
-                }
-
-            .pager {
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(20px);
-                border-radius: 16px;
-                padding: 20px 28px;
-                margin-top: 28px;
-                box-shadow: var(--shadow-lg);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                display: flex;
-                gap: 12px;
-                align-items: center;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            .page-btn {
-                padding: 10px 16px;
-                border-radius: 12px;
-                background: white;
-                border: 2px solid #e2e8f0;
-                cursor: pointer;
-                font-weight: 600;
-                font-size: 0.9rem;
-                min-width: 48px;
-                height: 44px;
-                transition: all 0.2s ease;
-                color: #475569;
-            }
-
-                .page-btn:hover:not(:disabled) {
-                    border-color: var(--primary);
-                    color: var(--primary);
-                    transform: translateY(-1px);
-                }
-
-                .page-btn.active {
-                    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-                    color: white;
-                    border-color: var(--primary);
-                }
-
-                .page-btn:disabled {
-                    opacity: 0.5;
-                    cursor: not-allowed;
-                }
-
-            .page-info {
-                color: #64748b;
-                font-size: 0.95rem;
-                font-weight: 600;
-                margin: 0 16px;
-                white-space: nowrap;
-            }
-
-            .empty {
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(20px);
-                text-align: center;
-                padding: 64px 32px;
-                color: #64748b;
-                border-radius: 20px;
-                box-shadow: var(--shadow-lg);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                font-size: 1.125rem;
-                font-weight: 500;
-            }
-
-            .loading {
-                display: flex;
-                gap: 12px;
-                align-items: center;
-                color: #475569;
-                font-weight: 600;
-                font-size: 1rem;
-            }
-
-                .loading i {
-                    color: var(--primary);
-                    animation: spin 1s linear infinite;
-                }
-
-            @keyframes spin {
-                from {
-                    transform: rotate(0deg);
-                }
-
-                to {
-                    transform: rotate(360deg);
-                }
-            }
-
-            /* Responsive */
-            @media (max-width: 768px) {
-                body {
-                    padding: 16px;
-                }
-
-                header {
-                    padding: 24px 20px;
-                    margin-bottom: 20px;
-                }
-
-                    header h1 {
-                        font-size: 1.875rem;
-                    }
-
-                .controls {
-                    flex-direction: column;
-                    align-items: stretch;
-                    padding: 20px 16px;
-                    gap: 12px;
-                }
-
-                select {
-                    width: 100%;
-                    min-width: unset;
-                }
-
-                .grid {
-                    grid-template-columns: 1fr;
-                    gap: 16px;
-                }
-
-                .card {
-                    padding: 20px;
-                    gap: 16px;
-                }
-
-                .thumb {
-                    width: 64px;
-                    height: 64px;
-                }
-
-                .name {
-                    font-size: 1rem;
-                }
-            }
-
-            .wrap {
-                max-width: var(--container);
-                margin: 0px auto 48px auto;
-                padding: 28px;
-            }
-        </style>
-        <section class="pop-cour">
-            <div class="container com-sp" style="padding-top:0px;">
-                <div class="wrap">
-                    <div class="row">
-                        <div class="cor about-sp">
-                            <div class="ed-about-tit">
-                                <div class="con-title">
-                                    <h2>Member <span> Affilation</span></h2>
-                                    <p>Select a state to view registered members with active status.</p>
-                                </div>
-
-                                <div class="search-section" aria-hidden="false">
-                                    <select id="stateSelect" aria-label="Select state">
-                                        <option value="">Loading states...</option>
-                                    </select>
-                                    <button id="refreshBtn" class="btn secondary">Refresh</button>
-                                    <div id="countInfo" class="small-muted" style="margin-left:auto"></div>
-                                </div>
+                <!-- Right Column: Sticky OpenStreetMap (OSM) -->
+                <div class="col-lg-6">
+                    <div class="map-sticky-wrap">
+                        <div class="map-header-bar">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="fa-solid fa-earth-asia text-warning fs-5"></i>
                                 <div>
-                                    <div class="ho-event pg-eve-main">
-                                        <div id="contentArea">
-                                            <!-- placeholder -->
-                                            <div id="statusBox" class="empty">Select a state to load members.</div>
-                                            <div id="membersList" class="courss" style="display:none"></div>
-                                            <div id="pager" class="pager" style="display:none"></div>
-                                        </div>
-                                    </div>
+                                    <h6 class="fw-bold mb-0 text-white">Live OpenStreetMap (OSM)</h6>
+                                    <small class="text-white-50" id="mapStatusText">Showing active study center pins</small>
                                 </div>
+                            </div>
+                            <span class="badge bg-success bg-opacity-25 text-white border border-success fw-bold">
+                                <i class="fa-solid fa-circle-check me-1"></i> Interactive
+                            </span>
+                        </div>
+                        <div id="osmMap"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. 4 TRADE CLASSROOMS SHOWCASE GALLERY -->
+        <section class="trade-gallery-section">
+            <div class="container">
+                <div class="text-center max-w-700 mx-auto mb-5">
+                    <span class="badge bg-warning text-dark fw-bold px-3 py-2 text-uppercase mb-2">
+                        <i class="fa-solid fa-chalkboard-user me-1"></i> Practical Learning Infrastructure
+                    </span>
+                    <h2 class="fw-extrabold text-navy display-6 mt-1">Four Core Trade Training Studios</h2>
+                    <p class="text-muted small">
+                        Every Gurukul affiliated center is equipped with branded modern lab workstations and vocational workshop studios.
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Trade 1: Computer Science & IT Lab -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="trade-photo-card">
+                            <div class="trade-img-wrap">
+                                <img src="images/trade_computer_lab.jpg" alt="Computer & IT Lab - Gurukul">
+                                <span class="trade-badge-overlay"><i class="fa-solid fa-laptop-code me-1"></i> IT & Coding</span>
+                            </div>
+                            <div class="trade-card-content">
+                                <h4 class="trade-card-title">Computer & IT Lab</h4>
+                                <p class="trade-card-desc">High-speed workstations, programming tools, DCA, ADCA & Web Designing.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trade 2: Fashion Designing & Tailoring Studio -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="trade-photo-card">
+                            <div class="trade-img-wrap">
+                                <img src="images/trade_fashion_tailoring_lab.jpg" alt="Fashion Designing & Tailoring Studio - Gurukul">
+                                <span class="trade-badge-overlay"><i class="fa-solid fa-scissors me-1"></i> Fashion & Apparel</span>
+                            </div>
+                            <div class="trade-card-content">
+                                <h4 class="trade-card-title">Fashion & Tailoring Studio</h4>
+                                <p class="trade-card-desc">Pattern drafting tables, electric sewing machines & garment creation labs.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trade 3: Electrical & Technical Trades Lab -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="trade-photo-card">
+                            <div class="trade-img-wrap">
+                                <img src="images/trade_electrical_lab.jpg" alt="Electrical & Technical Trades Lab - Gurukul">
+                                <span class="trade-badge-overlay"><i class="fa-solid fa-bolt me-1"></i> Technical Trades</span>
+                            </div>
+                            <div class="trade-card-content">
+                                <h4 class="trade-card-title">Electrical & Technical Lab</h4>
+                                <p class="trade-card-desc">Circuit test benches, wiring panels, multimeter diagnostics & safety training.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trade 4: Nursery Teacher Training (NTT) Lab -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="trade-photo-card">
+                            <div class="trade-img-wrap">
+                                <img src="images/trade_teacher_training_lab.jpg" alt="Teacher Training NTT Lab - Gurukul">
+                                <span class="trade-badge-overlay"><i class="fa-solid fa-children me-1"></i> NTT & Early Ed</span>
+                            </div>
+                            <div class="trade-card-content">
+                                <h4 class="trade-card-title">Teacher Training (NTT) Lab</h4>
+                                <p class="trade-card-desc">Montessori aids, storytelling puppet theaters & child development pedagogy.</p>
                             </div>
                         </div>
                     </div>
@@ -738,901 +581,364 @@
         </section>
     </main>
 
-    <!-- FOOTER COURSE BOOKING -->
-    <section>
-        <div class="full-bot-book">
+    <!-- ULTRA-PREMIUM GLOBAL FOOTER -->
+    <footer class="portal-global-footer">
+        <div class="portal-footer-top">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-2 bb-img">
-                        <img src="images/3.png" alt="">
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <a href="index.html" class="d-flex align-items-center gap-3 text-decoration-none mb-3">
+                            <img src="images/gurukul_logo.png" alt="Gurukul Logo" style="height: 55px; width: auto;">
+                            <div>
+                                <div class="footer-brand-title">GURUKUL</div>
+                                <div class="footer-brand-sub">The School Of Professionals</div>
+                            </div>
+                        </a>
+                        <p class="footer-about-text">
+                            Gurukul The School Of Professionals is an ISO 9001:2015 certified premier education board dedicated to delivering industry-aligned technical, computer, management, and vocational training across India.
+                        </p>
+                        <div class="d-flex align-items-center gap-2 mt-2">
+                            <span class="badge bg-warning text-dark fw-bold"><i class="fa-solid fa-shield-halved me-1"></i> ISO 9001:2015 Accredited Board</span>
+                        </div>
                     </div>
-                    <div class="col-md-7 bb-text">
-                        <h4>Gurukul The School Of Professionals</h4>
-                        <p>GURUKUL's spirit is teamwork and a commitment to quality training, helping learners reach their career goals with confidence and modern skills.</p>
-                    </div>
-                    <div class="col-md-3 bb-link">
-                        <a href="/courses.html">Book This Course</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- FOOTER -->
-    <section class="wed-hom-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>About Us</h4>
-                    <p>Gurukul the School of Professionals is an ISO 9001:2015 certified institute founded to deliver industry-focused education and training across Professional, Vocational, Technical, and Management disciplines. We are committed to providing modern, practical learning that prepares students for real careers.</p>
-                    <p>Our goal is to build a strong nationwide network so quality training reaches learners across India � urban and rural alike. We currently operate offices in Delhi, Uttar Pradesh, and Uttarakhand, and we partner with trusted members and centers in many other states.</p>
-                    <p>We build local partnerships and work with community champions to promote programs at the grassroots level. Our emphasis is on skill proficiency, employability, and connecting training to local opportunities�bridging modern techniques with local contexts.</p>
-                    <p></p>
-                </div>
-            </div>
-            <div class="row wed-foot-link">
-                <div class="col-md-4 foot-tc-mar-t-o">
-                    <h4>Top Courses</h4>
-                    <ul>
-                        <li><a href="/course.html">Vocational Courses</a></li>
-                        <li><a href="/course.html">Non Engineering Trades</a></li>
-                        <li><a href="/course.html">Management Courses</a></li>
-                        <li><a href="/course.html">Financial Services</a></li>
-                        <li><a href="/course.html">Engineering Trades</a></li>
-                        <li><a href="/course.html">Computer Literacy</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4>New Courses</h4>
-                    <ul>
-                        <li><a href="/course.html">IT Management</a></li>
-                        <li><a href="/course.html">Business Management</a></li>
-                        <li><a href="/course.html">IT and System Management</a></li>
-                        <li><a href="/course.html">Financial Accounting</a></li>
-                        <li><a href="/course.html">Computer Application</a></li>
-                        <li><a href="/course.html">Hardware & Networking</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4>HELP & SUPPORT</h4>
-                    <ul>
-                        <li>
-                            <a href="/contact.html">24x7 Live help</a>
-                        </li>
-                        <li>
-                            <a href="/contact.html">Contact us</a>
-                        </li>
-                        <li>
-                            <a href="/contact.html">Feedback</a>
-                        </li>
-                        <li>
-                            <a href="/faq.html">FAQs</a>
-                        </li>
-                        <li>
-                            <a href="/contact.html">Safety Tips</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row wed-foot-link-1">
-                <div class="col-md-4 foot-tc-mar-t-o">
-                    <h4>Get In Touch</h4>
-                    <p>Address: WZ-85, Ram Nagar, Tilak Nagar, Delhi - 18</p>
-                    <p>Phone: <a href="#!">+91-88009-59688</a></p>
-                    <p>Email: <a href="#!">gptiindia@yahoo.in</a></p>
-                </div>
-                <div class="col-md-4">
-                    <h4>DOWNLOAD OUR FREE MOBILE APPS</h4>
-                    <ul>
-                        <li>
-                            <a href="#"><span class="sprite sprite-android"></span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="sprite sprite-ios"></span></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4>SOCIAL MEDIA</h4>
-                    <ul>
-                        <li>
-                            <a href="#"><i class="fab fa-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-x-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-google-plus"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COPY RIGHTS -->
-    <section class="wed-rights">
-        <div class="container">
-            <div class="row">
-                <div class="copy-right">
-                    <p>Copyrights © 2025 GIndiaHR. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--SECTION LOGIN, REGISTER AND FORGOT PASSWORD-->
-    <section>
-        <!-- LOGIN SECTION -->
-        <div class="modal fade" id="modal1">
-            <div class="log-in-pop modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="log-in-pop-left">
-                        <h1>Hello...</h1>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <h4>Login with social media</h4>
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-google"></i> Google</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                            </li>
+                    <div class="col-lg-2 col-md-6">
+                        <h5 class="footer-heading">Quick Links</h5>
+                        <ul class="footer-links-list">
+                            <li><a href="index.html"><i class="fa-solid fa-angle-right"></i> Home Portal</a></li>
+                            <li><a href="aboutus.html"><i class="fa-solid fa-angle-right"></i> About Board</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Course Catalog</a></li>
+                            <li><a href="result.html"><i class="fa-solid fa-angle-right"></i> Examination Result</a></li>
+                            <li><a href="verify.html"><i class="fa-solid fa-angle-right"></i> Certificate Verify</a></li>
+                            <li><a href="contact.html"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
                         </ul>
                     </div>
-                    <div class="log-in-pop-right">
-                        <a href="#" class="pop-close" data-bs-dismiss="modal">
-                            <img src="images/cancel.png" alt="" />
-                        </a>
-                        <h4>Login</h4>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <form class="s12">
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-                                <label for="email">Email</label>
-                            </div>
-                            <div class="form-floating mt-3 mb-3">
-                                <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-                                <label for="pwd">Password</label>
-                            </div>
-                            <div class="form-check mb-3">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" name="remember"> Remember me
-                                </label>
-                            </div>
-                            <div>
-                                <div class="input-field s4">
-                                    <input type="submit" value="Login" class="btn btn-primary log-in-btn">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="input-field s12"> <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal3">Forgot password</a> | <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal2">Create a new account</a> </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- REGISTER SECTION -->
-        <div class="modal fade" id="modal2">
-            <div class="log-in-pop modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="log-in-pop-left">
-                        <h1>Hello...</h1>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <h4>Login with social media</h4>
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-google"></i> Google</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                            </li>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Programs</h5>
+                        <ul class="footer-links-list">
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Computer Applications & IT</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Financial Accounting & Tally</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Vocational Skill Certification</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Teacher Training (NTT / ECCE)</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Industrial & Electrical Trades</a></li>
                         </ul>
                     </div>
-                    <div class="log-in-pop-right">
-                        <a href="#" class="pop-close" data-bs-dismiss="modal">
-                            <img src="images/cancel.png" alt="" />
-                        </a>
-                        <h4>Create an Account</h4>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <form class="s12">
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="username" placeholder="Enter user name" name="text">
-                                <label for="username">User name</label>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Head Office</h5>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="footer-contact-text">
+                                WZ-85, Ram Nagar, Tilak Nagar,<br>New Delhi - 110018
                             </div>
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-                                <label for="email">Email</label>
+                        </div>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div class="footer-contact-text">
+                                <a href="tel:+918800959688">+91-88009-59688</a>
                             </div>
-                            <div class="form-floating mt-3 mb-3">
-                                <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-                                <label for="pwd">Password</label>
+                        </div>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="footer-contact-text">
+                                <a href="mailto:gptiindia@yahoo.in">gptiindia@yahoo.in</a>
                             </div>
-                            <div class="form-floating mt-3 mb-3">
-                                <input type="text" class="form-control" id="pwdconf" placeholder="Confirm password" name="pwdconf">
-                                <label for="pwdconf">Confirm password</label>
-                            </div>
-                            <div>
-                                <div class="input-field s4">
-                                    <input type="submit" value="Register now" class="btn btn-primary log-in-btn">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="input-field s12"> <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal1">Are you a already member ? Login</a> </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- FORGOT SECTION -->
-        <div class="modal fade" id="modal3">
-            <div class="log-in-pop modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="log-in-pop-left">
-                        <h1>Hello...</h1>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <h4>Login with social media</h4>
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-google"></i> Google</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                            </li>
-                        </ul>
+        <div class="portal-footer-bottom text-center">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div>
+                        Copyright © 2026 <strong>Gurukul The School Of Professionals</strong>. All Rights Reserved.
                     </div>
-                    <div class="log-in-pop-right">
-                        <a href="#" class="pop-close" data-bs-dismiss="modal">
-                            <img src="images/cancel.png" alt="" />
-                        </a>
-                        <h4>Forgot password</h4>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <form class="s12">
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-                                <label for="email">Email</label>
-                            </div>
-                            <div>
-                                <div class="input-field s4">
-                                    <input type="submit" value="Login" class="btn btn-primary log-in-btn">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="input-field s12"><a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal2">Create a new account</a> </div>
-                            </div>
-                        </form>
+                    <div>
+                        <span>ISO 9001:2015 Certified Board</span> | 
+                        <a href="verify.html" class="text-warning text-decoration-none ms-1">Digital Verification System</a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </footer>
 
-    <!-- SOCIAL MEDIA SHARE -->
-    <section>
-        <div class="icon-float">
-            <ul>
-                <li><a href="#" class="sh">1k <br> Share</a> </li>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Leaflet JS for OpenStreetMap -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-                <li><a href="#" class="fb1"><i class="fab fa-facebook"></i></a> </li>
-                <li><a href="#" class="wa1"><i class="fab fa-whatsapp"></i></a> </li>
-                <li><a href="#" class="tw1"><i class="fab fa-x-twitter"></i></a> </li>
-                <li><a href="#" class="li1"><i class="fab fa-linkedin"></i></a> </li>
-
-                <li><a href="#" class="sh1"><i class="fa-regular fa-message"></i></a> </li>
-            </ul>
-        </div>
-    </section>
-
-
-
-    <!-- Enquiry Modal -->
-    <!-- Modal -->
-    <div class="modal-backdrop" id="enquiryModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <div class="modal" role="document">
-            <div class="modal-header">
-                <div>
-                    <div class="modal-title" id="modalTitle">Course Enquiry</div>
-                    <div class="modal-course" id="modalCourseInfo">Full Stack - Web Development</div>
-                </div>
-                <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Close">&times;</button>
-            </div>
-
-            <div style="position:relative;">
-                <div class="modal-body" id="modalBody">
-                    <div>
-                        <label for="en_name">Name</label>
-                        <input type="text" id="en_name" placeholder="Enter your name" />
-                    </div>
-
-                    <div>
-                        <label for="en_email">Email</label>
-                        <input type="email" id="en_email" placeholder="Enter your email" />
-                    </div>
-
-                    <div>
-                        <label for="en_mobile">Mobile</label>
-                        <input type="text" id="en_mobile" placeholder="Enter your mobile number" />
-                    </div>
-
-                    <div>
-                        <label for="en_state">State</label>
-                        <select id="en_state"><option value="">Select state</option></select>
-                    </div>
-
-                    <div>
-                        <label for="en_city">City</label>
-                        <input type="text" id="en_city" placeholder="City" />
-                    </div>
-
-                    <div>
-                        <label for="en_district">District</label>
-                        <input type="text" id="en_district" placeholder="District" />
-                    </div>
-
-
-
-                    <div class="field-full">
-                        <label for="en_remarks">Notes / Remarks</label>
-                        <textarea id="en_remarks" placeholder="Any specific query or details..."></textarea>
-                    </div>
-                </div>
-
-                <!-- message overlay -->
-                <div class="message-wrap" id="messageWrap" aria-live="polite">
-                    <div class="message-card" id="messageCard">
-                        <!-- content inserted by JS -->
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn-secondary" id="modalCancel">Cancel</button>
-                <button type="button" class="btn-primary-modal" id="modalSubmit">Submit Enquiry</button>
-            </div>
-        </div>
-    </div>
-
-
-
-    <!-- ===== VERIFY POPUP ===== -->
-    <div id="verifyModal" class="modal-overlay">
-        <div class="modal" style="display:block; height:300px;">
-            <h3>Verify to View Details</h3>
-
-            <input type="email" id="verifyEmail" placeholder="Enter registered email">
-            <input type="text" id="verifyPhone" placeholder="Enter registered mobile">
-
-            <div class="modal-actions">
-                <button id="verifyCancel">Cancel</button>
-                <button id="verifySubmit">Verify</button>
-            </div>
-
-            <div id="verifyError" class="error"></div>
-        </div>
-    </div>
-
-    <!-- ===== DETAILS POPUP ===== -->
-    <div id="detailsModal" class="modal-overlay">
-        <div class="modal modal-large" style="display:block; height:500px;">
-            <h3>Member Details</h3>
-            <div id="detailsContent"></div>
-
-            <div class="modal-actions">
-                <button onclick="closeDetails()">Close</button>
-            </div>
-        </div>
-    </div>
-
-
-    <style type="text/css">
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,.55);
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-        }
-
-        .modal {
-            background: #fff;
-            padding: 22px;
-            border-radius: 12px;
-            width: 340px;
-            box-shadow: 0 10px 30px rgba(0,0,0,.2);
-        }
-
-        .modal-large {
-            width: 520px;
-        }
-
-        .modal h3 {
-            margin-bottom: 15px;
-        }
-
-        .modal input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
-
-        .modal-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-
-            .modal-actions button {
-                padding: 8px 14px;
-                border-radius: 6px;
-                border: none;
-                cursor: pointer;
-            }
-
-                .modal-actions button:last-child {
-                    background: #2b7cff;
-                    color: #fff;
-                }
-
-        .error {
-            color: #d00;
-            margin-top: 10px;
-            font-size: 13px;
-        }
-    </style>
-
-
-
-
-    <script src="js/main.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/HomeScripts.js"></script>
-
-
+    <!-- Branch Filtering & Masking Application Script -->
     <script>
-        (function () {
+        const JSON_MEMBERS = 'db/members.json';
+        let allMembers = [];
+        let mapInstance = null;
+        let markerGroup = null;
 
-            /* ------------------ CONFIG ------------------ */
-            const ADMIN_API_KEY = "gsptestkey";
-            const api = {
-                states: "/api/members/states",
-                members: "/api/members"
-            };
+        // Elements
+        const stateSelect = document.getElementById('stateSelect');
+        const citySelect = document.getElementById('citySelect');
+        const branchSearchInput = document.getElementById('branchSearchInput');
+        const branchListContainer = document.getElementById('branchListContainer');
+        const branchListLoading = document.getElementById('branchListLoading');
+        const noBranchFound = document.getElementById('noBranchFound');
+        const branchCountBadge = document.getElementById('branchCountBadge');
+        const mapStatusText = document.getElementById('mapStatusText');
 
-            const PAGE_SIZE = 24;
-            let allMembers = [];
-            let filtered = [];
-            let selectedState = "";
-            let currentPage = 1;
-            let selectedMember = null;
+        // Half-Masking Algorithm for Center Names
+        function maskCenterName(rawName) {
+            if (!rawName) return 'GURUKUL AFFILIATED ACADEMY';
+            const words = rawName.trim().split(/\s+/);
+            return words.map(w => {
+                const len = w.length;
+                if (len <= 2) return w[0] + '*';
+                if (len <= 4) return w.slice(0, 2) + '*'.repeat(len - 2);
+                const visible = Math.ceil(len / 2);
+                return w.slice(0, visible) + '*'.repeat(len - visible);
+            }).join(' ');
+        }
 
-            /* ------------------ HELPERS ------------------ */
-            async function fetchJson(url, opts = {}) {
-                opts.headers = opts.headers || {};
-                opts.headers["Accept"] = "application/json";
-                if (ADMIN_API_KEY) opts.headers["X-Api-Key"] = ADMIN_API_KEY;
+        // Masking Algorithm for Address
+        function maskAddress(rawAddr, city, state) {
+            if (!rawAddr || rawAddr.trim().length <= 2) {
+                return `Main Road Area, ${city || ''}, ${state || ''}`;
+            }
+            const parts = rawAddr.trim().split(/[, ]+/);
+            const maskedParts = parts.map(p => {
+                if (p.length <= 2) return p;
+                const show = Math.min(2, Math.floor(p.length / 3));
+                return p.slice(0, Math.max(1, show)) + '*'.repeat(Math.max(2, p.length - show));
+            });
+            return maskedParts.join(' ') + `, ${city || ''}`;
+        }
 
-                const res = await fetch(url, opts);
-                const txt = await res.text().catch(() => null);
+        // Masking Algorithm for Phone
+        function maskPhone(phone) {
+            if (!phone || phone.length < 5) return '+91 88009-XXXXX';
+            const p = phone.replace(/\D/g, '');
+            if (p.length >= 10) {
+                return `+91 ${p.slice(0, 5)}-XXXXX`;
+            }
+            return '+91 88009-XXXXX';
+        }
 
-                if (!res.ok) throw new Error(txt || res.statusText);
-                try { return JSON.parse(txt); } catch { return txt; }
+        // Initialize OpenStreetMap (OSM)
+        function initMap() {
+            // Center roughly around North/Central India
+            mapInstance = L.map('osmMap', {
+                center: [28.6139, 77.2090],
+                zoom: 7,
+                scrollWheelZoom: false
+            });
+
+            // Add OpenStreetMap Tile Layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(mapInstance);
+
+            markerGroup = L.featureGroup().addTo(mapInstance);
+        }
+
+        // Populate State and City Dropdowns
+        function populateDropdowns() {
+            const states = [...new Set(allMembers.map(m => m.State).filter(Boolean))].sort();
+            stateSelect.innerHTML = '<option value="ALL">All States (India)</option>';
+            states.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s;
+                opt.textContent = s;
+                stateSelect.appendChild(opt);
+            });
+
+            updateCityDropdown('ALL');
+        }
+
+        function updateCityDropdown(selectedState) {
+            let cities = [];
+            if (selectedState === 'ALL') {
+                cities = [...new Set(allMembers.map(m => m.City).filter(Boolean))].sort();
+            } else {
+                cities = [...new Set(allMembers.filter(m => m.State === selectedState).map(m => m.City).filter(Boolean))].sort();
             }
 
-            function escapeHtml(s) {
-                return String(s || "")
-                    .replace(/&/g, "&amp;")
-                    .replace(/</g, "&lt;")
-                    .replace(/>/g, "&gt;");
+            citySelect.innerHTML = '<option value="ALL">All Cities / Districts</option>';
+            cities.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                citySelect.appendChild(opt);
+            });
+        }
+
+        // Render Branch List & Map Markers
+        function renderBranches() {
+            const stateVal = stateSelect.value;
+            const cityVal = citySelect.value;
+            const searchVal = (branchSearchInput.value || '').toLowerCase().trim();
+
+            branchListContainer.innerHTML = '';
+            markerGroup.clearLayers();
+
+            const filtered = allMembers.filter(m => {
+                const stateMatch = (stateVal === 'ALL') || (m.State === stateVal);
+                const cityMatch = (cityVal === 'ALL') || (m.City === cityVal);
+                const searchMatch = !searchVal || 
+                    (m.City && m.City.toLowerCase().includes(searchVal)) || 
+                    (m.State && m.State.toLowerCase().includes(searchVal)) || 
+                    (m.ENROLNO && m.ENROLNO.toLowerCase().includes(searchVal)) || 
+                    (m.Center && m.Center.toLowerCase().includes(searchVal));
+
+                return stateMatch && cityMatch && searchMatch;
+            });
+
+            branchCountBadge.textContent = `${filtered.length} Active Centers Found`;
+            mapStatusText.textContent = `Showing ${filtered.length} geolocated branch markers`;
+
+            if (filtered.length === 0) {
+                noBranchFound.style.display = 'block';
+                return;
             }
 
-            function maskEmail(email) {
-                if (!email) return "";
-                const at = email.indexOf("@");
-                if (at <= 1) return "***" + email.slice(at);
-                return email.slice(0, 2) + "..." + email.slice(at);
-            }
+            noBranchFound.style.display = 'none';
 
-            function maskName(name) {
-                if (!name || name === '—') return '—';
+            const bounds = [];
 
-                const parts = name.trim().split(/\s+/);
+            filtered.forEach((m, idx) => {
+                const maskedName = maskCenterName(m.Center);
+                const maskedAddr = maskAddress(m.Address1, m.City, m.State);
+                const maskedPh = maskPhone(m.Phone);
+                const branchCode = m.ENROLNO || `BR-${m.Id}`;
 
-                // Single word name (e.g. "Amit")
-                if (parts.length === 1) {
-                    return parts[0].length <= 2
-                        ? parts[0][0] + '•'
-                        : parts[0].slice(0, 2) + '••';
-                }
+                // Create Center Card Element
+                const card = document.createElement('div');
+                card.className = 'center-card-item animate-fade-up';
+                card.id = `center-card-${m.Id}`;
 
-                // Multiple parts (e.g. "Amit Kumar Singh")
-                return parts
-                    .map(p => {
-                        if (p.length <= 2) return p[0] + '•';
-                        return p[0] + '••';
-                    })
-                    .join(' ');
-            }
+                card.innerHTML = `
+                    <div class="center-header-row">
+                        <div>
+                            <h4 class="center-masked-title" title="Masked for Privacy">${maskedName}</h4>
+                            <span class="small text-muted"><i class="fa-solid fa-user-tie me-1"></i> Authorized Center Head: <strong>${m.NAME || 'Gurukul Partner'}</strong></span>
+                        </div>
+                        <span class="center-code-badge">${branchCode}</span>
+                    </div>
 
+                    <div class="masked-address-box">
+                        <i class="fa-solid fa-location-dot text-danger me-2"></i> <strong>Masked Location:</strong> ${maskedAddr}
+                    </div>
 
-            function maskPhone(phone) {
-                if (!phone) return "";
-                const s = phone.replace(/\D/g, "");
-                if (s.length <= 4) return s;
-                return s.slice(0, 2) + "••••" + s.slice(-2);
-            }
+                    <div class="center-meta-row">
+                        <div class="d-flex align-items-center gap-2 flex-wrap">
+                            <span class="pill-city-tag"><i class="fa-solid fa-city me-1"></i> ${m.City}</span>
+                            <span class="pill-state-tag"><i class="fa-solid fa-map-pin me-1"></i> ${m.State}</span>
+                            <span class="small text-muted"><i class="fa-solid fa-phone me-1"></i> ${maskedPh}</span>
+                        </div>
+                        <button type="button" class="btn-pin-map" onclick="focusOnMarker(${m.Latitude || 28.6139}, ${m.Longitude || 77.2090}, '${m.Id}', event)">
+                            <i class="fa-solid fa-crosshairs me-1"></i> View on Map
+                        </button>
+                    </div>
+                `;
 
-            function isActiveStatus(m) {
-                const s = (m.STATUS || "").toLowerCase();
-                return s === "active" || s === "approved";
-            }
-
-            /* ------------------ UI HELPERS ------------------ */
-            function showStatus(msg) {
-                document.getElementById("statusBox").style.display = "block";
-                document.getElementById("statusBox").innerHTML = msg;
-
-                document.getElementById("membersList").style.display = "none";
-                document.getElementById("pager").style.display = "none";
-                document.getElementById("countInfo").textContent = "";
-            }
-
-            /* ------------------ RENDER MEMBERS ------------------ */
-            function renderMembersPage(page = 1) {
-
-                const grid = document.getElementById("membersList");
-                grid.innerHTML = "";
-
-                if (filtered.length === 0) {
-                    showStatus("No active members found for selected state.");
-                    return;
-                }
-
-                const total = filtered.length;
-                const totalPages = Math.ceil(total / PAGE_SIZE);
-                page = Math.max(1, Math.min(page, totalPages));
-                currentPage = page;
-
-                const start = (page - 1) * PAGE_SIZE;
-                const items = filtered.slice(start, start + PAGE_SIZE);
-
-                items.forEach(m => {
-                    const imgSrc = m.PhotoOfOwner || m.Photo || '';
-
-                    const finalImgSrc = imgSrc && imgSrc.trim() !== ''
-                        ? imgSrc
-                        : '../images/gurukul_logo.png';
-
-                    const imgHtml = `
-              <div class="img-placeholder">
-                <img src="${escapeHtml(finalImgSrc)}"
-                     alt="${escapeHtml(m.NAME || '')}"
-                     class="thumb">
-              </div>
-`;
-
-                    const maskedEmail = maskEmail(m.EMAIL || m.Email || '');
-                    const maskedPhone = maskPhone(m.Mobile || m.MobileNo || m.Phone || m.PhoneNumber || m.PhoneNo || m.Phone || '');
-                    const state = (m.State || m.state || '');
-                    const city = (m.City || m.city || '');
-                    const district = (m.District || m.district || '');
-                    const enrol = (m.ENROLNO || m.EnrolNo || m.Enrol || 'N.A.');
-                    const maskedName = maskName(m.NAME || m.Name || m.name || '—');
-                    const status = (m.STATUS || m.Status || '');
-
-                    const card = document.createElement('div');
-                    card.className = 'cours';
-                    card.innerHTML = `
-                                        ${imgHtml}
-
-                                        <div class="details">
-
-                                          <div class="name">
-                                            <div class="course-title">${escapeHtml(maskedName)}</div>
-                                            <div class="badge">${escapeHtml(status)}</div>
-                                          </div>
-
-                                          <!-- Enrol No -->
-                                          <div class="icons-row">
-                                            <i class="fa-solid fa-id-card"></i>
-                                            <span>${escapeHtml(enrol)}</span>
-                                          </div>
-
-                                          <!-- Email -->
-                                          <div class="icons-row">
-                                            <i class="fa-solid fa-envelope"></i>
-                                            <span>${escapeHtml(maskedEmail)}</span>
-                                          </div>
-
-                                          <!-- Mobile -->
-                                          <div class="icons-row">
-                                            <i class="fa-solid fa-phone"></i>
-                                            <span>${escapeHtml(maskedPhone)}</span>
-                                          </div>
-
-                                          <!-- State (NEW) -->
-                                          <div class="icons-row">
-                                            <i class="fa-solid fa-map"></i>
-                                            <span>${escapeHtml(state)}</span>
-                                          </div>
-
-                                          <!-- City -->
-                                          <div class="icons-row">
-                                            <i class="fa-solid fa-city"></i>
-                                            <span>${escapeHtml(city)}</span>
-                                          </div>
-
-                                          <!-- District -->
-                                          <div class="icons-row">
-                                            <i class="fa-solid fa-location-dot"></i>
-                                            <span>${escapeHtml(district)}</span>
-                                          </div>
-                                          <button class="view-btn">View Details</button>
-                                        </div>
-                                      `;
-                    card.querySelector(".view-btn").onclick = () => openVerify(m);
-                    grid.appendChild(card);
+                card.addEventListener('click', () => {
+                    focusOnMarker(m.Latitude || 28.6139, m.Longitude || 77.2090, m.Id);
                 });
 
+                branchListContainer.appendChild(card);
 
+                // Add Pin to OpenStreetMap
+                if (m.Latitude && m.Longitude) {
+                    const latLng = [m.Latitude, m.Longitude];
+                    bounds.push(latLng);
 
-                document.getElementById("statusBox").style.display = "none";
-                grid.style.display = "flex";
+                    // Custom Leaflet DivIcon
+                    const pinIcon = L.divIcon({
+                        className: 'custom-pin-container',
+                        html: `<div class="custom-map-pin"><i class="fa-solid fa-building-columns"></i></div>`,
+                        iconSize: [32, 32],
+                        iconAnchor: [16, 16]
+                    });
 
-                renderPager(total, page);
+                    const marker = L.marker(latLng, { icon: pinIcon }).addTo(markerGroup);
 
-                document.getElementById("countInfo").textContent =
-                    `Showing ${start + 1}–${Math.min(start + items.length, total)} of ${total} members`;
+                    const popupContent = `
+                        <div style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                            <div style="font-weight: 800; color: #09192f; font-size: 14px; margin-bottom: 4px;">
+                                ${maskedName}
+                            </div>
+                            <div style="color: #475569; font-size: 12px; margin-bottom: 6px;">
+                                <i class="fa-solid fa-location-dot text-warning me-1"></i> ${m.City}, ${m.State} (Code: <strong>${branchCode}</strong>)
+                            </div>
+                            <div style="font-size: 11px; color: #059669; font-weight: 700;">
+                                <i class="fa-solid fa-circle-check me-1"></i> ISO 9001:2015 Verified Study Center
+                            </div>
+                        </div>
+                    `;
+
+                    marker.bindPopup(popupContent);
+                }
+            });
+
+            // Auto-fit map to show all filtered markers
+            if (bounds.length > 0) {
+                mapInstance.fitBounds(bounds, { padding: [40, 40], maxZoom: 11 });
+            }
+        }
+
+        // Focus Map on a specific marker
+        function focusOnMarker(lat, lng, centerId, event) {
+            if (event) event.stopPropagation();
+
+            // Highlight card
+            document.querySelectorAll('.center-card-item').forEach(c => c.classList.remove('active-center'));
+            const targetCard = document.getElementById(`center-card-${centerId}`);
+            if (targetCard) {
+                targetCard.classList.add('active-center');
+                targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
 
-            /* ------------------ PAGER ------------------ */
-            function renderPager(total, current) {
+            mapInstance.flyTo([lat, lng], 13, { duration: 1.2 });
+        }
 
-                const pager = document.getElementById("pager");
-                pager.innerHTML = "";
+        // Reset Filters
+        function resetBranchFilters() {
+            stateSelect.value = 'ALL';
+            updateCityDropdown('ALL');
+            citySelect.value = 'ALL';
+            branchSearchInput.value = '';
+            renderBranches();
+        }
 
-                const totalPages = Math.ceil(total / PAGE_SIZE);
-                if (totalPages <= 1) {
-                    pager.style.display = "none";
-                    return;
+        // Event Listeners
+        stateSelect.addEventListener('change', () => {
+            updateCityDropdown(stateSelect.value);
+            renderBranches();
+        });
+
+        citySelect.addEventListener('change', renderBranches);
+        branchSearchInput.addEventListener('input', renderBranches);
+
+        // Fetch Data from members.json
+        async function loadBranchData() {
+            initMap();
+            try {
+                const res = await fetch(JSON_MEMBERS + '?v=' + Date.now());
+                if (res.ok) {
+                    allMembers = await res.json();
                 }
-
-                pager.style.display = "flex";
-
-                // Prev
-                const prev = document.createElement("button");
-                prev.className = "page-btn";
-                prev.textContent = "Prev";
-                prev.disabled = current <= 1;
-                prev.onclick = () => renderMembersPage(current - 1);
-                pager.appendChild(prev);
-
-                // Page numbers
-                for (let p = 1; p <= totalPages; p++) {
-                    const btn = document.createElement("button");
-                    btn.className = "page-btn" + (p === current ? " active" : "");
-                    btn.textContent = p;
-                    btn.onclick = () => renderMembersPage(p);
-                    pager.appendChild(btn);
-                }
-
-                // Next
-                const next = document.createElement("button");
-                next.className = "page-btn";
-                next.textContent = "Next";
-                next.disabled = current >= totalPages;
-                next.onclick = () => renderMembersPage(current + 1);
-                pager.appendChild(next);
+            } catch (e) {
+                console.error('Error fetching members:', e);
             }
 
-            /* ------------------ LOAD STATES ------------------ */
-            async function loadStates() {
-                const sel = document.getElementById("stateSelect");
-                sel.innerHTML = `<option value="">Loading...</option>`;
+            branchListLoading.style.display = 'none';
+            populateDropdowns();
+            renderBranches();
+        }
 
-                try {
-                    const res = await fetchJson(api.states);
-                    const list = Array.isArray(res) ? res : res.states || [];
-
-                    sel.innerHTML =
-                        `<option value="">-- Select state --</option>` +
-                        list.map(s => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join("");
-
-                } catch (err) {
-                    console.warn("State load failed:", err);
-                    sel.innerHTML = `<option value="">-- Select state --</option>`;
-                }
-            }
-
-            /* ------------------ LOAD MEMBERS ------------------ */
-            async function loadMembers() {
-                showStatus("Loading members…");
-
-                try {
-                    const res = await fetchJson(api.members);
-                    allMembers = Array.isArray(res) ? res : [];
-
-                    // If no state selected → show all active members
-                    if (!selectedState) {
-                        filtered = allMembers.filter(m => isActiveStatus(m));
-
-                        if (filtered.length === 0) {
-                            showStatus("No active members found.");
-                            return;
-                        }
-
-                        renderMembersPage(1);
-                        return;
-                    }
-
-                    // If state selected → filter by that state
-                    applyFilterAndShow(selectedState);
-
-                } catch (err) {
-                    showStatus("Failed to load members: " + err.message);
-                }
-            }
-
-
-            function applyFilterAndShow(state) {
-                selectedState = state;
-
-                if (!selectedState) {
-                    loadMembers();
-                    return;
-                }
-
-                filtered = allMembers.filter(m =>
-                    (m.State || "").toLowerCase() === selectedState.toLowerCase() &&
-                    isActiveStatus(m)
-                );
-
-                if (filtered.length === 0) {
-                    showStatus("No active members found for " + escapeHtml(selectedState));
-                    return;
-                }
-
-                renderMembersPage(1);
-            }
-
-
-            /* ------------------ VERIFY + DETAILS ------------------ */
-            window.openVerify = function (m) {
-                selectedMember = m;
-                document.getElementById("verifyEmail").value = "";
-                document.getElementById("verifyPhone").value = "";
-                document.getElementById("verifyError").textContent = "";
-                document.getElementById("verifyModal").style.display = "flex";
-            };
-
-
-            document.getElementById("verifyCancel").onclick = () =>
-                document.getElementById("verifyModal").style.display = "none";
-
-
-
-            document.getElementById("verifySubmit").onclick = () => {
-
-                if (!selectedMember) {
-                    document.getElementById("verifyError").textContent = "No member selected.";
-                    return;
-                }
-
-                // User input
-                const inputEmail = document.getElementById("verifyEmail").value
-                    .trim()
-                    .toLowerCase();
-
-                const inputPhone = document.getElementById("verifyPhone").value
-                    .replace(/\D/g, "")
-                    .slice(-10); // last 10 digits (handles +91 etc)
-
-                // Actual data (check ALL possible keys)
-                const realEmail =
-                    (selectedMember.EMAIL ||
-                        selectedMember.Email ||
-                        selectedMember.email ||
-                        "").trim().toLowerCase();
-
-                const realPhone = (
-                    selectedMember.Mobile ||
-                    selectedMember.MobileNo ||
-                    selectedMember.Phone ||
-                    selectedMember.PhoneNumber ||
-                    selectedMember.PhoneNo ||
-                    ""
-                )
-                    .replace(/\D/g, "")
-                    .slice(-10);
-
-                // Debug (remove later if you want)
-                console.log("VERIFY:", {
-                    inputEmail,
-                    realEmail,
-                    inputPhone,
-                    realPhone
-                });
-
-                if (!inputEmail || !inputPhone) {
-                    document.getElementById("verifyError").textContent =
-                        "Please enter both email and mobile number.";
-                    return;
-                }
-
-                if (inputEmail !== realEmail || inputPhone !== realPhone) {
-                    document.getElementById("verifyError").textContent =
-                        "Email or mobile number does not match our records.";
-                    return;
-                }
-
-                // ✅ SUCCESS
-                document.getElementById("verifyModal").style.display = "none";
-                showDetails(selectedMember);
-            };
-
-
-
-            window.showDetails = function (m) {
-                document.getElementById("detailsContent").innerHTML = `
-            <p><b>Name:</b> ${escapeHtml(m.NAME)}</p>
-            <p><b>Code:</b> ${escapeHtml(m.ENROLNO)}</p>
-            <p><b>Email:</b> ${escapeHtml(m.EMAIL)}</p>
-            <p><b>Mobile:</b> ${escapeHtml(m.Phone)}</p>
-            <p><b>State:</b> ${escapeHtml(m.State)}</p>
-            <p><b>City:</b> ${escapeHtml(m.City)}</p>
-            <p><b>District:</b> ${escapeHtml(m.District)}</p>
-        `;
-                document.getElementById("detailsModal").style.display = "flex";
-            };
-
-            window.closeDetails = () =>
-                document.getElementById("detailsModal").style.display = "none";
-
-            /* ------------------ INIT EVENTS ------------------ */
-            function initEvents() {
-                document.getElementById("stateSelect").addEventListener("change", e => {
-                    applyFilterAndShow(e.target.value);
-                });
-
-                document.getElementById("refreshBtn").addEventListener("click", async () => {
-                    document.getElementById("countInfo").textContent = "Refreshing…";
-                    await loadStates();
-                    await loadMembers();
-                    document.getElementById("countInfo").textContent = "";
-                });
-            }
-
-            /* ------------------ START ------------------ */
-            loadStates();
-            loadMembers();
-            initEvents();
-
-        })();
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', loadBranchData);
     </script>
-
-
 </body>
 </html>

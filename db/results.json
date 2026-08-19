@@ -90110,5 +90110,53 @@
     "CreatedBy": null,
     "UpdatedAt": null,
     "UpdatedBy": null
+  },
+  {
+    "Id": "5ad74b1c3858482f9054f665b13c7e01",
+    "ENROLNO": "GSP-2474528",
+    "ROLLNO": "DLI10174528",
+    "BRANCHNAME": "BRD EDUCATION GROUP",
+    "COURSENAME": "ADVANCE DIPLOMA IN COMPUTER APPLICATION",
+    "DURATION": "12 Months",
+    "NAMEANDFATHERSNAME": "GOLDI S/O SAKHI",
+    "DOJ": "20/05/2024",
+    "DOC": "19/05/2025",
+    "ISSUEDATE": "29/05/2025",
+    "CreatedAt": "2026-08-19T06:45:59.703Z",
+    "CreatedBy": null,
+    "UpdatedAt": null,
+    "UpdatedBy": null
+  },
+  {
+    "Id": "451a9956d0274bfd965a6599544a5d11",
+    "ENROLNO": "GSP-2235506",
+    "ROLLNO": "DLI10135506",
+    "BRANCHNAME": "BRD EDUCATION GROUP",
+    "COURSENAME": "ADVANCE DIPLOMA IN COMPUTER APPLICATION",
+    "DURATION": "12 Months",
+    "NAMEANDFATHERSNAME": "KADIR S/O RIYASAT",
+    "DOJ": "01/05/2022",
+    "DOC": "30/04/2023",
+    "ISSUEDATE": "10/05/2023",
+    "CreatedAt": "2026-08-19T06:45:59.704Z",
+    "CreatedBy": null,
+    "UpdatedAt": null,
+    "UpdatedBy": null
+  },
+  {
+    "Id": "92a658db9f354f1dba580a82d576d1ed",
+    "ENROLNO": "GSP-181809",
+    "ROLLNO": "DLI1011809",
+    "BRANCHNAME": "BRD EDUCATION GROUP",
+    "COURSENAME": "ADVANCE DIPLOMA IN COMPUTER APPLICATION",
+    "DURATION": "24 Months",
+    "NAMEANDFATHERSNAME": "RUBAL MALHI S/O SHASHIPAL",
+    "DOJ": "01/08/2018",
+    "DOC": "30/07/2020",
+    "ISSUEDATE": "28/08/2020",
+    "CreatedAt": "2026-08-19T06:45:59.704Z",
+    "CreatedBy": null,
+    "UpdatedAt": null,
+    "UpdatedBy": null
   }
 ]

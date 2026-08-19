@@ -1,757 +1,663 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Gurukul The School Of Professionals</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" id="meta-desc" content="Empowering learners with knowledge, confidence, and purpose — shaping tomorrow’s leaders today.">
-    <meta name="keyword" content="Empowering learners with knowledge, confidence, and purpose — shaping tomorrow’s leaders today.">
+    <title>Certificate & Marksheet Digital Verification | Gurukul The School Of Professionals</title>
+    <meta name="description" content="Official Central Verification Portal for Gurukul The School Of Professionals. Authenticate student marksheets, roll numbers, and diploma certificates online.">
+    <meta name="keywords" content="Certificate Verification, Online Marksheet Verify, Gurukul Education Board, Roll Number Authenticate">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/style-mob.css" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/portal-theme.css" rel="stylesheet">
+
+    <!-- QRCode JS Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-    <section>
-        <div class="ed-mob-menu">
-            <div class="ed-mob-menu-con">
-                <div class="ed-mm-left">
-                    <div class="wed-logo">
-                        <a href="index.html">
-                            <img src="images/gurukul_logo.png" alt="" />
-                        </a>
-                    </div>
-                </div>
-                <div class="ed-mm-right">
-                    <div class="ed-mm-menu">
-                        <a href="#!" class="ed-micon"><i class="fab fa-bars"></i></a>
-                        <div class="ed-mm-inn">
-                            <a href="#!" class="ed-mi-close"><i class="fab fa-times"></i></a>
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="/aboutus.html">About us</a></li>
-                                <li><a href="/chairman-message.html">Chairman Message</a></li>
-                                <li><a href="/faq.html">FAQ</a></li>
-                                <li><a href="/courses.html">Courses</a></li>
-                                <li><a href="/affiliation-location.html">Branch</a></li>
-                                <li><a href="/result.html">Result</a></li>
-                                <li><a href="/news.html">News</a></li>
-                                <li><a href="/contact.html">Contact</a></li>
-                            </ul>
-                            <h4>User Account</h4>
-                            <ul>
-                                <li><a href="#!" data-bs-toggle="modal" data-bs-target="#modal1">Sign In</a></li>
-                                <li><a href="#!" data-bs-toggle="modal" data-bs-target="#modal2">Register</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section>
-        <!-- TOP BAR -->
-        <div class="ed-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="ed-com-t1-left">
-                            <ul>
-                                <li>
-                                    <a href="#">Contact: gptiindia@yahoo.in</a>
-                                </li>
-                                <li>
-                                    <a href="tel:+918800959688">Phone:  +91-88009-59688 </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="ed-com-t1-right">
-                            <ul>
-                                <li>
-                                    <a href="#!" data-bs-toggle="modal" data-bs-target="#modal1">Sign In</a>
-                                </li>
-                                <li>
-                                    <a href="#!" data-bs-toggle="modal" data-bs-target="#modal2">Sign Up</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="ed-com-t1-social">
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fab fa-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-x-twitter"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- LOGO AND MENU SECTION -->
-        <div class="top-logo" data-spy="affix" data-offset-top="250">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="wed-logo">
-                            <a href="index.html">
-                                <h2 style="color: #8b4282; background: -webkit-linear-gradient(45deg, #ef6838, #4a29b2 80%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"><img src="images/gurukul_logo.png" alt="" /> <strong>Onine GSP</strong></h2>
-                            </a>
-                        </div>
-                        <div class="main-menu">
-                            <ul>
-                                <li>
-                                    <a href="index.html">Home</a>
-                                </li>
-                                <li class="about-menu">
-                                    <a href="/aboutus.html" class="mm-arr">About us</a>
-                                    <!-- MEGA MENU 1 -->
-                                    <div class="mm-pos">
-                                        <div class="about-mm m-menu">
-                                            <div class="m-menu-inn">
-                                                <div class="mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay menu-about" href="index.html">
-                                                            <img src="images/deepak-sapra.jpeg" alt="">
-                                                            <span>Chairman</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="mm1-com mm1-s4">
-                                                    <p>
-                                                        Gurukul the School of Professionals, an ISO 9001:2015 Certified Institute, was established with the vision of delivering the highest quality services in the fields of Professional, Vocational, Technical, and Management education.
-                                                    </p>
-                                                    <a href="/aboutus.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-
-                                                <div class="mm1-com mm1-s4">
-                                                    <ul>
-                                                        <li><a href="/aboutus.html">About us</a></li>
-                                                        <li><a href="/chairman-message.html">Chairman Message</a></li>
-                                                        <li><a href="/courses-list.html">Courses</a></li>
-                                                        <li><a href="/faq.html">FAQ</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="cour-menu">
-                                    <a href="/courses.html" class="mm-arr">Courses</a>
-                                    <div class="mm-pos">
-                                        <div class="cour-mm m-menu">
-                                            <div class="m-menu-inn">
-                                                <div class="mm2-com mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay" href="/courses.html">
-                                                            <img src="images/coursescroll/4.jpg" alt="">
-                                                            <!--<span>Vocational Courses</span>-->
-                                                        </a>
-                                                    </div>
-                                                    <p>Vocational Courses prepares learners for jobs that are based in manual or practical activities, traditionally non-academic</p>
-                                                    <a href="/courses.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-                                                <div class="mm2-com mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay" href="/courses.html">
-                                                            <img src="images/coursescroll/5.jpg" alt="">
-                                                            <!--<span>Non Engineering Trades</span>-->
-                                                        </a>
-                                                    </div>
-                                                    <p>Bachelor of Science (B.Sc), Integrated law courses, Bachelor of Architecture, Teaching Courses, Fashion Design Courses.</p>
-                                                    <a href="/courses.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-                                                <div class="mm2-com mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay" href="/courses.html">
-                                                            <img src="images/coursescroll/8.jpg" alt="">
-                                                            <!--<span>Management Courses</span>-->
-                                                        </a>
-                                                    </div>
-                                                    <p>Design Management is a two-year post-graduate program divided into four semesters offering knowledge about various concepts of design.</p>
-                                                    <a href="/courses.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-                                                <div class="mm2-com mm1-com mm1-s4">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay" href="/courses.html">
-                                                            <img src="images/coursescroll/7.jpg" alt="">
-                                                            <!--<span>Financial Services</span>-->
-                                                        </a>
-                                                    </div>
-                                                    <p>Chartered Financial Analysts (CFA) , Certified Financial Planner (CFP) , Financial Risk Manager (FRM) , Chartered Alternative Investment Analyst (CAIA)</p>
-                                                    <a href="/courses.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="admi-menu">
-                                    <a href="/affiliation-location.html">Branch</a>
-                                    <div class="mm-pos">
-                                        <div class="admi-mm m-menu">
-                                            <div class="m-menu-inn">
-                                                <div class="mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay menu-about" href="/affiliation-register.html">
-                                                            <img src="images/affilation-certficate.jpeg" alt="">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="mm1-com mm1-s4">
-                                                    <p>
-                                                        We build local partnerships and work with community champions to promote programs at the grassroots level. Our emphasis is on skill proficiency, employability, and connecting training to local opportunities�bridging modern techniques with local contexts
-                                                    </p>
-                                                    <a href="/aboutus.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-
-                                                <div class="mm1-com mm1-s4">
-                                                    <ul>
-                                                        <li><a href="/affiliation-location.html">Affiliation Location</a></li>
-                                                        <li><a href="/affiliation-register.html">Affiliation Register</a></li>
-                                                        <li><a href="/affiliation-status.html">Affiliation Status</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li><a href="/result.html">Result</a></li>
-                                <li><a href="/news.html">News</a></li>
-                                <li><a href="/contact.html">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="all-drop-down-menu">
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="search-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="search-form">
-                            <form>
-                                <div class="sf-type">
-                                    <div class="sf-input">
-                                        <input type="text" id="sf-box" placeholder="Search course and discount courses">
-                                    </div>
-                                    <div class="sf-list">
-                                        <ul>
-                                            <li><a href="/courses.html?cid=1_VOCATIONAL_COURSES">VOCATIONAL COURSES</a></li>
-                                            <li><a href="/courses.html?cid=2_NON_ENGINERRING_TRADES">NON ENGINERRING TRADES</a></li>
-                                            <li><a href="/courses.html?cid=3_MANAGEMENT_COURSES">MANAGEMENT COURSES</a></li>
-                                            <li><a href="/courses.html?cid=4_FINANCIAL_SERVICES">FINANCIAL SERVICES</a></li>
-                                            <li><a href="/courses.html?cid=5_ENGINERRING_TRADES">ENGINERRING TRADES</a></li>
-                                            <li><a href="/courses.html?cid=6_COMPUTER_LITERACY_PROGRAMME">COMPUTER LITERACY PROGRAMME</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="sf-submit">
-                                    <input type="submit" value="Search Course">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <style type="text/css">
-
-        .verify-wrap {
-            
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top:40px;
-            margin-bottom:40px;
-        }
-
-        .verify-card {
-            background: #fff;
-            border-radius: 10px;
-            padding: 28px 32px;
-            max-width: 420px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-        }
-
-        .verify-icon {
-            font-size: 48px;
-            color: #0ea14a;
-            margin-bottom: 10px;
-        }
-
-        .verify-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .verify-msg {
-            font-size: 13px;
-            color: #555;
-            margin-bottom: 16px;
-        }
-
-        .verify-code {
-            display: inline-block;
-            background: #e6f0ff;
-            color: #0b5fa5;
-            font-weight: 600;
-            padding: 6px 14px;
-            border-radius: 14px;
-            font-size: 12px;
-        }
-
-        .verify-footer {
-            margin-top: 20px;
-            font-size: 11px;
-            color: #777;
-        }
-    </style>
-
-
-    <main id="app" class="content" aria-live="polite">
-
-        <div class="wrap">
-
-
-            <div class="verify-wrap">
-                <div class="verify-card">
-                    <div class="verify-icon">✔</div>
-
-                    <div class="verify-title">
-                        Result Verified Successfully
-                    </div>
-
-                    <div class="verify-msg">
-                        This result has been verified through the official system.
-                        The verification code below confirms authenticity.
-                    </div>
-
-                    <div id="codeBox" class="verify-code">
-                        --
-                    </div>
-
-                    <div class="verify-footer">
-                        Issued by Gurukul The School Of Professionals Authority
-                    </div>
-                </div>
-            </div>
-
-
-            <script>
-                // read verification code from URL
-                const params = new URLSearchParams(window.location.search);
-                const code = params.get('code');
-
-                const codeBox = document.getElementById('codeBox');
-
-                if (code) {
-                    codeBox.textContent = code;
-                } else {
-                    codeBox.textContent = 'Invalid verification';
-                    codeBox.style.background = '#ffe6e6';
-                    codeBox.style.color = '#a50b0b';
-                }
-            </script>
-
-        </div>
-    </main>
-
-
-    <!-- FOOTER COURSE BOOKING -->
-    <section>
-        <div class="full-bot-book">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2 bb-img">
-                        <img src="images/3.png" alt="">
-                    </div>
-                    <div class="col-md-7 bb-text">
-                        <h4>Gurukul The School Of Professionals</h4>
-                        <p>GURUKUL's spirit is teamwork and a commitment to quality training, helping learners reach their career goals with confidence and modern skills.</p>
-                    </div>
-                    <div class="col-md-3 bb-link">
-                        <a href="/courses.html">Book This Course</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <section class="wed-hom-footer">
+    <!-- 1. TOP GOVERNMENT / BOARD BAR -->
+    <div class="gov-top-bar">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>About Us</h4>
-                    <p>Gurukul the School of Professionals is an ISO 9001:2015 certified institute founded to deliver industry-focused education and training across Professional, Vocational, Technical, and Management disciplines. We are committed to providing modern, practical learning that prepares students for real careers.</p>
-                    <p>Our goal is to build a strong nationwide network so quality training reaches learners across India � urban and rural alike. We currently operate offices in Delhi, Uttar Pradesh, and Uttarakhand, and we partner with trusted members and centers in many other states.</p>
-                    <p>We build local partnerships and work with community champions to promote programs at the grassroots level. Our emphasis is on skill proficiency, employability, and connecting training to local opportunities�bridging modern techniques with local contexts.</p>
-                    <p></p>
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div class="d-flex align-items-center flex-wrap">
+                    <span class="gov-badge me-3"><i class="fa-solid fa-shield-halved me-1"></i> ISO 9001:2015 Certified</span>
+                    <span class="info-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:gptiindia@yahoo.in">gptiindia@yahoo.in</a></span>
+                    <span class="info-item"><i class="fa-solid fa-phone"></i> <a href="tel:+918800959688">+91-88009-59688</a></span>
                 </div>
-            </div>
-            <div class="row wed-foot-link">
-                <div class="col-md-4 foot-tc-mar-t-o">
-                    <h4>Top Courses</h4>
-                    <ul>
-                        <li><a href="/course.html">Vocational Courses</a></li>
-                        <li><a href="/course.html">Non Engineering Trades</a></li>
-                        <li><a href="/course.html">Management Courses</a></li>
-                        <li><a href="/course.html">Financial Services</a></li>
-                        <li><a href="/course.html">Engineering Trades</a></li>
-                        <li><a href="/course.html">Computer Literacy</a></li>
-                    </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="result.html" class="text-white text-decoration-none small"><i class="fa-solid fa-file-signature text-warning me-1"></i> Search Result</a>
+                    <span class="text-white-50">|</span>
+                    <a href="contact.html" class="text-white text-decoration-none small"><i class="fa-solid fa-headset me-1"></i> Helpline</a>
                 </div>
-                <div class="col-md-4">
-                    <h4>New Courses</h4>
-                    <ul>
-                        <li><a href="/course.html">IT Management</a></li>
-                        <li><a href="/course.html">Business Management</a></li>
-                        <li><a href="/course.html">IT and System Management</a></li>
-                        <li><a href="/course.html">Financial Accounting</a></li>
-                        <li><a href="/course.html">Computer Application</a></li>
-                        <li><a href="/course.html">Hardware & Networking</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4>HELP & SUPPORT</h4>
-                    <ul>
-                        <li>
-                            <a href="/contact.html">24x7 Live help</a>
-                        </li>
-                        <li>
-                            <a href="/contact.html">Contact us</a>
-                        </li>
-                        <li>
-                            <a href="/contact.html">Feedback</a>
-                        </li>
-                        <li>
-                            <a href="/faq.html">FAQs</a>
-                        </li>
-                        <li>
-                            <a href="/contact.html">Safety Tips</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row wed-foot-link-1">
-                <div class="col-md-4 foot-tc-mar-t-o">
-                    <h4>Get In Touch</h4>
-                    <p>Address: WZ-85, Ram Nagar, Tilak Nagar, Delhi - 18</p>
-                    <p>Phone: <a href="#!">+91-88009-59688</a></p>
-                    <p>Email: <a href="#!">gptiindia@yahoo.in</a></p>
-                </div>
-                <div class="col-md-4">
-                    <h4>DOWNLOAD OUR FREE MOBILE APPS</h4>
-                    <ul>
-                        <li>
-                            <a href="#"><span class="sprite sprite-android"></span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="sprite sprite-ios"></span></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4>SOCIAL MEDIA</h4>
-                    <ul>
-                        <li>
-                            <a href="#"><i class="fab fa-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-x-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-google-plus"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COPY RIGHTS -->
-    <section class="wed-rights">
-        <div class="container">
-            <div class="row">
-                <div class="copy-right">
-                    <p>Copyrights © 2025 GIndiaHR. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--SECTION LOGIN, REGISTER AND FORGOT PASSWORD-->
-    <section>
-        <!-- LOGIN SECTION -->
-        <div class="modal fade" id="modal1">
-            <div class="log-in-pop modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="log-in-pop-left">
-                        <h1>Hello...</h1>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <h4>Login with social media</h4>
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-google"></i> Google</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="log-in-pop-right">
-                        <a href="#" class="pop-close" data-bs-dismiss="modal">
-                            <img src="images/cancel.png" alt="" />
-                        </a>
-                        <h4>Login</h4>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <form class="s12">
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-                                <label for="email">Email</label>
-                            </div>
-                            <div class="form-floating mt-3 mb-3">
-                                <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-                                <label for="pwd">Password</label>
-                            </div>
-                            <div class="form-check mb-3">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" name="remember"> Remember me
-                                </label>
-                            </div>
-                            <div>
-                                <div class="input-field s4">
-                                    <input type="submit" value="Login" class="btn btn-primary log-in-btn">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="input-field s12"> <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal3">Forgot password</a> | <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal2">Create a new account</a> </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- REGISTER SECTION -->
-        <div class="modal fade" id="modal2">
-            <div class="log-in-pop modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="log-in-pop-left">
-                        <h1>Hello...</h1>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <h4>Login with social media</h4>
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-google"></i> Google</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="log-in-pop-right">
-                        <a href="#" class="pop-close" data-bs-dismiss="modal">
-                            <img src="images/cancel.png" alt="" />
-                        </a>
-                        <h4>Create an Account</h4>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <form class="s12">
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="username" placeholder="Enter user name" name="text">
-                                <label for="username">User name</label>
-                            </div>
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-                                <label for="email">Email</label>
-                            </div>
-                            <div class="form-floating mt-3 mb-3">
-                                <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-                                <label for="pwd">Password</label>
-                            </div>
-                            <div class="form-floating mt-3 mb-3">
-                                <input type="text" class="form-control" id="pwdconf" placeholder="Confirm password" name="pwdconf">
-                                <label for="pwdconf">Confirm password</label>
-                            </div>
-                            <div>
-                                <div class="input-field s4">
-                                    <input type="submit" value="Register now" class="btn btn-primary log-in-btn">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="input-field s12"> <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal1">Are you a already member ? Login</a> </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- FORGOT SECTION -->
-        <div class="modal fade" id="modal3">
-            <div class="log-in-pop modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="log-in-pop-left">
-                        <h1>Hello...</h1>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <h4>Login with social media</h4>
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-google"></i> Google</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="log-in-pop-right">
-                        <a href="#" class="pop-close" data-bs-dismiss="modal">
-                            <img src="images/cancel.png" alt="" />
-                        </a>
-                        <h4>Forgot password</h4>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <form class="s12">
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-                                <label for="email">Email</label>
-                            </div>
-                            <div>
-                                <div class="input-field s4">
-                                    <input type="submit" value="Login" class="btn btn-primary log-in-btn">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="input-field s12"><a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal2">Create a new account</a> </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SOCIAL MEDIA SHARE -->
-    <section>
-        <div class="icon-float">
-            <ul>
-                <li><a href="#" class="sh">1k <br> Share</a> </li>
-
-                <li><a href="#" class="fb1"><i class="fab fa-facebook"></i></a> </li>
-                <li><a href="#" class="wa1"><i class="fab fa-whatsapp"></i></a> </li>
-                <li><a href="#" class="tw1"><i class="fab fa-x-twitter"></i></a> </li>
-                <li><a href="#" class="li1"><i class="fab fa-linkedin"></i></a> </li>
-
-                <li><a href="#" class="sh1"><i class="fa-regular fa-message"></i></a> </li>
-            </ul>
-        </div>
-    </section>
-
-
-
-    <!-- Enquiry Modal -->
-    <!-- Modal -->
-    <div class="modal-backdrop" id="enquiryModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <div class="modal" role="document">
-            <div class="modal-header">
-                <div>
-                    <div class="modal-title" id="modalTitle">Course Enquiry</div>
-                    <div class="modal-course" id="modalCourseInfo">Full Stack - Web Development</div>
-                </div>
-                <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Close">&times;</button>
-            </div>
-
-            <div style="position:relative;">
-                <div class="modal-body" id="modalBody">
-                    <div>
-                        <label for="en_name">Name</label>
-                        <input type="text" id="en_name" placeholder="Enter your name" />
-                    </div>
-
-                    <div>
-                        <label for="en_email">Email</label>
-                        <input type="email" id="en_email" placeholder="Enter your email" />
-                    </div>
-
-                    <div>
-                        <label for="en_mobile">Mobile</label>
-                        <input type="text" id="en_mobile" placeholder="Enter your mobile number" />
-                    </div>
-
-                    <div>
-                        <label for="en_state">State</label>
-                        <select id="en_state"><option value="">Select state</option></select>
-                    </div>
-
-                    <div>
-                        <label for="en_city">City</label>
-                        <input type="text" id="en_city" placeholder="City" />
-                    </div>
-
-                    <div>
-                        <label for="en_district">District</label>
-                        <input type="text" id="en_district" placeholder="District" />
-                    </div>
-
-
-
-                    <div class="field-full">
-                        <label for="en_remarks">Notes / Remarks</label>
-                        <textarea id="en_remarks" placeholder="Any specific query or details..."></textarea>
-                    </div>
-                </div>
-
-                <!-- message overlay -->
-                <div class="message-wrap" id="messageWrap" aria-live="polite">
-                    <div class="message-card" id="messageCard">
-                        <!-- content inserted by JS -->
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn-secondary" id="modalCancel">Cancel</button>
-                <button type="button" class="btn-primary-modal" id="modalSubmit">Submit Enquiry</button>
             </div>
         </div>
     </div>
 
-    <script src="js/main.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/HomeScripts.js"></script>
+    <!-- 2. ANNOUNCEMENT TICKER MARQUEE -->
+    <div class="portal-ticker-wrap">
+        <div class="portal-ticker-title">
+            <i class="fa-solid fa-bullhorn"></i> Verification
+        </div>
+        <div class="portal-ticker-content">
+            <div class="portal-ticker-item">
+                <i class="fa-solid fa-circle-check"></i> Digital Certificate Verification System Active. Authenticate official board marksheet records instantly.
+            </div>
+            <div class="portal-ticker-item">
+                <i class="fa-solid fa-shield"></i> Verified digital records are ISO 9001:2015 accredited & recognized for higher education and professional employment.
+            </div>
+            <div class="portal-ticker-item">
+                <i class="fa-solid fa-building-columns"></i> Gurukul The School Of Professionals - Central Examination & Certification Authentication Gateway.
+            </div>
+        </div>
+    </div>
 
+    <!-- 3. MAIN PORTAL HEADER & NAVIGATION -->
+    <header class="portal-header">
+        <div class="container">
+            <div class="portal-header-inner">
+                <a href="index.html" class="board-brand">
+                    <img src="images/gurukul_logo.png" alt="Gurukul Logo">
+                    <div class="board-brand-text">
+                        <span class="board-title">GURUKUL</span>
+                        <span class="board-subtitle">The School Of Professionals</span>
+                    </div>
+                </a>
+
+                <nav class="d-none d-lg-block">
+                    <ul class="portal-nav">
+                        <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                        <li><a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+                        <li><a href="courses.html"><i class="fa-solid fa-book-open"></i> Courses</a></li>
+                        <li><a href="affiliation-location.html"><i class="fa-solid fa-network-wired"></i> Branches</a></li>
+                        <li><a href="gallery.html"><i class="fa-solid fa-images"></i> Gallery</a></li>
+                        <li><a href="news.html"><i class="fa-solid fa-newspaper"></i> News</a></li>
+                        <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+                        <li class="ms-2 active"><a href="verify.html" class="btn-verify-nav"><i class="fa-solid fa-qrcode"></i> Verify Record</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- 4. VERIFICATION HERO & SEARCH SECTION -->
+        <section class="verify-hero-section text-center">
+            <div class="container">
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 bg-white border rounded-pill shadow-sm mb-3">
+                    <span class="badge bg-success rounded-pill"><i class="fa-solid fa-shield-check me-1"></i> Live</span>
+                    <span class="small fw-bold text-navy">Central Registry Authentication Gateway</span>
+                </div>
+
+                <h1 class="result-hero-title">Official <span>Digital Verification</span> Portal</h1>
+                <p class="result-hero-lead">
+                    Authenticate student credentials, examination statements, and certificates issued by <strong>Gurukul The School Of Professionals</strong>.
+                </p>
+
+                <!-- Search Card -->
+                <div class="search-card">
+                    <div class="position-relative">
+                        <i class="fa-solid fa-qrcode search-icon-inside"></i>
+                        <div class="search-input-wrapper">
+                            <input type="text" id="verifyInput" class="search-input-field" placeholder="Enter Enrollment No, Roll No, or Security Code (e.g. GSP-2474528)" autocomplete="off">
+                            <button type="button" id="btnVerify" class="btn-search-portal">
+                                <i class="fa-solid fa-shield-check"></i>
+                                <span>Verify Now</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="search-hint">
+                        <i class="fa-solid fa-circle-info text-warning"></i>
+                        <span>Scan the QR code on your certificate or enter <strong>Enrollment No.</strong> / <strong>Roll No.</strong> to authenticate.</span>
+                    </div>
+
+                    <!-- Processing / Loading State -->
+                    <div id="verifyLoading" class="text-center mt-3 text-primary fw-bold" style="display: none;">
+                        <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+                        Authenticating record against central board database...
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. VERIFICATION OUTPUT / RESULT DISPLAY -->
+        <section class="container my-4">
+            
+            <!-- 5.1 SUCCESSFUL VERIFIED RECORD CARD -->
+            <div id="viewSuccess" class="verify-portal-card animate-fade-up" style="display: none;">
+                <!-- Verified Status Banner -->
+                <div class="verify-status-banner status-success">
+                    <div class="verify-badge-icon">
+                        <i class="fa-solid fa-shield-check"></i>
+                    </div>
+                    <div>
+                        <h3 class="verify-status-title text-success"><i class="fa-solid fa-circle-check me-1"></i> Digitally Verified & Authentic Record</h3>
+                        <p class="verify-status-sub">This certificate has been officially validated against the Gurukul Central Examination Database registry.</p>
+                    </div>
+                </div>
+
+                <!-- Security Verification Code Pill -->
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 p-3 bg-light rounded border mb-3">
+                    <div>
+                        <span class="small text-muted text-uppercase fw-bold d-block">Security Verification Code</span>
+                        <div id="vCode" class="verify-code-pill mt-1">VER-00000000</div>
+                    </div>
+                    <div class="text-end">
+                        <span class="small text-muted text-uppercase fw-bold d-block">Verification Status</span>
+                        <span class="badge bg-success fs-6 mt-1"><i class="fa-solid fa-circle-check me-1"></i> AUTHENTIC / VALID</span>
+                    </div>
+                </div>
+
+                <!-- Verified Details Table -->
+                <table class="verification-details-table">
+                    <tbody>
+                        <tr>
+                            <th><i class="fa-solid fa-user me-2 text-primary"></i> Candidate & Father's Name</th>
+                            <td class="text-uppercase fw-bold text-navy" id="vName">--</td>
+                        </tr>
+                        <tr>
+                            <th><i class="fa-solid fa-id-card me-2 text-primary"></i> Enrollment Number</th>
+                            <td class="fw-bold" id="vEnrol">--</td>
+                        </tr>
+                        <tr>
+                            <th><i class="fa-solid fa-hashtag me-2 text-primary"></i> Roll Number</th>
+                            <td class="fw-bold" id="vRoll">--</td>
+                        </tr>
+                        <tr>
+                            <th><i class="fa-solid fa-graduation-cap me-2 text-primary"></i> Course Name</th>
+                            <td class="text-uppercase fw-bold text-primary" id="vCourse">--</td>
+                        </tr>
+                        <tr>
+                            <th><i class="fa-solid fa-clock me-2 text-primary"></i> Course Duration</th>
+                            <td id="vDuration">--</td>
+                        </tr>
+                        <tr>
+                            <th><i class="fa-solid fa-building me-2 text-primary"></i> Training Center / Branch</th>
+                            <td class="text-uppercase" id="vBranch">--</td>
+                        </tr>
+                        <tr>
+                            <th><i class="fa-solid fa-calendar-check me-2 text-primary"></i> Admission / Completion Date</th>
+                            <td><span id="vDOJ">--</span> to <span id="vDOC">--</span></td>
+                        </tr>
+                        <tr>
+                            <th><i class="fa-solid fa-certificate me-2 text-primary"></i> Certificate Issue Date</th>
+                            <td class="fw-bold text-success" id="vIssueDate">--</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Security Hologram & Signatory Footer -->
+                <div class="verify-security-seal-row">
+                    <div class="d-flex align-items-center gap-3">
+                        <div id="vQrCode" style="width: 60px; height: 60px;"></div>
+                        <div>
+                            <div class="small fw-bold text-navy"><i class="fa-solid fa-lock text-success me-1"></i> QR Digital Signature</div>
+                            <div class="small text-muted" style="font-size: 11px;">ISO 9001:2015 Central Registry</div>
+                        </div>
+                    </div>
+
+                    <div class="text-center d-none d-sm-block">
+                        <div style="border: 2px dashed #d97706; padding: 4px 10px; border-radius: 50%; width: 75px; height: 75px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#92400e;">
+                            <i class="fa-solid fa-stamp fs-5"></i>
+                            <span style="font-size: 8px; font-weight: 800; text-transform: uppercase;">Official Seal</span>
+                        </div>
+                    </div>
+
+                    <div class="text-end">
+                        <div style="width: 140px; border-bottom: 1.5px solid #09192f; margin-left: auto; margin-bottom: 4px;"></div>
+                        <div class="small fw-bold text-navy">Controller of Examinations</div>
+                        <div class="small text-muted" style="font-size: 11px;">Gurukul Educational Board</div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="mt-4 pt-3 border-top d-flex justify-content-center gap-3 flex-wrap">
+                    <a id="btnViewMarksheet" href="result.html" class="btn btn-primary px-4 py-2 rounded-pill fw-bold">
+                        <i class="fa-solid fa-file-lines me-2"></i> View Full Statement of Marks
+                    </a>
+                    <button type="button" class="btn btn-outline-dark px-4 py-2 rounded-pill fw-bold" onclick="window.print()">
+                        <i class="fa-solid fa-print me-2"></i> Print Verification Slip
+                    </button>
+                    <button type="button" id="btnResetSearch" class="btn btn-outline-secondary px-3 py-2 rounded-pill fw-bold">
+                        <i class="fa-solid fa-rotate-left me-1"></i> Verify Another
+                    </button>
+                </div>
+            </div>
+
+            <!-- 5.2 ERROR / NOT FOUND CARD -->
+            <div id="viewError" class="verify-portal-card animate-fade-up" style="display: none;">
+                <div class="verify-status-banner status-error">
+                    <div class="verify-badge-icon">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div>
+                        <h3 class="verify-status-title text-danger"><i class="fa-solid fa-circle-xmark me-1"></i> Certificate Record Not Found</h3>
+                        <p class="verify-status-sub" id="errorDetailMsg">No record could be verified matching the details entered.</p>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-light rounded border text-start">
+                    <h6 class="fw-bold text-navy mb-2"><i class="fa-solid fa-circle-question text-warning me-2"></i> How to resolve:</h6>
+                    <ul class="small text-muted mb-0 ps-3">
+                        <li class="mb-1">Verify that you entered the exact <strong>Enrollment No.</strong> (e.g. <code>GSP-2474528</code>) or <strong>Roll No.</strong> (e.g. <code>DLI10174528</code>).</li>
+                        <li class="mb-1">Ensure there are no leading or trailing extra spaces.</li>
+                        <li>If your certificate was issued recently, it may take 24-48 hours to synchronize with the public registry. Contact your center or examination helpline for assistance.</li>
+                    </ul>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <a href="contact.html" class="btn btn-outline-danger btn-sm px-4 rounded-pill fw-bold me-2">
+                        <i class="fa-solid fa-headset me-1"></i> Contact Examination Cell
+                    </a>
+                    <button type="button" id="btnRetrySearch" class="btn btn-primary btn-sm px-4 rounded-pill fw-bold">
+                        <i class="fa-solid fa-rotate me-1"></i> Try Another Search
+                    </button>
+                </div>
+            </div>
+
+            <!-- 5.3 DEFAULT / STANDBY INFO CARDS (When no search performed yet) -->
+            <div id="viewStandby" class="animate-fade-up">
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-4">
+                        <div class="verify-step-card">
+                            <div class="verify-step-num">1</div>
+                            <h5 class="fw-bold text-navy mb-2">Scan or Enter Code</h5>
+                            <p class="small text-muted mb-0">Scan the QR code printed on your official marksheet or enter your Roll No / Enrollment No above.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="verify-step-card">
+                            <div class="verify-step-num">2</div>
+                            <h5 class="fw-bold text-navy mb-2">Central Validation</h5>
+                            <p class="small text-muted mb-0">Our system authenticates the security hash against the ISO 9001:2015 certified board registry.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="verify-step-card">
+                            <div class="verify-step-num">3</div>
+                            <h5 class="fw-bold text-navy mb-2">Instant Authentication</h5>
+                            <p class="small text-muted mb-0">View certified student details, course credentials, and download digitally authenticated slips.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-white border rounded-4 shadow-sm mt-4 text-center">
+                    <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fa-solid fa-shield-check text-success fs-3"></i>
+                            <div class="text-start">
+                                <div class="fw-bold text-navy">ISO 9001:2015 Accredited</div>
+                                <div class="small text-muted">Govt. Recognized Certification Authority</div>
+                            </div>
+                        </div>
+                        <div class="vr d-none d-md-block" style="height: 40px;"></div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fa-solid fa-building-columns text-primary fs-3"></i>
+                            <div class="text-start">
+                                <div class="fw-bold text-navy">Nationwide Acceptance</div>
+                                <div class="small text-muted">Valid for Higher Education & Employment</div>
+                            </div>
+                        </div>
+                        <div class="vr d-none d-md-block" style="height: 40px;"></div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fa-solid fa-headset text-warning fs-3"></i>
+                            <div class="text-start">
+                                <div class="fw-bold text-navy">Helpdesk Support</div>
+                                <div class="small text-muted"><a href="tel:+918800959688" class="text-decoration-none text-muted">+91-88009-59688</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- 6. ULTRA-PREMIUM GLOBAL FOOTER -->
+    <footer class="portal-global-footer">
+        <div class="portal-footer-top">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <a href="index.html" class="d-flex align-items-center gap-3 text-decoration-none mb-3">
+                            <img src="images/gurukul_logo.png" alt="Gurukul Logo" style="height: 55px; width: auto;">
+                            <div>
+                                <div class="footer-brand-title">GURUKUL</div>
+                                <div class="footer-brand-sub">The School Of Professionals</div>
+                            </div>
+                        </a>
+                        <p class="footer-about-text">
+                            Gurukul The School Of Professionals is an ISO 9001:2015 certified premier education board dedicated to delivering industry-aligned technical, computer, management, and vocational training across India.
+                        </p>
+                        <div class="d-flex align-items-center gap-2 mt-2">
+                            <span class="badge bg-warning text-dark fw-bold"><i class="fa-solid fa-shield-halved me-1"></i> ISO 9001:2015 Accredited Board</span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6">
+                        <h5 class="footer-heading">Quick Links</h5>
+                        <ul class="footer-links-list">
+                            <li><a href="index.html"><i class="fa-solid fa-angle-right"></i> Home Portal</a></li>
+                            <li><a href="aboutus.html"><i class="fa-solid fa-angle-right"></i> About Board</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Course Catalog</a></li>
+                            <li><a href="result.html"><i class="fa-solid fa-angle-right"></i> Examination Result</a></li>
+                            <li><a href="verify.html"><i class="fa-solid fa-angle-right"></i> Certificate Verify</a></li>
+                            <li><a href="contact.html"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Programs</h5>
+                        <ul class="footer-links-list">
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Computer Applications & IT</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Financial Accounting & Tally</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Vocational Skill Certification</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Business Management</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Hardware & Networking</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Head Office</h5>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="footer-contact-text">
+                                WZ-85, Ram Nagar, Tilak Nagar,<br>New Delhi - 110018
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div class="footer-contact-text">
+                                <a href="tel:+918800959688">+91-88009-59688</a>
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="footer-contact-text">
+                                <a href="mailto:gptiindia@yahoo.in">gptiindia@yahoo.in</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portal-footer-bottom text-center">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div>
+                        Copyright © 2026 <strong>Gurukul The School Of Professionals</strong>. All Rights Reserved.
+                    </div>
+                    <div>
+                        <span>ISO 9001:2015 Certified Board</span> | 
+                        <a href="verify.html" class="text-warning text-decoration-none ms-1">Digital Verification System</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 7. VERIFICATION CLIENT-SIDE SCRIPT -->
+    <script>
+        const JSON_PATH = 'db/results.json';
+        const STORAGE_KEY = 'onlinegsp_results_v3';
+
+        // DOM elements
+        const verifyInput = document.getElementById('verifyInput');
+        const btnVerify = document.getElementById('btnVerify');
+        const verifyLoading = document.getElementById('verifyLoading');
+
+        const viewSuccess = document.getElementById('viewSuccess');
+        const viewError = document.getElementById('viewError');
+        const viewStandby = document.getElementById('viewStandby');
+        const errorDetailMsg = document.getElementById('errorDetailMsg');
+
+        const vCode = document.getElementById('vCode');
+        const vName = document.getElementById('vName');
+        const vEnrol = document.getElementById('vEnrol');
+        const vRoll = document.getElementById('vRoll');
+        const vCourse = document.getElementById('vCourse');
+        const vDuration = document.getElementById('vDuration');
+        const vBranch = document.getElementById('vBranch');
+        const vDOJ = document.getElementById('vDOJ');
+        const vDOC = document.getElementById('vDOC');
+        const vIssueDate = document.getElementById('vIssueDate');
+        const vQrCode = document.getElementById('vQrCode');
+        const btnViewMarksheet = document.getElementById('btnViewMarksheet');
+
+        const btnResetSearch = document.getElementById('btnResetSearch');
+        const btnRetrySearch = document.getElementById('btnRetrySearch');
+
+        let cachedResults = null;
+
+        // Escape HTML helper
+        function escapeHtml(s) {
+            return String(s || '').replace(/[&<>"'\\]/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;', '\\': '&#92;' }[c];
+            });
+        }
+
+        // Deterministic Verification Code Generator (identical to result.html)
+        function makeVerificationCode(enrol) {
+            const prefix = 'VER-';
+            if (!enrol || String(enrol).trim() === '') {
+                return prefix + '00000000';
+            }
+            const seed = String(enrol).trim();
+            let hash = 5381;
+            for (let i = 0; i < seed.length; i++) {
+                hash = ((hash << 5) + hash) + seed.charCodeAt(i);
+                hash = hash & 0x7fffffff;
+            }
+            let code = (Math.abs(hash)).toString(36).toUpperCase();
+            if (code.length < 8) code = code.padStart(8, '0');
+            return prefix + code.slice(0, 8);
+        }
+
+        // Load Results JSON Dataset
+        async function loadResultsData() {
+            if (cachedResults && Array.isArray(cachedResults) && cachedResults.length > 0) {
+                return cachedResults;
+            }
+
+            try {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) {
+                    cachedResults = JSON.parse(stored);
+                    if (Array.isArray(cachedResults) && cachedResults.length > 0) {
+                        return cachedResults;
+                    }
+                }
+            } catch (e) {}
+
+            try {
+                const res = await fetch(JSON_PATH + '?v=' + Date.now());
+                if (res.ok) {
+                    const arr = await res.json();
+                    if (Array.isArray(arr) && arr.length > 0) {
+                        cachedResults = arr;
+                        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); } catch (e) {}
+                        return arr;
+                    }
+                }
+            } catch (e) {
+                console.warn('Could not fetch results JSON:', e);
+            }
+            return [];
+        }
+
+        // Verify query algorithm
+        async function performVerification(queryStr, codeParam) {
+            const q = String(queryStr || '').trim();
+            if (!q && !codeParam) {
+                showStandby();
+                return;
+            }
+
+            verifyLoading.style.display = 'block';
+            btnVerify.disabled = true;
+            viewSuccess.style.display = 'none';
+            viewError.style.display = 'none';
+            viewStandby.style.display = 'none';
+
+            const records = await loadResultsData();
+            verifyLoading.style.display = 'none';
+            btnVerify.disabled = false;
+
+            if (!records || records.length === 0) {
+                showError('Central database could not be reached. Please refresh and try again.');
+                return;
+            }
+
+            const qClean = q.toLowerCase().replace(/[\/\-\s]/g, '');
+            const codeClean = String(codeParam || '').trim().toUpperCase();
+
+            // Find matching record
+            let matched = null;
+
+            // 1. Direct match by Enrol or Roll
+            if (qClean) {
+                matched = records.find(r => {
+                    const enrolClean = String(r.ENROLNO || r.enrol || '').toLowerCase().replace(/[\/\-\s]/g, '');
+                    const rollClean = String(r.ROLLNO || r.roll || '').toLowerCase().replace(/[\/\-\s]/g, '');
+                    return (enrolClean && enrolClean === qClean) || (rollClean && rollClean === qClean);
+                });
+            }
+
+            // 2. If not found by enrol/roll, check by verification code match
+            if (!matched && codeClean) {
+                matched = records.find(r => {
+                    const c = makeVerificationCode(r.ENROLNO || r.enrol || '');
+                    return c === codeClean;
+                });
+            }
+
+            // 3. Fallback partial match if query entered in input box
+            if (!matched && qClean) {
+                matched = records.find(r => {
+                    const enrolClean = String(r.ENROLNO || r.enrol || '').toLowerCase().replace(/[\/\-\s]/g, '');
+                    const rollClean = String(r.ROLLNO || r.roll || '').toLowerCase().replace(/[\/\-\s]/g, '');
+                    const code = makeVerificationCode(r.ENROLNO || r.enrol || '');
+                    return (enrolClean && enrolClean.includes(qClean)) || 
+                           (rollClean && rollClean.includes(qClean)) ||
+                           (code && code.toUpperCase() === q.toUpperCase());
+                });
+            }
+
+            if (matched) {
+                showSuccess(matched, codeClean);
+            } else {
+                showError(`No verified record found for "${q || codeParam}". Please check your certificate details and try again.`);
+            }
+        }
+
+        // Show successful verification card
+        function showSuccess(r, providedCode) {
+            viewStandby.style.display = 'none';
+            viewError.style.display = 'none';
+            viewSuccess.style.display = 'block';
+
+            const enrolVal = r.ENROLNO || r.enrol || 'N/A';
+            const rollVal = r.ROLLNO || r.roll || 'N/A';
+            const authCode = makeVerificationCode(enrolVal);
+
+            vCode.textContent = providedCode || authCode;
+            vName.textContent = escapeHtml(r.NAMEANDFATHERSNAME || r.name || 'N/A');
+            vEnrol.textContent = escapeHtml(enrolVal);
+            vRoll.textContent = escapeHtml(rollVal);
+            vCourse.textContent = escapeHtml(r.COURSENAME || r.course || 'N/A');
+            vDuration.textContent = escapeHtml(r.DURATION || 'N/A');
+            vBranch.textContent = escapeHtml(r.BRANCHNAME || r.CENTER || r.branch || 'GURUKUL THE SCHOOL OF PROFESSIONALS');
+            vDOJ.textContent = escapeHtml(r.DOJ || 'N/A');
+            vDOC.textContent = escapeHtml(r.DOC || 'N/A');
+            vIssueDate.textContent = escapeHtml(r.ISSUEDATE || 'N/A');
+
+            // Marksheet button link
+            btnViewMarksheet.href = `result.html?enrol=${encodeURIComponent(enrolVal)}`;
+
+            // Generate QR Code
+            vQrCode.innerHTML = '';
+            try {
+                if (window.QRCode) {
+                    new QRCode(vQrCode, {
+                        text: window.location.href,
+                        width: 60,
+                        height: 60,
+                        colorDark: "#09192f",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.M
+                    });
+                }
+            } catch (e) {
+                console.warn('QR render:', e);
+            }
+
+            // Scroll into view
+            setTimeout(() => {
+                viewSuccess.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+
+        // Show error card
+        function showError(msg) {
+            viewStandby.style.display = 'none';
+            viewSuccess.style.display = 'none';
+            viewError.style.display = 'block';
+            errorDetailMsg.textContent = msg;
+            setTimeout(() => {
+                viewError.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+
+        // Show standby view
+        function showStandby() {
+            viewSuccess.style.display = 'none';
+            viewError.style.display = 'none';
+            viewStandby.style.display = 'block';
+        }
+
+        // Event listeners
+        btnVerify.addEventListener('click', () => {
+            performVerification(verifyInput.value);
+        });
+
+        verifyInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') performVerification(verifyInput.value);
+        });
+
+        btnResetSearch.addEventListener('click', () => {
+            verifyInput.value = '';
+            showStandby();
+            window.history.pushState({}, document.title, window.location.pathname);
+        });
+
+        btnRetrySearch.addEventListener('click', () => {
+            verifyInput.value = '';
+            verifyInput.focus();
+            showStandby();
+        });
+
+        // Initialize from URL query parameters (e.g. ?code=VER-XYZ&enrol=GSP-2474528 or ?q=GSP-2474528)
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const code = params.get('code');
+            const enrol = params.get('enrol');
+            const roll = params.get('roll');
+            const q = params.get('q');
+
+            const searchTarget = enrol || roll || q || '';
+            if (searchTarget) {
+                verifyInput.value = searchTarget;
+                performVerification(searchTarget, code);
+            } else if (code) {
+                performVerification('', code);
+            } else {
+                showStandby();
+            }
+        });
+    </script>
 </body>
 </html>

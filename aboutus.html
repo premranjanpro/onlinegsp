@@ -1,983 +1,612 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Gurukul The School Of Professionals</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" id="meta-desc" content="Empowering learners with knowledge, confidence, and purpose — shaping tomorrow’s leaders today.">
-    <meta name="keyword" content="Empowering learners with knowledge, confidence, and purpose — shaping tomorrow’s leaders today.">
+    <title>About Us | Gurukul The School Of Professionals</title>
+    <meta name="description" content="Learn about Gurukul The School Of Professionals, an ISO 9001:2015 certified premier educational board dedicated to vocational, technical, and skill education in India.">
+    <meta name="keywords" content="About Gurukul, ISO 9001:2015 Board, Vocational Training Board, Skill India Partner, GSP Delhi, Technical Education India">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/style-mob.css" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/portal-theme.css" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           COLORFUL, ANIMATED ABOUT US STYLING
+           ========================================================================== */
+        .about-hero-section {
+            background: radial-gradient(circle at 10% 20%, #0d213e 0%, #09192f 60%, #050d1a 100%);
+            color: #ffffff;
+            padding: 65px 0 85px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .about-hero-section::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatAnimation 6s ease-in-out infinite;
+        }
+
+        .about-hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatAnimation 8s ease-in-out infinite reverse;
+        }
+
+        .about-hero-title {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .about-hero-title span {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Image Showcase Wrapper */
+        .about-image-wrapper {
+            position: relative;
+            padding: 15px;
+        }
+
+        .about-main-img {
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15);
+            border: 4px solid #ffffff;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .about-image-wrapper:hover .about-main-img {
+            transform: scale(1.02);
+        }
+
+        .about-floating-badge {
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 16px 22px;
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.15);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            animation: floatAnimation 5s ease-in-out infinite;
+            z-index: 3;
+        }
+
+        .floating-badge-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        /* Pillars 4-Card Grid */
+        .pillar-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 32px 26px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+            height: 100%;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            transition: height 0.3s ease;
+        }
+
+        .pillar-card.card-blue::before { background: linear-gradient(90deg, #1e40af, #3b82f6); }
+        .pillar-card.card-gold::before { background: linear-gradient(90deg, #d97706, #fbbf24); }
+        .pillar-card.card-emerald::before { background: linear-gradient(90deg, #059669, #10b981); }
+        .pillar-card.card-purple::before { background: linear-gradient(90deg, #7c3aed, #a855f7); }
+
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+        }
+
+        .pillar-icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .pillar-card:hover .pillar-icon-box {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .icon-blue { background: #eff6ff; color: #1e40af; }
+        .icon-gold { background: #fef3c7; color: #d97706; }
+        .icon-emerald { background: #ecfdf5; color: #059669; }
+        .icon-purple { background: #f3e8ff; color: #7c3aed; }
+
+        /* Graduation Showcase Banner */
+        .showcase-grad-banner {
+            background: linear-gradient(135deg, #09192f 0%, #0f2a4a 60%, #1e3a8a 100%);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(9, 25, 47, 0.2);
+            color: #ffffff;
+            margin: 60px 0 20px;
+            position: relative;
+        }
+
+        /* Animated Journey Flow Diagram */
+        .journey-step-box {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 28px 20px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .journey-step-box:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(15, 23, 42, 0.1);
+            border-color: #fbbf24;
+        }
+
+        .journey-step-number {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, #09192f 0%, #1e3a8a 100%);
+            color: #fbbf24;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 16px;
+            margin-bottom: 14px;
+            box-shadow: 0 4px 12px rgba(9, 25, 47, 0.15);
+        }
+
+        .journey-step-icon {
+            font-size: 28px;
+            color: #d97706;
+            margin-bottom: 12px;
+        }
+    </style>
 </head>
 <body>
-    <section>
-        <div class="ed-mob-menu">
-            <div class="ed-mob-menu-con">
-                <div class="ed-mm-left">
-                    <div class="wed-logo">
-                        <a href="index.html">
-                            <img src="images/gurukul_logo.png" alt="" />
-                        </a>
-                    </div>
-                </div>
-                <div class="ed-mm-right">
-                    <div class="ed-mm-menu">
-                        <a href="#!" class="ed-micon"><i class="fab fa-bars"></i></a>
-                        <div class="ed-mm-inn">
-                            <a href="#!" class="ed-mi-close"><i class="fab fa-times"></i></a>
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="/aboutus.html">About us</a></li>
-                                <li><a href="/chairman-message.html">Chairman Message</a></li>
-                                <li><a href="/faq.html">FAQ</a></li>
-                                <li><a href="/courses.html">Courses</a></li>
-                                <li><a href="/affiliation-location.html">Branch</a></li>
-                                <li><a href="/result.html">Result</a></li>
-                                <li><a href="/news.html">News</a></li>
-                                <li><a href="/contact.html">Contact</a></li>
-                            </ul>
-                            <h4>User Account</h4>
-                            <ul>
-                                <li><a href="#!" data-bs-toggle="modal" data-bs-target="#modal1">Sign In</a></li>
-                                <li><a href="#!" data-bs-toggle="modal" data-bs-target="#modal2">Register</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section>
-        <!-- TOP BAR -->
-        <div class="ed-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="ed-com-t1-left">
-                            <ul>
-                                <li>
-                                    <a href="#">Contact: gptiindia@yahoo.in</a>
-                                </li>
-                                <li>
-                                    <a href="tel:+918800959688">Phone:  +91-88009-59688 </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="ed-com-t1-right">
-                            <ul>
-                                <li>
-                                    <a href="#!" data-bs-toggle="modal" data-bs-target="#modal1">Sign In</a>
-                                </li>
-                                <li>
-                                    <a href="#!" data-bs-toggle="modal" data-bs-target="#modal2">Sign Up</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="ed-com-t1-social">
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fab fa-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-x-twitter"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- LOGO AND MENU SECTION -->
-        <div class="top-logo" data-spy="affix" data-offset-top="250">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="wed-logo">
-                            <a href="index.html">
-                                <h2 style="color: #8b4282; background: -webkit-linear-gradient(45deg, #ef6838, #4a29b2 80%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"><img src="images/gurukul_logo.png" alt="" /> <strong>Onine GSP</strong></h2>
-                            </a>
-                        </div>
-                        <div class="main-menu">
-                            <ul>
-                                <li>
-                                    <a href="index.html">Home</a>
-                                </li>
-                                <li class="about-menu">
-                                    <a href="/aboutus.html" class="mm-arr">About us</a>
-                                    <!-- MEGA MENU 1 -->
-                                    <div class="mm-pos">
-                                        <div class="about-mm m-menu">
-                                            <div class="m-menu-inn">
-                                                <div class="mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay menu-about" href="index.html">
-                                                            <img src="images/deepak-sapra.jpeg" alt="">
-                                                            <span>Chairman</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="mm1-com mm1-s4">
-                                                    <p>
-                                                        Gurukul the School of Professionals, an ISO 9001:2015 Certified Institute, was established with the vision of delivering the highest quality services in the fields of Professional, Vocational, Technical, and Management education.
-                                                    </p>
-                                                    <a href="/aboutus.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-
-                                                <div class="mm1-com mm1-s4">
-                                                    <ul>
-                                                        <li><a href="/aboutus.html">About us</a></li>
-                                                        <li><a href="/chairman-message.html">Chairman Message</a></li>
-                                                        <li><a href="/courses-list.html">Courses</a></li>
-                                                        <li><a href="/faq.html">FAQ</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="cour-menu">
-                                    <a href="/courses.html" class="mm-arr">Courses</a>
-                                    <div class="mm-pos">
-                                        <div class="cour-mm m-menu">
-                                            <div class="m-menu-inn">
-                                                <div class="mm2-com mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay" href="/courses.html">
-                                                            <img src="images/coursescroll/4.jpg" alt="">
-                                                            <!--<span>Vocational Courses</span>-->
-                                                        </a>
-                                                    </div>
-                                                    <p>Vocational Courses prepares learners for jobs that are based in manual or practical activities, traditionally non-academic</p>
-                                                    <a href="/courses.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-                                                <div class="mm2-com mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay" href="/courses.html">
-                                                            <img src="images/coursescroll/5.jpg" alt="">
-                                                            <!--<span>Non Engineering Trades</span>-->
-                                                        </a>
-                                                    </div>
-                                                    <p>Bachelor of Science (B.Sc), Integrated law courses, Bachelor of Architecture, Teaching Courses, Fashion Design Courses.</p>
-                                                    <a href="/courses.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-                                                <div class="mm2-com mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay" href="/courses.html">
-                                                            <img src="images/coursescroll/8.jpg" alt="">
-                                                            <!--<span>Management Courses</span>-->
-                                                        </a>
-                                                    </div>
-                                                    <p>Design Management is a two-year post-graduate program divided into four semesters offering knowledge about various concepts of design.</p>
-                                                    <a href="/courses.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-                                                <div class="mm2-com mm1-com mm1-s4">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay" href="/courses.html">
-                                                            <img src="images/coursescroll/7.jpg" alt="">
-                                                            <!--<span>Financial Services</span>-->
-                                                        </a>
-                                                    </div>
-                                                    <p>Chartered Financial Analysts (CFA) , Certified Financial Planner (CFP) , Financial Risk Manager (FRM) , Chartered Alternative Investment Analyst (CAIA)</p>
-                                                    <a href="/courses.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="admi-menu">
-                                    <a href="/affiliation-location.html">Branch</a>
-                                    <div class="mm-pos">
-                                        <div class="admi-mm m-menu">
-                                            <div class="m-menu-inn">
-                                                <div class="mm1-com mm1-s1">
-                                                    <div class="ed-course-in">
-                                                        <a class="course-overlay menu-about" href="/affiliation-register.html">
-                                                            <img src="images/affilation-certficate.jpeg" alt="">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="mm1-com mm1-s4">
-                                                    <p>
-                                                        We build local partnerships and work with community champions to promote programs at the grassroots level. Our emphasis is on skill proficiency, employability, and connecting training to local opportunities�bridging modern techniques with local contexts
-                                                    </p>
-                                                    <a href="/aboutus.html" class="mm-r-m-btn">Read more</a>
-                                                </div>
-
-                                                <div class="mm1-com mm1-s4">
-                                                    <ul>
-                                                        <li><a href="/affiliation-location.html">Affiliation Location</a></li>
-                                                        <li><a href="/affiliation-register.html">Affiliation Register</a></li>
-                                                        <li><a href="/affiliation-status.html">Affiliation Status</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li><a href="/result.html">Result</a></li>
-                                <li><a href="/news.html">News</a></li>
-                                <li><a href="/contact.html">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="all-drop-down-menu">
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="search-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="search-form">
-                            <form>
-                                <div class="sf-type">
-                                    <div class="sf-input">
-                                        <input type="text" id="sf-box" placeholder="Search course and discount courses">
-                                    </div>
-                                    <div class="sf-list">
-                                        <ul>
-                                            <li><a href="/courses.html?cid=1_VOCATIONAL_COURSES">VOCATIONAL COURSES</a></li>
-                                            <li><a href="/courses.html?cid=2_NON_ENGINERRING_TRADES">NON ENGINERRING TRADES</a></li>
-                                            <li><a href="/courses.html?cid=3_MANAGEMENT_COURSES">MANAGEMENT COURSES</a></li>
-                                            <li><a href="/courses.html?cid=4_FINANCIAL_SERVICES">FINANCIAL SERVICES</a></li>
-                                            <li><a href="/courses.html?cid=5_ENGINERRING_TRADES">ENGINERRING TRADES</a></li>
-                                            <li><a href="/courses.html?cid=6_COMPUTER_LITERACY_PROGRAMME">COMPUTER LITERACY PROGRAMME</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="sf-submit">
-                                    <input type="submit" value="Search Course">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <main id="app" class="content" aria-live="polite">
-
-
-
-        <style>
-            :root {
-                --bg: #f6f8fb;
-                --card: #ffffff;
-                --accent: #0d6efd;
-                --muted: #6c757d;
-                --radius: 12px;
-                --glass: rgba(255,255,255,0.6);
-                --shadow: 0 8px 30px rgba(15,23,42,0.06);
-                --container: 1100px;
-                font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-            }
-
-            * {
-                box-sizing: border-box;
-            }
-
-            body {
-                margin: 0;
-                background: linear-gradient(180deg,#eef4ff 0%, var(--bg) 100%);
-                color: #111827;
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
-                line-height: 1.5;
-            }
-
-            .wrap {
-                max-width: var(--container);
-                margin: 48px auto;
-                padding: 28px;
-            }
-
-            .brand {
-                display: flex;
-                gap: 16px;
-                align-items: center;
-                margin-bottom: 18px;
-            }
-
-            .logo {
-                width: 68px;
-                height: 68px;
-                border-radius: 12px;
-                background: linear-gradient(135deg,var(--accent),#6f42c1);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #fff;
-                font-weight: 700;
-                box-shadow: var(--shadow);
-                font-size: 20px;
-            }
-
-            .brand h1 {
-                margin: 0;
-                font-size: 20px;
-                letter-spacing: 0.6px;
-            }
-
-            .brand p {
-                margin: 0;
-                color: var(--muted);
-                font-size: 14px;
-            }
-
-            .grid {
-                display: grid;
-                grid-template-columns: 1fr 360px;
-                gap: 22px;
-                align-items: start;
-            }
-
-            /* Main card */
-            .card {
-                background: var(--card);
-                border-radius: var(--radius);
-                padding: 22px;
-                box-shadow: var(--shadow);
-            }
-
-            .lead {
-                font-size: 15px;
-                color: #374151;
-                margin-bottom: 10px;
-            }
-
-            .who p {
-                margin: 0 0 12px 0;
-                color: #374151;
-            }
-
-            /* highlights */
-            .highlights {
-                display: grid;
-                grid-template-columns: repeat(2,1fr);
-                gap: 12px;
-                margin-top: 14px;
-            }
-
-            .hl {
-                background: linear-gradient(180deg,#fff,#fbfdff);
-                border-radius: 10px;
-                padding: 12px;
-                display: flex;
-                gap: 12px;
-                align-items: flex-start;
-                border: 1px solid rgba(15,23,42,0.04);
-            }
-
-                .hl i {
-                    background: var(--accent);
-                    color: #fff;
-                    padding: 10px;
-                    border-radius: 10px;
-                    min-width: 44px;
-                    min-height: 44px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 18px;
-                    box-shadow: 0 6px 18px rgba(13,110,253,0.12);
-                }
-
-                .hl .t {
-                    font-weight: 600;
-                    font-size: 14px;
-                    margin-bottom: 4px;
-                }
-
-                .hl .s {
-                    color: var(--muted);
-                    font-size: 13px;
-                }
-
-            /* Sidebar */
-            .sidebar .card {
-                padding: 18px;
-                position: sticky;
-                top: 20px;
-            }
-
-            .detail-list {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-                display: grid;
-                gap: 10px;
-            }
-
-                .detail-list li {
-                    display: flex;
-                    gap: 10px;
-                    align-items: flex-start;
-                }
-
-                    .detail-list li i {
-                        color: var(--accent);
-                        min-width: 26px;
-                        font-size: 16px;
-                        margin-top: 2px;
-                    }
-
-            .small {
-                font-size: 13px;
-                color: var(--muted);
-            }
-
-            /* Vision / mission box */
-            .vm {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 14px;
-                margin-top: 18px;
-            }
-
-                .vm .box {
-                    background: linear-gradient(180deg,#fff,#fbfdff);
-                    border-radius: 10px;
-                    padding: 14px;
-                    border: 1px solid rgba(15,23,42,0.04);
-                }
-
-                    .vm .box h3 {
-                        margin: 0 0 8px 0;
-                        font-size: 15px;
-                    }
-
-                    .vm .box p {
-                        margin: 0;
-                        color: var(--muted);
-                        font-size: 14px;
-                    }
-
-            /* Footer note */
-            .note {
-                margin-top: 18px;
-                color: var(--muted);
-                font-size: 13px;
-            }
-
-            /* Responsive */
-            @media (max-width:980px) {
-                .grid {
-                    grid-template-columns: 1fr;
-                }
-
-                .sidebar .card {
-                    position: static;
-                }
-
-                .vm {
-                    grid-template-columns: 1fr;
-                }
-
-                .highlights {
-                    grid-template-columns: 1fr;
-                }
-            }
-        </style>
-
-        <div class="wrap">
-            <div class="brand" aria-hidden="false">
-                <div class="logo" aria-hidden="true">G</div>
-                <div>
-                    <h1>Gurukul the School of Professionals</h1>
-                    <p>ISO 9001:2015 Certified Institute • Professional • Vocational • Technical • Management</p>
-                </div>
-            </div>
-
-            <div class="grid">
-                <!-- main content -->
-                <div class="card who">
-                    <div class="lead"><strong>Who We Are</strong></div>
-
-                    <p>
-                        <strong>Gurukul the School of Professionals</strong> is an ISO 9001:2015 certified institute founded to deliver industry-focused education and training across Professional, Vocational, Technical, and Management disciplines. We are committed to providing modern, practical learning that prepares students for real careers.
-                    </p>
-
-                    <p>
-                        Our goal is to build a strong nationwide network so quality training reaches learners across India — urban and rural alike. We currently operate offices in <strong>Delhi, Uttar Pradesh, and Uttarakhand</strong>, and we partner with trusted members and centers in many other states.
-                    </p>
-
-                    <div class="highlights" aria-hidden="false">
-                        <div class="hl">
-                            <i class="fa-solid fa-user-graduate" aria-hidden="true"></i>
-                            <div>
-                                <div class="t">Industry-focused programs</div>
-                                <div class="s">Practical courses designed with employers’ needs in mind.</div>
-                            </div>
-                        </div>
-
-                        <div class="hl">
-                            <i class="fa-solid fa-network-wired" aria-hidden="true"></i>
-                            <div>
-                                <div class="t">National network</div>
-                                <div class="s">Offices and partner centers to reach learners in every region.</div>
-                            </div>
-                        </div>
-
-                        <div class="hl">
-                            <i class="fa-solid fa-cogs" aria-hidden="true"></i>
-                            <div>
-                                <div class="t">Technology-enabled learning</div>
-                                <div class="s">Modern tools and platforms to deliver skill-based education.</div>
-                            </div>
-                        </div>
-
-                        <div class="hl">
-                            <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
-                            <div>
-                                <div class="t">Rural & women focus</div>
-                                <div class="s">Special initiatives to empower rural learners and build confidence.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lead" style="margin-top:18px"><strong>Our Approach</strong></div>
-                    <p>
-                        We build local partnerships and work with community champions to promote programs at the grassroots level. Our emphasis is on skill proficiency, employability, and connecting training to local opportunities—bridging modern techniques with local contexts.
-                    </p>
-
-                    <div class="vm" style="margin-top:16px">
-                        <div class="box">
-                            <h3><i class="fa-solid fa-eye" style="color:var(--accent); margin-right:8px;"></i> Our Vision</h3>
-                            <p>
-                                To be a trusted national leader in professional training — empowering learners through high-quality, relevant education that fosters respect, adaptability, and lifelong growth.
-                            </p>
-                        </div>
-
-                        <div class="box">
-                            <h3><i class="fa-solid fa-bullseye" style="color:var(--accent); margin-right:8px;"></i> Our Mission</h3>
-                            <p>
-                                To enrich lives by offering innovative, reliable, and practical learning solutions. We operate on values of trust, respect, and entrepreneurship and strive to delight students, partners, and communities across India.
-                            </p>
-                        </div>
-                    </div>
-
-                    <p class="note">GURUKUL’s spirit is teamwork and a commitment to quality training, helping learners reach their career goals with confidence and modern skills.</p>
-                </div>
-
-                <!-- sidebar -->
-                <aside class="sidebar">
-                    <div class="card">
-                        <h3 style="margin-top:0"><i class="fa-solid fa-location-dot" style="color:var(--accent); margin-right:8px"></i> Our Presence</h3>
-
-                        <ul class="detail-list" aria-label="Office locations">
-                            <li><i class="fa-solid fa-city"></i><div><strong>Delhi</strong><div class="small">Head Office</div></div></li>
-                            <li><i class="fa-solid fa-building"></i><div><strong>Uttar Pradesh</strong><div class="small">Regional Office</div></div></li>
-                            <li><i class="fa-solid fa-mountain"></i><div><strong>Uttarakhand</strong><div class="small">Regional Office</div></div></li>
-                        </ul>
-
-                        <hr style="margin:14px 0;border:none;border-top:1px solid rgba(15,23,42,0.04)">
-
-                        <h4 style="margin:8px 0 10px 0">Core Values</h4>
-                        <ul class="detail-list" style="margin-top:6px">
-                            <li><i class="fa-solid fa-handshake"></i><div><strong>Trust & Respect</strong><div class="small">We value integrity in everything we do.</div></div></li>
-                            <li><i class="fa-solid fa-lightbulb"></i><div><strong>Innovation</strong><div class="small">Constantly improving our teaching and tools.</div></div></li>
-                            <li><i class="fa-solid fa-users"></i><div><strong>People First</strong><div class="small">Investing in learners and staff.</div></div></li>
-                        </ul>
-                    </div>
-                </aside>
-            </div>
-        </div>
-
-    </main>
-
-
-    <!-- FOOTER COURSE BOOKING -->
-    <section>
-        <div class="full-bot-book">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2 bb-img">
-                        <img src="images/3.png" alt="">
-                    </div>
-                    <div class="col-md-7 bb-text">
-                        <h4>Gurukul The School Of Professionals</h4>
-                        <p>GURUKUL's spirit is teamwork and a commitment to quality training, helping learners reach their career goals with confidence and modern skills.</p>
-                    </div>
-                    <div class="col-md-3 bb-link">
-                        <a href="/courses.html">Book This Course</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <section class="wed-hom-footer">
+    <!-- 1. TOP GOVERNMENT / BOARD BAR -->
+    <div class="gov-top-bar">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>About Us</h4>
-                    <p>Gurukul the School of Professionals is an ISO 9001:2015 certified institute founded to deliver industry-focused education and training across Professional, Vocational, Technical, and Management disciplines. We are committed to providing modern, practical learning that prepares students for real careers.</p>
-                    <p>Our goal is to build a strong nationwide network so quality training reaches learners across India � urban and rural alike. We currently operate offices in Delhi, Uttar Pradesh, and Uttarakhand, and we partner with trusted members and centers in many other states.</p>
-                    <p>We build local partnerships and work with community champions to promote programs at the grassroots level. Our emphasis is on skill proficiency, employability, and connecting training to local opportunities�bridging modern techniques with local contexts.</p>
-                    <p></p>
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div class="d-flex align-items-center flex-wrap">
+                    <span class="gov-badge me-3"><i class="fa-solid fa-shield-halved me-1"></i> ISO 9001:2015 Certified</span>
+                    <span class="info-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:gptiindia@yahoo.in">gptiindia@yahoo.in</a></span>
+                    <span class="info-item"><i class="fa-solid fa-phone"></i> <a href="tel:+918800959688">+91-88009-59688</a></span>
                 </div>
-            </div>
-            <div class="row wed-foot-link">
-                <div class="col-md-4 foot-tc-mar-t-o">
-                    <h4>Top Courses</h4>
-                    <ul>
-                        <li><a href="/course.html">Vocational Courses</a></li>
-                        <li><a href="/course.html">Non Engineering Trades</a></li>
-                        <li><a href="/course.html">Management Courses</a></li>
-                        <li><a href="/course.html">Financial Services</a></li>
-                        <li><a href="/course.html">Engineering Trades</a></li>
-                        <li><a href="/course.html">Computer Literacy</a></li>
-                    </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="result.html" class="text-white text-decoration-none small"><i class="fa-solid fa-file-signature text-warning me-1"></i> Search Result</a>
+                    <span class="text-white-50">|</span>
+                    <a href="verify.html" class="text-white text-decoration-none small"><i class="fa-solid fa-qrcode me-1"></i> Certificate Verification</a>
                 </div>
-                <div class="col-md-4">
-                    <h4>New Courses</h4>
-                    <ul>
-                        <li><a href="/course.html">IT Management</a></li>
-                        <li><a href="/course.html">Business Management</a></li>
-                        <li><a href="/course.html">IT and System Management</a></li>
-                        <li><a href="/course.html">Financial Accounting</a></li>
-                        <li><a href="/course.html">Computer Application</a></li>
-                        <li><a href="/course.html">Hardware & Networking</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4>HELP & SUPPORT</h4>
-                    <ul>
-                        <li>
-                            <a href="/contact.html">24x7 Live help</a>
-                        </li>
-                        <li>
-                            <a href="/contact.html">Contact us</a>
-                        </li>
-                        <li>
-                            <a href="/contact.html">Feedback</a>
-                        </li>
-                        <li>
-                            <a href="/faq.html">FAQs</a>
-                        </li>
-                        <li>
-                            <a href="/contact.html">Safety Tips</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row wed-foot-link-1">
-                <div class="col-md-4 foot-tc-mar-t-o">
-                    <h4>Get In Touch</h4>
-                    <p>Address: WZ-85, Ram Nagar, Tilak Nagar, Delhi - 18</p>
-                    <p>Phone: <a href="#!">+91-88009-59688</a></p>
-                    <p>Email: <a href="#!">gptiindia@yahoo.in</a></p>
-                </div>
-                <div class="col-md-4">
-                    <h4>DOWNLOAD OUR FREE MOBILE APPS</h4>
-                    <ul>
-                        <li>
-                            <a href="#"><span class="sprite sprite-android"></span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="sprite sprite-ios"></span></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4>SOCIAL MEDIA</h4>
-                    <ul>
-                        <li>
-                            <a href="#"><i class="fab fa-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-x-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-google-plus"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COPY RIGHTS -->
-    <section class="wed-rights">
-        <div class="container">
-            <div class="row">
-                <div class="copy-right">
-                    <p>Copyrights © 2025 GIndiaHR. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--SECTION LOGIN, REGISTER AND FORGOT PASSWORD-->
-    <section>
-        <!-- LOGIN SECTION -->
-        <div class="modal fade" id="modal1">
-            <div class="log-in-pop modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="log-in-pop-left">
-                        <h1>Hello...</h1>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <h4>Login with social media</h4>
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-google"></i> Google</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="log-in-pop-right">
-                        <a href="#" class="pop-close" data-bs-dismiss="modal">
-                            <img src="images/cancel.png" alt="" />
-                        </a>
-                        <h4>Login</h4>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <form class="s12">
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-                                <label for="email">Email</label>
-                            </div>
-                            <div class="form-floating mt-3 mb-3">
-                                <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-                                <label for="pwd">Password</label>
-                            </div>
-                            <div class="form-check mb-3">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" name="remember"> Remember me
-                                </label>
-                            </div>
-                            <div>
-                                <div class="input-field s4">
-                                    <input type="submit" value="Login" class="btn btn-primary log-in-btn">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="input-field s12"> <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal3">Forgot password</a> | <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal2">Create a new account</a> </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- REGISTER SECTION -->
-        <div class="modal fade" id="modal2">
-            <div class="log-in-pop modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="log-in-pop-left">
-                        <h1>Hello...</h1>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <h4>Login with social media</h4>
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-google"></i> Google</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="log-in-pop-right">
-                        <a href="#" class="pop-close" data-bs-dismiss="modal">
-                            <img src="images/cancel.png" alt="" />
-                        </a>
-                        <h4>Create an Account</h4>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <form class="s12">
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="username" placeholder="Enter user name" name="text">
-                                <label for="username">User name</label>
-                            </div>
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-                                <label for="email">Email</label>
-                            </div>
-                            <div class="form-floating mt-3 mb-3">
-                                <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-                                <label for="pwd">Password</label>
-                            </div>
-                            <div class="form-floating mt-3 mb-3">
-                                <input type="text" class="form-control" id="pwdconf" placeholder="Confirm password" name="pwdconf">
-                                <label for="pwdconf">Confirm password</label>
-                            </div>
-                            <div>
-                                <div class="input-field s4">
-                                    <input type="submit" value="Register now" class="btn btn-primary log-in-btn">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="input-field s12"> <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal1">Are you a already member ? Login</a> </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- FORGOT SECTION -->
-        <div class="modal fade" id="modal3">
-            <div class="log-in-pop modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="log-in-pop-left">
-                        <h1>Hello...</h1>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <h4>Login with social media</h4>
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-google"></i> Google</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="log-in-pop-right">
-                        <a href="#" class="pop-close" data-bs-dismiss="modal">
-                            <img src="images/cancel.png" alt="" />
-                        </a>
-                        <h4>Forgot password</h4>
-                        <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                        <form class="s12">
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-                                <label for="email">Email</label>
-                            </div>
-                            <div>
-                                <div class="input-field s4">
-                                    <input type="submit" value="Login" class="btn btn-primary log-in-btn">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="input-field s12"><a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal2">Create a new account</a> </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SOCIAL MEDIA SHARE -->
-    <section>
-        <div class="icon-float">
-            <ul>
-                <li><a href="#" class="sh">1k <br> Share</a> </li>
-
-                <li><a href="#" class="fb1"><i class="fab fa-facebook"></i></a> </li>
-                <li><a href="#" class="wa1"><i class="fab fa-whatsapp"></i></a> </li>
-                <li><a href="#" class="tw1"><i class="fab fa-x-twitter"></i></a> </li>
-                <li><a href="#" class="li1"><i class="fab fa-linkedin"></i></a> </li>
-
-                <li><a href="#" class="sh1"><i class="fa-regular fa-message"></i></a> </li>
-            </ul>
-        </div>
-    </section>
-
-
-
-    <!-- Enquiry Modal -->
-    <!-- Modal -->
-    <div class="modal-backdrop" id="enquiryModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <div class="modal" role="document">
-            <div class="modal-header">
-                <div>
-                    <div class="modal-title" id="modalTitle">Course Enquiry</div>
-                    <div class="modal-course" id="modalCourseInfo">Full Stack - Web Development</div>
-                </div>
-                <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Close">&times;</button>
-            </div>
-
-            <div style="position:relative;">
-                <div class="modal-body" id="modalBody">
-                    <div>
-                        <label for="en_name">Name</label>
-                        <input type="text" id="en_name" placeholder="Enter your name" />
-                    </div>
-
-                    <div>
-                        <label for="en_email">Email</label>
-                        <input type="email" id="en_email" placeholder="Enter your email" />
-                    </div>
-
-                    <div>
-                        <label for="en_mobile">Mobile</label>
-                        <input type="text" id="en_mobile" placeholder="Enter your mobile number" />
-                    </div>
-
-                    <div>
-                        <label for="en_state">State</label>
-                        <select id="en_state"><option value="">Select state</option></select>
-                    </div>
-
-                    <div>
-                        <label for="en_city">City</label>
-                        <input type="text" id="en_city" placeholder="City" />
-                    </div>
-
-                    <div>
-                        <label for="en_district">District</label>
-                        <input type="text" id="en_district" placeholder="District" />
-                    </div>
-
-
-
-                    <div class="field-full">
-                        <label for="en_remarks">Notes / Remarks</label>
-                        <textarea id="en_remarks" placeholder="Any specific query or details..."></textarea>
-                    </div>
-                </div>
-
-                <!-- message overlay -->
-                <div class="message-wrap" id="messageWrap" aria-live="polite">
-                    <div class="message-card" id="messageCard">
-                        <!-- content inserted by JS -->
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn-secondary" id="modalCancel">Cancel</button>
-                <button type="button" class="btn-primary-modal" id="modalSubmit">Submit Enquiry</button>
             </div>
         </div>
     </div>
 
-    <script src="js/main.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/HomeScripts.js"></script>
+    <!-- 2. ANNOUNCEMENT TICKER MARQUEE -->
+    <div class="portal-ticker-wrap">
+        <div class="portal-ticker-title">
+            <i class="fa-solid fa-bullhorn"></i> About Gurukul
+        </div>
+        <div class="portal-ticker-content">
+            <div class="portal-ticker-item">
+                <i class="fa-solid fa-award"></i> Gurukul The School Of Professionals - ISO 9001:2015 Certified Autonomous Educational Board.
+            </div>
+            <div class="portal-ticker-item">
+                <i class="fa-solid fa-shield-check"></i> Over 50,000+ Certified Candidates Empowered with Vocational & Technical Certifications.
+            </div>
+            <div class="portal-ticker-item">
+                <i class="fa-solid fa-building-columns"></i> Affiliated Study Centers & Examination Hubs Active Nationwide.
+            </div>
+        </div>
+    </div>
 
+    <!-- 3. MAIN PORTAL HEADER & NAVIGATION -->
+    <header class="portal-header">
+        <div class="container">
+            <div class="portal-header-inner">
+                <a href="index.html" class="board-brand">
+                    <img src="images/gurukul_logo.png" alt="Gurukul Logo">
+                    <div class="board-brand-text">
+                        <span class="board-title">GURUKUL</span>
+                        <span class="board-subtitle">The School Of Professionals</span>
+                    </div>
+                </a>
+
+                <nav class="d-none d-lg-block">
+                    <ul class="portal-nav">
+                        <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                        <li class="active"><a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+                        <li><a href="courses.html"><i class="fa-solid fa-book-open"></i> Courses</a></li>
+                        <li><a href="affiliation-location.html"><i class="fa-solid fa-network-wired"></i> Branches</a></li>
+                        <li><a href="gallery.html"><i class="fa-solid fa-images"></i> Gallery</a></li>
+                        <li><a href="news.html"><i class="fa-solid fa-newspaper"></i> News</a></li>
+                        <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+                        <li class="ms-2"><a href="verify.html" class="btn-verify-nav"><i class="fa-solid fa-qrcode"></i> Verify Record</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 4. PAGE HERO BANNER -->
+        <section class="about-hero-section">
+            <div class="container">
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-pill mb-3">
+                    <span class="badge bg-warning text-dark rounded-pill fw-bold"><i class="fa-solid fa-shield-halved me-1"></i> ISO 9001:2015</span>
+                    <span class="small text-white-50">An Autonomous Vocational & Technical Education Board</span>
+                </div>
+
+                <h1 class="about-hero-title">Shaping Futures Through <span>Skill & Excellence</span></h1>
+                <p class="text-white-50 fs-6 mx-auto" style="max-width: 720px;">
+                    Gurukul The School Of Professionals is committed to imparting industry-ready computer, vocational, technical, and management training across urban and rural India.
+                </p>
+            </div>
+        </section>
+
+        <!-- 5. INSTITUTIONAL STORY & CAMPUS SHOWCASE SECTION -->
+        <section class="container py-5 my-4">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <span class="badge bg-warning bg-opacity-15 text-dark fw-bold px-3 py-2 text-uppercase mb-3 border border-warning border-opacity-25">
+                        <i class="fa-solid fa-building-columns text-warning me-1"></i> Institutional Overview
+                    </span>
+                    <h2 class="fw-extrabold text-navy display-6 mb-3" style="font-weight: 800;">
+                        Empowering Youth with Practical Competence & Recognized Credentials
+                    </h2>
+                    <p class="text-muted leading-relaxed mb-3">
+                        <strong>Gurukul The School Of Professionals</strong>, an <strong>ISO 9001:2015 Certified Educational Board</strong>, was established with a singular dedication: bridging the divide between conventional academics and industry requirements.
+                    </p>
+                    <p class="text-muted leading-relaxed mb-4">
+                        We deliver an integrated educational ecosystem encompassing Computer Applications, Financial Accounting & Tally, Teacher Training (NTT / ECCE), Fashion & Tailoring, Health & Naturopathy, and Industrial Engineering Trades. Every diploma is backed by centralized database archiving, online marksheet publishing, and instantaneous QR verification.
+                    </p>
+
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="p-3 bg-light rounded-4 border-start border-4 border-primary shadow-sm">
+                                <div class="fs-4 fw-bold text-navy mb-1"><i class="fa-solid fa-circle-check text-primary me-2"></i>ISO 9001:2015</div>
+                                <span class="small text-muted fw-semibold">Quality Management Accredited</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 bg-light rounded-4 border-start border-4 border-warning shadow-sm">
+                                <div class="fs-4 fw-bold text-navy mb-1"><i class="fa-solid fa-map-location-dot text-warning me-2"></i>Pan-India</div>
+                                <span class="small text-muted fw-semibold">Affiliated Training Centers</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-2">
+                        <a href="courses.html" class="btn btn-primary px-4 py-2 rounded-pill fw-bold me-2">
+                            <i class="fa-solid fa-book-open me-2"></i> Explore Our Courses
+                        </a>
+                        <a href="affiliation-register.html" class="btn btn-outline-dark px-4 py-2 rounded-pill fw-bold">
+                            <i class="fa-solid fa-handshake me-2"></i> Center Affiliation
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Upgraded Campus Education Image with Floating Badge -->
+                <div class="col-lg-6">
+                    <div class="about-image-wrapper">
+                        <img src="images/about_campus_education.jpg" alt="Gurukul Computer Lab & Campus Training" class="about-main-img">
+                        <div class="about-floating-badge">
+                            <div class="floating-badge-icon">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold text-navy fs-6">15+ Years Experience</div>
+                                <div class="small text-muted">Excellence in Skill Education</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. FOUR PILLARS: VISION, MISSION, QUALITY & CAREER (4-CARD GRID) -->
+        <section class="bg-light py-5 border-top border-bottom">
+            <div class="container py-3">
+                <div class="text-center mb-5">
+                    <span class="badge bg-primary bg-opacity-10 text-primary fw-bold text-uppercase px-3 py-1 mb-2">Our Guiding Principles</span>
+                    <h2 class="fw-bold text-navy">The Four Pillars of Gurukul Board</h2>
+                    <p class="text-muted small max-w-600 mx-auto" style="max-width: 600px;">
+                        Driven by clear vision, unwavering dedication to quality, and focus on student employability.
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Pillar 1 -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="pillar-card card-blue animate-fade-up">
+                            <div class="pillar-icon-box icon-blue">
+                                <i class="fa-solid fa-eye"></i>
+                            </div>
+                            <h4 class="fw-bold text-navy mb-2 fs-5">Our Vision</h4>
+                            <p class="small text-muted mb-0">
+                                To establish India's most trusted, accessible, and high-impact vocational training network, ensuring every learner gains job confidence and economic self-reliance.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 2 -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="pillar-card card-gold animate-fade-up">
+                            <div class="pillar-icon-box icon-gold">
+                                <i class="fa-solid fa-bullseye"></i>
+                            </div>
+                            <h4 class="fw-bold text-navy mb-2 fs-5">Our Mission</h4>
+                            <p class="small text-muted mb-0">
+                                Imparting practical skill curriculum, ensuring transparent examination conduct, and providing instantaneous online verification for transparent hiring.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 3 -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="pillar-card card-emerald animate-fade-up">
+                            <div class="pillar-icon-box icon-emerald">
+                                <i class="fa-solid fa-shield-check"></i>
+                            </div>
+                            <h4 class="fw-bold text-navy mb-2 fs-5">Quality Control</h4>
+                            <p class="small text-muted mb-0">
+                                Operating under strict ISO 9001:2015 accreditation standards with standardized evaluation rubrics, question banks, and audited training centers.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 4 -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="pillar-card card-purple animate-fade-up">
+                            <div class="pillar-icon-box icon-purple">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                            <h4 class="fw-bold text-navy mb-2 fs-5">Career Growth</h4>
+                            <p class="small text-muted mb-0">
+                                Equipping learners with tangible workplace competencies so they thrive in private enterprises, government opportunities, or freelance entrepreneurship.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. GRADUATION & STUDENT ACHIEVEMENT BANNER -->
+        <section class="container py-4">
+            <div class="showcase-grad-banner">
+                <div class="row align-items-center g-0">
+                    <div class="col-lg-6 p-5">
+                        <span class="badge bg-warning text-dark fw-bold text-uppercase px-3 py-1 mb-3">Student Success Stories</span>
+                        <h2 class="display-6 fw-bold text-white mb-3" style="font-weight: 800;">
+                            Over 50,000+ Certified Graduates Across India
+                        </h2>
+                        <p class="text-white-50 mb-4">
+                            Our alumni work in top IT firms, accounting agencies, schools, wellness centers, and running thriving tailoring & technical enterprises across 18+ states.
+                        </p>
+                        
+                        <div class="row g-3 text-center mb-4">
+                            <div class="col-4">
+                                <div class="p-3 bg-white bg-opacity-10 rounded-3 border border-white border-opacity-15">
+                                    <div class="fs-4 fw-bold text-warning">50K+</div>
+                                    <div class="small text-white-50" style="font-size: 11px;">Alumni</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="p-3 bg-white bg-opacity-10 rounded-3 border border-white border-opacity-15">
+                                    <div class="fs-4 fw-bold text-warning">150+</div>
+                                    <div class="small text-white-50" style="font-size: 11px;">Centers</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="p-3 bg-white bg-opacity-10 rounded-3 border border-white border-opacity-15">
+                                    <div class="fs-4 fw-bold text-warning">100%</div>
+                                    <div class="small text-white-50" style="font-size: 11px;">Authentic</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="result.html" class="btn btn-warning px-4 py-2 rounded-pill fw-bold">
+                            <i class="fa-solid fa-magnifying-glass me-2"></i> Verify Any Graduate Record
+                        </a>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <img src="images/about_graduation_students.jpg" alt="Gurukul Graduates" class="w-100 h-100" style="object-fit: cover; min-height: 380px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. EDUCATIONAL LIFECYCLE / JOURNEY FLOW DIAGRAM -->
+        <section class="container py-5">
+            <div class="text-center mb-5">
+                <span class="badge bg-primary bg-opacity-10 text-primary fw-bold text-uppercase px-3 py-1 mb-2">Student Lifecycle</span>
+                <h2 class="fw-bold text-navy">The Gurukul Academic Journey</h2>
+                <p class="text-muted small max-w-600 mx-auto" style="max-width: 600px;">
+                    From enrollment to verified certification — how our seamless educational process works.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="journey-step-box">
+                        <div class="journey-step-number">1</div>
+                        <div class="journey-step-icon"><i class="fa-solid fa-id-card-clip"></i></div>
+                        <h5 class="fw-bold text-navy mb-2">Enrollment</h5>
+                        <p class="small text-muted mb-0">Student registers at an authorized Gurukul center and receives a unique GSP Enrollment ID.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="journey-step-box">
+                        <div class="journey-step-number">2</div>
+                        <div class="journey-step-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                        <h5 class="fw-bold text-navy mb-2">Practical Training</h5>
+                        <p class="small text-muted mb-0">Undergoes hands-on lab training, project work, and continuous skill assessment.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="journey-step-box">
+                        <div class="journey-step-number">3</div>
+                        <div class="journey-step-icon"><i class="fa-solid fa-file-signature"></i></div>
+                        <h5 class="fw-bold text-navy mb-2">Board Exams</h5>
+                        <p class="small text-muted mb-0">Appears for standardized theory & practical examination under central board guidelines.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="journey-step-box">
+                        <div class="journey-step-number">4</div>
+                        <div class="journey-step-icon"><i class="fa-solid fa-qrcode"></i></div>
+                        <h5 class="fw-bold text-navy mb-2">QR Certification</h5>
+                        <p class="small text-muted mb-0">Awarded official ISO 9001:2015 certificate with lifetime instant QR verification.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 9. ULTRA-PREMIUM GLOBAL FOOTER -->
+    <footer class="portal-global-footer">
+        <div class="portal-footer-top">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <a href="index.html" class="d-flex align-items-center gap-3 text-decoration-none mb-3">
+                            <img src="images/gurukul_logo.png" alt="Gurukul Logo" style="height: 55px; width: auto;">
+                            <div>
+                                <div class="footer-brand-title">GURUKUL</div>
+                                <div class="footer-brand-sub">The School Of Professionals</div>
+                            </div>
+                        </a>
+                        <p class="footer-about-text">
+                            Gurukul The School Of Professionals is an ISO 9001:2015 certified premier education board dedicated to delivering industry-aligned technical, computer, management, and vocational training across India.
+                        </p>
+                        <div class="d-flex align-items-center gap-2 mt-2">
+                            <span class="badge bg-warning text-dark fw-bold"><i class="fa-solid fa-shield-halved me-1"></i> ISO 9001:2015 Accredited Board</span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6">
+                        <h5 class="footer-heading">Quick Links</h5>
+                        <ul class="footer-links-list">
+                            <li><a href="index.html"><i class="fa-solid fa-angle-right"></i> Home Portal</a></li>
+                            <li><a href="aboutus.html"><i class="fa-solid fa-angle-right"></i> About Board</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Course Catalog</a></li>
+                            <li><a href="result.html"><i class="fa-solid fa-angle-right"></i> Examination Result</a></li>
+                            <li><a href="verify.html"><i class="fa-solid fa-angle-right"></i> Certificate Verify</a></li>
+                            <li><a href="contact.html"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Programs</h5>
+                        <ul class="footer-links-list">
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Computer Applications & IT</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Financial Accounting & Tally</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Vocational Skill Certification</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Business Management</a></li>
+                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Hardware & Networking</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="footer-heading">Head Office</h5>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="footer-contact-text">
+                                WZ-85, Ram Nagar, Tilak Nagar,<br>New Delhi - 110018
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div class="footer-contact-text">
+                                <a href="tel:+918800959688">+91-88009-59688</a>
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="footer-contact-text">
+                                <a href="mailto:gptiindia@yahoo.in">gptiindia@yahoo.in</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="portal-footer-bottom text-center">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div>
+                        Copyright © 2026 <strong>Gurukul The School Of Professionals</strong>. All Rights Reserved.
+                    </div>
+                    <div>
+                        <span>ISO 9001:2015 Certified Board</span> | 
+                        <a href="verify.html" class="text-warning text-decoration-none ms-1">Digital Verification System</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

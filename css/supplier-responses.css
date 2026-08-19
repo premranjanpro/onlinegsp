@@ -1,0 +1,244 @@
+/* ==========================================================================
+   Supplier Responses & Quote Comparison Matrix Stylesheet
+   ========================================================================== */
+
+/* Main Container & Pane */
+.qr-pane {
+    width: 100%;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.qr-pane.active {
+    display: block;
+}
+
+/* Comparison Matrix Card */
+.comparison-matrix-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+/* Toolbars */
+.matrix-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.response-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border-bottom: 1px solid #e2e8f0;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* Headers & Typography */
+.matrix-toolbar h5,
+.response-toolbar h5 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Inputs & Search */
+.flat-input,
+.response-search-input {
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 0.85rem;
+    color: #1e293b;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    width: 240px;
+}
+
+.flat-input:focus,
+.response-search-input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.flat-input::placeholder,
+.response-search-input::placeholder {
+    color: #94a3b8;
+}
+
+/* Toggle Buttons */
+.btn-view-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #475569;
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-view-toggle:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.btn-view-toggle.active {
+    background: #4f46e5;
+    color: #ffffff;
+    border-color: #4f46e5;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}
+
+/* Badges */
+.badge-best-price {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+    letter-spacing: 0.2px;
+}
+
+/* Inner QR Card & Container */
+.qr-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    margin: 16px;
+}
+
+/* Grid & Cards Container */
+#supplierCardsGrid {
+    padding: 16px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Response Card Item */
+.response-card-item {
+    position: relative;
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 18px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.response-card-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -5px rgba(15, 23, 42, 0.08);
+    border-color: #cbd5e1;
+}
+
+.response-card-item.best-quote {
+    border-color: #10b981;
+    background: linear-gradient(180deg, #ecfdf5 0%, #ffffff 70px);
+}
+
+.response-card-item.best-quote .badge-best-price {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+}
+
+/* Supplier Avatar */
+.supplier-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e0e7ff;
+    color: #4338ca;
+    font-weight: 800;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1.5px solid #c7d2fe;
+    box-shadow: 0 2px 6px rgba(67, 56, 202, 0.12);
+}
+
+/* Buttons */
+.btn-accept-quote {
+    background: #10b981;
+    color: #ffffff;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 0.84rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+}
+
+.btn-accept-quote:hover {
+    background: #059669;
+    transform: translateY(-1px);
+}
+
+.btn-view-details {
+    background: #ffffff;
+    color: #0284c7;
+    border: 1.5px solid #bae6fd;
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.84rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-view-details:hover {
+    background: #f0f9ff;
+    border-color: #0284c7;
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+    .matrix-toolbar, .response-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .flat-input, .response-search-input {
+        width: 100%;
+    }
+}
