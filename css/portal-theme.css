@@ -767,12 +767,67 @@ body {
   font-size: 14px;
 }
 
+/* Corner Flourishes */
+.corner-flourish {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: #d97706;
+  border-style: solid;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.corner-tl { top: 6px; left: 6px; border-width: 3px 0 0 3px; }
+.corner-tr { top: 6px; right: 6px; border-width: 3px 3px 0 0; }
+.corner-bl { bottom: 6px; left: 6px; border-width: 0 0 3px 3px; }
+.corner-br { bottom: 6px; right: 6px; border-width: 0 3px 3px 0; }
+
+/* Academic Evaluation Matrix */
+.marksheet-evaluation-matrix {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .marksheet-evaluation-matrix {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+.matrix-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.matrix-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 2px;
+}
+
+.matrix-val {
+  font-size: 13px;
+  font-weight: 800;
+}
+
 /* Candidate Profile Grid */
 .candidate-details-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px 24px;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   position: relative;
   z-index: 1;
 }
