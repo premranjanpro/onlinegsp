@@ -424,31 +424,28 @@
             return prefix + code.slice(0, 8);
         }
 
+        // Clean up any legacy localStorage caches
+        try {
+            localStorage.removeItem('onlinegsp_results_v3');
+            localStorage.removeItem('onlinegsp_results_v2');
+            localStorage.removeItem('onlinegsp_results');
+        } catch (e) {}
+
         // Load JSON results data
         async function loadResultsData() {
             if (cachedData && Array.isArray(cachedData) && cachedData.length > 0) {
                 return cachedData;
             }
 
-            // Check localStorage
+            // Always fetch fresh data directly from server with cache busting
             try {
-                const stored = localStorage.getItem(STORAGE_KEY);
-                if (stored) {
-                    cachedData = JSON.parse(stored);
-                    if (Array.isArray(cachedData) && cachedData.length > 0) {
-                        return cachedData;
-                    }
-                }
-            } catch (e) {}
-
-            // Fetch from server
-            try {
-                const res = await fetch(JSON_PATH + '?v=' + Date.now());
+                const res = await fetch(JSON_PATH + '?v=' + Date.now(), {
+                    cache: 'no-store'
+                });
                 if (res.ok) {
                     const arr = await res.json();
                     if (Array.isArray(arr) && arr.length > 0) {
                         cachedData = arr;
-                        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); } catch (e) {}
                         return arr;
                     }
                 }

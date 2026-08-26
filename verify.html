@@ -465,6 +465,13 @@
             return prefix + code.slice(0, 8);
         }
 
+        // Clean up any legacy localStorage caches
+        try {
+            localStorage.removeItem('onlinegsp_results_v3');
+            localStorage.removeItem('onlinegsp_results_v2');
+            localStorage.removeItem('onlinegsp_results');
+        } catch (e) {}
+
         // Load Results JSON Dataset
         async function loadResultsData() {
             if (cachedResults && Array.isArray(cachedResults) && cachedResults.length > 0) {
@@ -472,22 +479,13 @@
             }
 
             try {
-                const stored = localStorage.getItem(STORAGE_KEY);
-                if (stored) {
-                    cachedResults = JSON.parse(stored);
-                    if (Array.isArray(cachedResults) && cachedResults.length > 0) {
-                        return cachedResults;
-                    }
-                }
-            } catch (e) {}
-
-            try {
-                const res = await fetch(JSON_PATH + '?v=' + Date.now());
+                const res = await fetch(JSON_PATH + '?v=' + Date.now(), {
+                    cache: 'no-store'
+                });
                 if (res.ok) {
                     const arr = await res.json();
                     if (Array.isArray(arr) && arr.length > 0) {
                         cachedResults = arr;
-                        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); } catch (e) {}
                         return arr;
                     }
                 }
