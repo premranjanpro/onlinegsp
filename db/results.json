@@ -90158,5 +90158,37 @@
     "CreatedBy": null,
     "UpdatedAt": null,
     "UpdatedBy": null
+  },
+  {
+    "Id": "45ca86dcf11e4a19b0af9d24a64fee11",
+    "ENROLNO": "GSP-2356016",
+    "ROLLNO": "HR11156016",
+    "BRANCHNAME": "NAVYUG COMPUTER CENTRE",
+    "COURSENAME": "ADVANCE DIPLOMA IN COMPUTER APPLICATION",
+    "DURATION": "12 Months",
+    "NAMEANDFATHERSNAME": "RAVEENA D/O VIJAY KUMAR",
+    "DOJ": "05/06/2023",
+    "DOC": "04/06/2024",
+    "ISSUEDATE": "14/06/2024",
+    "CreatedAt": "2026-08-26T15:39:32.371Z",
+    "CreatedBy": null,
+    "UpdatedAt": null,
+    "UpdatedBy": null
+  },
+  {
+    "Id": "373cb9d28613443db28c94fb9162e3cd",
+    "ENROLNO": "GSP-2595045",
+    "ROLLNO": "UP13795045",
+    "BRANCHNAME": "VEER BHAGAT SINGH ACADEMY",
+    "COURSENAME": "ADVANCE DIPLOMA IN COMPUTER APPLICATION",
+    "DURATION": "12 Months",
+    "NAMEANDFATHERSNAME": "VIKAS SAINI S/O RATNESH SAINI",
+    "DOJ": "02/07/2025",
+    "DOC": "01/07/2026",
+    "ISSUEDATE": "04/07/2026",
+    "CreatedAt": "2026-08-26T15:39:32.372Z",
+    "CreatedBy": null,
+    "UpdatedAt": null,
+    "UpdatedBy": null
   }
 ]
