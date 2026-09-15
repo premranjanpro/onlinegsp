@@ -1,0 +1,94 @@
+name: Apply AdSense Layout
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  adsense:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Inject responsive AdSense units
+        shell: bash
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          import re
+
+          MARK = '<!-- PR-ADSENSE-INJECTED -->'
+          ADS_SCRIPT = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>'
+          CSS = '''<style id="pr-adsense-layout">\n.pr-adsense-slot{width:100%;box-sizing:border-box;clear:both;margin:28px auto;padding:0 12px;text-align:center;min-height:50px}.pr-adsense-slot ins.adsbygoogle{margin:0 auto}.pr-adsense-horizontal{max-width:1100px}.pr-adsense-square{max-width:430px}.pr-adsense-vertical{max-width:330px}.pr-adsense-label{font-size:10px;line-height:1.2;color:#8a8a8a;text-align:center;margin:0 0 5px;font-weight:400}@media(max-width:767px){.pr-adsense-slot{margin:22px auto;padding:0 8px}.pr-adsense-vertical{max-width:100%}}\n</style>'''
+
+          H = f'''{MARK}\n<div class="pr-adsense-slot pr-adsense-horizontal">\n  <div class="pr-adsense-label">Advertisement</div>\n  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5097235456767325" data-ad-slot="5119886699" data-ad-format="auto" data-full-width-responsive="true"></ins>\n  <script>(adsbygoogle = window.adsbygoogle || []).push({{}});</script>\n</div>'''
+          S = f'''{MARK}\n<div class="pr-adsense-slot pr-adsense-square">\n  <div class="pr-adsense-label">Advertisement</div>\n  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5097235456767325" data-ad-slot="5405248145" data-ad-format="auto" data-full-width-responsive="true"></ins>\n  <script>(adsbygoogle = window.adsbygoogle || []).push({{}});</script>\n</div>'''
+          V = f'''{MARK}\n<div class="pr-adsense-slot pr-adsense-vertical">\n  <div class="pr-adsense-label">Advertisement</div>\n  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5097235456767325" data-ad-slot="7088021599" data-ad-format="auto" data-full-width-responsive="true"></ins>\n  <script>(adsbygoogle = window.adsbygoogle || []).push({{}});</script>\n</div>'''
+
+          def excluded(path: Path) -> bool:
+              p = str(path).replace('\\','/').lower()
+              name = path.name.lower()
+              if any(x in p for x in ['/admin/', '/images/', '/uploads/', '/node_modules/', '/.git/']): return True
+              if name in {'login.html','branch-login.html','registration-complete.html','thank-you.html'}: return True
+              return False
+
+          changed = 0
+          for p in Path('.').rglob('*.html'):
+              if excluded(p):
+                  continue
+              try:
+                  s = p.read_text(encoding='utf-8')
+              except Exception:
+                  continue
+              if MARK in s or '<html' not in s.lower():
+                  continue
+              m = re.search(r'<head[^>]*>', s, re.I)
+              if not m:
+                  continue
+              # One global AdSense loader + local layout CSS.
+              s = s[:m.end()] + '\n' + ADS_SCRIPT + '\n' + CSS + '\n' + s[m.end():]
+              # Horizontal: just below navigation/header, or at the start of main content.
+              if re.search(r'</nav>', s, re.I):
+                  s = re.sub(r'</nav>', '</nav>\n' + H, s, count=1, flags=re.I)
+              elif re.search(r'</header>', s, re.I):
+                  s = re.sub(r'</header>', '</header>\n' + H, s, count=1, flags=re.I)
+              elif re.search(r'<main[^>]*>', s, re.I):
+                  s = re.sub(r'(<main[^>]*>)', r'\1\n' + H, s, count=1, flags=re.I)
+              else:
+                  s = re.sub(r'<body([^>]*)>', r'<body\1>\n' + H, s, count=1, flags=re.I)
+              # Square: content-rich pages only; forms get the less intrusive single horizontal unit.
+              if '<form' not in s.lower() and len(s) > 6000:
+                  pos = re.search(r'</section>', s, re.I)
+                  if pos:
+                      s = s[:pos.end()] + '\n' + S + s[pos.end():]
+              # Vertical: longer content pages only, placed before footer rather than floating over content.
+              if '<form' not in s.lower() and len(s) > 9000:
+                  pos = re.search(r'<footer\b', s, re.I)
+                  if pos:
+                      s = s[:pos.start()] + V + '\n' + s[pos.start():]
+                  else:
+                      pos = re.search(r'</body>', s, re.I)
+                      if pos:
+                          s = s[:pos.start()] + V + '\n' + s[pos.start():]
+              p.write_text(s, encoding='utf-8')
+              changed += 1
+          print(f'Updated {changed} HTML files')
+          PY
+
+      - name: Commit injected ad layout
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- '*.html'
+          if git diff --cached --quiet; then
+            echo "No HTML changes needed"
+          else
+            git commit -m "Apply responsive AdSense placements"
+            git push
+          fi
