@@ -446,6 +446,7 @@
     <!-- 7. VERIFICATION CLIENT-SIDE SCRIPT -->
     <script>
         const JSON_PATH = 'db/results.json';
+        const EXTRA_JSON_PATH = 'db/results_extra.json';
         const STORAGE_KEY = 'onlinegsp_results_v3';
 
         // DOM elements
@@ -514,15 +515,19 @@
             }
 
             try {
-                const res = await fetch(JSON_PATH + '?v=' + Date.now(), {
-                    cache: 'no-store'
-                });
-                if (res.ok) {
-                    const arr = await res.json();
-                    if (Array.isArray(arr) && arr.length > 0) {
-                        cachedResults = arr;
-                        return arr;
-                    }
+                const [res, extraRes] = await Promise.all([
+                    fetch(JSON_PATH + '?v=' + Date.now(), { cache: 'no-store' }),
+                    fetch(EXTRA_JSON_PATH + '?v=' + Date.now(), { cache: 'no-store' })
+                ]);
+                const arr = res.ok ? await res.json() : [];
+                const extra = extraRes.ok ? await extraRes.json() : [];
+                const combined = [
+                    ...(Array.isArray(arr) ? arr : []),
+                    ...(Array.isArray(extra) ? extra : [])
+                ];
+                if (combined.length > 0) {
+                    cachedResults = combined;
+                    return combined;
                 }
             } catch (e) {
                 console.warn('Could not fetch results JSON:', e);
