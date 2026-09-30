@@ -403,6 +403,7 @@
         const VERIFY_PAGE = 'verify.html';
         const STORAGE_KEY = 'onlinegsp_results_v3';
         const JSON_PATH = 'db/results.json';
+        const EXTRA_JSON_PATH = 'db/results_extra.json';
 
         // DOM elements
         const inputSearch = document.getElementById('RegistrationNo');
@@ -474,15 +475,19 @@
 
             // Always fetch fresh data directly from server with cache busting
             try {
-                const res = await fetch(JSON_PATH + '?v=' + Date.now(), {
-                    cache: 'no-store'
-                });
-                if (res.ok) {
-                    const arr = await res.json();
-                    if (Array.isArray(arr) && arr.length > 0) {
-                        cachedData = arr;
-                        return arr;
-                    }
+                const [res, extraRes] = await Promise.all([
+                    fetch(JSON_PATH + '?v=' + Date.now(), { cache: 'no-store' }),
+                    fetch(EXTRA_JSON_PATH + '?v=' + Date.now(), { cache: 'no-store' })
+                ]);
+                const arr = res.ok ? await res.json() : [];
+                const extra = extraRes.ok ? await extraRes.json() : [];
+                const combined = [
+                    ...(Array.isArray(arr) ? arr : []),
+                    ...(Array.isArray(extra) ? extra : [])
+                ];
+                if (combined.length > 0) {
+                    cachedData = combined;
+                    return combined;
                 }
             } catch (e) {
                 console.warn('Failed to load JSON data:', e);
