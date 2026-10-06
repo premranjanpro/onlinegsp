@@ -473,28 +473,34 @@
 
         // Load JSON results data
         async function loadResultsData() {
-            if (cachedData && Array.isArray(cachedData) && cachedData.length > 0) {
-                return cachedData;
-            }
-
-            // Always fetch fresh data directly from server with cache busting
+            // Always fetch the latest JSON from server.
+            // A unique query string prevents browser/CDN/GitHub Pages cache reuse.
+            const cacheBust = Date.now().toString();
             try {
                 const [res, extraRes] = await Promise.all([
-                    fetch(JSON_PATH + '?v=' + Date.now(), { cache: 'no-store' }),
-                    fetch(EXTRA_JSON_PATH + '?v=' + Date.now(), { cache: 'no-store' })
+                    fetch(JSON_PATH + '?v=' + cacheBust + '&t=' + Math.random(), {
+                        cache: 'no-store',
+                        headers: { 'Cache-Control': 'no-cache' }
+                    }),
+                    fetch(EXTRA_JSON_PATH + '?v=' + cacheBust + '&t=' + Math.random(), {
+                        cache: 'no-store',
+                        headers: { 'Cache-Control': 'no-cache' }
+                    })
                 ]);
+
                 const arr = res.ok ? await res.json() : [];
                 const extra = extraRes.ok ? await extraRes.json() : [];
                 const combined = [
                     ...(Array.isArray(arr) ? arr : []),
                     ...(Array.isArray(extra) ? extra : [])
                 ];
+
                 if (combined.length > 0) {
                     cachedData = combined;
                     return combined;
                 }
             } catch (e) {
-                console.warn('Failed to load JSON data:', e);
+                console.warn('Failed to load latest JSON data:', e);
             }
             return [];
         }
