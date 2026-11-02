@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/portal-theme.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 <style>
 :root{--navy:#102744;--blue:#2457a7;--gold:#e5a52e;--ink:#17283f;--muted:#68788e;--line:#e6ebf2}
@@ -45,11 +46,40 @@
 </style>
 </head>
 <body>
-<div class="topbar"><div class="container d-flex justify-content-between flex-wrap gap-2"><span><i class="fa-solid fa-shield-halved me-1"></i> Gurukul Official Branch Directory</span><a href="mailto:gptiindia@yahoo.in">gptiindia@yahoo.in</a></div></div>
-<header class="header"><div class="container header-inner">
-<a class="brand" href="index.html"><img src="images/gurukul_logo.png" alt="Gurukul Logo"><span><strong>GURUKUL</strong><small>The School Of Professionals</small></span></a>
-<a class="header-link" href="affiliation-location.html"><i class="fa-solid fa-arrow-left me-1"></i> Branch Directory</a>
-</div></header>
+<!-- Same announcement ticker and navigation used on the homepage -->
+<div class="portal-ticker-wrap">
+  <div class="portal-ticker-title"><i class="fa-solid fa-bullhorn"></i> Official Announcements</div>
+  <div class="portal-ticker-content">
+    <div class="portal-ticker-item"><i class="fa-solid fa-star"></i> Annual Examinations Result &amp; Marksheet Publishing Portal is Live.</div>
+    <div class="portal-ticker-item"><i class="fa-solid fa-certificate"></i> Digital Certificates &amp; Marksheets issued are ISO 9001:2015 verified nationwide.</div>
+    <div class="portal-ticker-item"><i class="fa-solid fa-school"></i> New Center Affiliation Applications for 2026-2027 Session Now Open.</div>
+  </div>
+</div>
+<header class="portal-header">
+  <div class="container">
+    <div class="portal-header-inner">
+      <a href="index.html" class="board-brand">
+        <img src="images/gurukul_logo.png" alt="Gurukul Logo">
+        <div class="board-brand-text">
+          <span class="board-title">GURUKUL</span>
+          <span class="board-subtitle">The School Of Professionals</span>
+        </div>
+      </a>
+      <nav>
+        <ul class="portal-nav">
+          <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+          <li><a href="courses.html"><i class="fa-solid fa-book-open"></i> Courses</a></li>
+          <li class="active"><a href="affiliation-location.html"><i class="fa-solid fa-network-wired"></i> Branches</a></li>
+          <li><a href="gallery.html"><i class="fa-solid fa-images"></i> Gallery</a></li>
+          <li><a href="news.html"><i class="fa-solid fa-newspaper"></i> News</a></li>
+          <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+          <li><a href="result.html" class="btn-verify-nav"><i class="fa-solid fa-magnifying-glass"></i> Check Result</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
 <section class="hero"><div class="container"><span class="eyebrow"><i class="fa-solid fa-certificate"></i> Official Branch Profile</span><h1>Verified Affiliated Branch</h1><p>This profile displays the branch information associated with the credentials verified through the Gurukul branch directory.</p></div></section>
 <main class="container profile-wrap">
 <!-- PR-ADSENSE-INJECTED -->
