@@ -19,6 +19,7 @@
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/portal-theme.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <style>
 :root{--navy:#102744;--blue:#2457a7;--gold:#e5a52e;--ink:#17283f;--muted:#68788e;--line:#e6ebf2}
 *{box-sizing:border-box}body{margin:0;background:#f3f6fb;color:var(--ink);font-family:'DM Sans',sans-serif}
@@ -44,6 +45,45 @@
 .loading,.error{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px;text-align:center;box-shadow:0 10px 30px #1027440d}.error{color:#9a2929}.error a{color:var(--blue);font-weight:700}
 .footer{background:#0b1d33;color:#aebdce;padding:25px 0;font-size:11px}.footer a{color:#fff;text-decoration:none}
 @media(max-width:600px){.header-inner{min-height:68px}.brand img{height:42px}.brand strong{font-size:16px}.hero{padding:42px 0 90px}.profile-head,.profile-body{padding:21px 18px}.branch-title{align-items:flex-start}.branch-mark{width:50px;height:50px;border-radius:13px;font-size:21px}.branch-title h2{font-size:17px}.details-grid{grid-template-columns:1fr}.detail.wide{grid-column:auto}.profile-footer{padding:17px 18px}}
+
+/* Premium branch profile */
+.profile-head{background:radial-gradient(circle at 95% 5%,rgba(229,165,46,.16),transparent 27%),linear-gradient(120deg,#fff,#f5f8fd)}
+.branch-mark{background:linear-gradient(145deg,#173b67,#2862a8);color:#fff;box-shadow:0 9px 20px #173b672b}
+.status{box-shadow:inset 0 0 0 1px #bfe7cb}
+.profile-overview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-bottom:28px}
+.overview-tile{display:flex;align-items:center;gap:12px;padding:15px;border:1px solid #e6ebf2;border-radius:13px;background:linear-gradient(145deg,#fff,#f8faff);min-width:0}
+.overview-icon{width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;border-radius:12px;background:#edf3fc;color:#2457a7;font-size:17px}
+.overview-tile small{display:block;color:#7b899b;font-size:9px;letter-spacing:.8px;text-transform:uppercase;font-weight:800}
+.overview-tile strong{display:block;color:#173b67;font:800 12px Manrope,sans-serif;overflow-wrap:anywhere;margin-top:3px}
+.section-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:28px 0 15px}
+.section-heading .section-title{margin:0}
+.section-kicker{font-size:10px;color:#8996a8;font-weight:700}
+.details-grid{gap:12px}
+.detail{position:relative;padding:16px 16px 16px 52px;background:linear-gradient(145deg,#fff,#fcfdff);transition:.2s}
+.detail:hover{transform:translateY(-2px);border-color:#cbd9ec;box-shadow:0 9px 22px #1027440b}
+.detail:before{content:"";position:absolute;left:15px;top:17px;width:25px;height:25px;border-radius:8px;background:#edf3fc}
+.detail .detail-icon{position:absolute;left:22px;top:24px;color:#2457a7;font-size:11px;z-index:1}
+.detail label{font-size:9px;letter-spacing:.9px}
+.detail strong{font-size:13px;color:#1a2e49}
+.location-panel{border:1px solid #e4eaf2;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 10px 26px #1027440a}
+.location-head{padding:17px 19px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:linear-gradient(120deg,#102744,#1c4779);color:#fff}
+.location-head strong{font:800 14px Manrope,sans-serif;display:block}
+.location-head small{display:block;color:#cbd8e8;font-size:10px;margin-top:3px}
+.location-head .location-icon{width:38px;height:38px;border-radius:11px;background:#ffffff1a;display:grid;place-items:center;color:#f5c86c}
+#branchMap{height:330px;width:100%;background:#e9eef4}
+.location-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:13px 17px;border-top:1px solid #edf0f5}
+.location-actions span{font-size:10px;color:#8290a3}
+.location-actions a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;background:#edf3fc;color:#1e4d91;border-radius:8px;padding:9px 12px;font-size:11px;font-weight:800}
+.branch-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.branch-actions a{display:inline-flex;align-items:center;gap:8px;border-radius:9px;padding:10px 13px;text-decoration:none;font-size:11px;font-weight:800;border:1px solid #dce5f1;color:#173b67;background:#fff}
+.branch-actions a.primary{background:#173b67;color:#fff;border-color:#173b67}
+.branch-actions a.whatsapp{color:#147a45;background:#f0faf4;border-color:#ccebd8}
+.leaflet-popup-content-wrapper{border-radius:12px}
+.leaflet-popup-content{font-family:'DM Sans',sans-serif;font-size:12px;line-height:1.6}
+.branch-map-pin{width:38px;height:38px;border-radius:50% 50% 50% 8px;transform:rotate(-45deg);background:linear-gradient(145deg,#173b67,#2862a8);border:3px solid #fff;box-shadow:0 5px 15px #10274455;display:grid;place-items:center;color:#fff}
+.branch-map-pin i{transform:rotate(45deg);font-size:15px}
+@media(max-width:991px){.portal-header-inner{flex-wrap:wrap}.portal-header nav{width:100%;overflow-x:auto}.portal-nav{flex-wrap:wrap;justify-content:center}.portal-nav>li>a{font-size:12px;padding:8px 10px}}
+@media(max-width:600px){.profile-overview{grid-template-columns:1fr}.overview-tile{padding:12px}.profile-head{align-items:flex-start}.status{margin-left:67px}#branchMap{height:270px}.location-head{padding:14px}.location-actions{align-items:flex-start}.branch-actions a{flex:1;justify-content:center}}
 </style>
 </head>
 <body>
@@ -97,8 +137,20 @@
 <span class="status"><i class="fa-solid fa-circle-check"></i> APPROVED BRANCH</span>
 </div>
 <div class="profile-body">
-<h3 class="section-title"><i class="fa-regular fa-id-card me-2"></i>Branch Information</h3>
+<div class="profile-overview">
+<div class="overview-tile"><span class="overview-icon"><i class="fa-solid fa-certificate"></i></span><div><small>Branch Status</small><strong>Approved &amp; Active</strong></div></div>
+<div class="overview-tile"><span class="overview-icon"><i class="fa-solid fa-location-dot"></i></span><div><small>Branch Location</small><strong id="overviewLocation">Location details</strong></div></div>
+<div class="overview-tile"><span class="overview-icon"><i class="fa-solid fa-building-columns"></i></span><div><small>Institution</small><strong>Gurukul Affiliated Centre</strong></div></div>
+</div>
+<div class="section-heading"><h3 class="section-title"><i class="fa-regular fa-id-card me-2"></i>Branch Information</h3><span class="section-kicker">OFFICIAL PROFILE DETAILS</span></div>
 <div class="details-grid" id="branchDetails"></div>
+<div class="section-heading"><h3 class="section-title"><i class="fa-solid fa-map-location-dot me-2"></i>Branch Location</h3><span class="section-kicker">MAP &amp; DIRECTIONS</span></div>
+<div class="location-panel">
+<div class="location-head"><div><strong>Find This Branch</strong><small id="mapAddress">Branch address on map</small></div><span class="location-icon"><i class="fa-solid fa-location-crosshairs"></i></span></div>
+<div id="branchMap" role="application" aria-label="Map showing the branch location"></div>
+<div class="location-actions"><span><i class="fa-solid fa-map-pin me-1"></i> Pin shows the branch coordinates provided in the directory</span><a id="directionsLink" href="#" target="_blank" rel="noopener"><i class="fa-solid fa-diamond-turn-right"></i> Get Directions</a></div>
+</div>
+<div class="branch-actions" id="branchActions"></div>
 </div>
 <div class="profile-footer"><span><i class="fa-solid fa-shield-halved me-1"></i> Verified through Gurukul Branch Directory</span><a class="action" href="affiliation-location.html"><i class="fa-solid fa-arrow-left"></i> Back to Directory</a></div>
 </section>
@@ -115,6 +167,7 @@
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5097235456767325" data-ad-slot="7088021599" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <footer class="footer"><div class="container d-flex justify-content-between flex-wrap gap-2"><span>Copyright © 2026 Gurukul The School Of Professionals.</span><a href="index.html">Gurukul Official Website</a></div></footer>
 <script>
 (function(){
@@ -126,12 +179,34 @@
  const error=document.getElementById('profileError');
  const card=document.getElementById('profileCard');
  function fail(){loading.style.display='none';error.style.display='block';}
- function addDetail(label,value,wide){
+ function addDetail(label,value,wide,icon){
    if(!clean(value))return;
    const item=document.createElement('div');item.className='detail'+(wide?' wide':'');
+   const glyph=document.createElement('i');glyph.className='detail-icon '+(icon||'fa-solid fa-circle-info');
    const caption=document.createElement('label');caption.textContent=label;
    const strong=document.createElement('strong');strong.textContent=clean(value);
-   item.append(caption,strong);document.getElementById('branchDetails').appendChild(item);
+   item.append(glyph,caption,strong);document.getElementById('branchDetails').appendChild(item);
+ }
+ function addAction(label,href,icon,kind){
+   if(!href)return;
+   const a=document.createElement('a');a.href=href;a.className=kind||'';
+   if(href.startsWith('http')){a.target='_blank';a.rel='noopener';}
+   const i=document.createElement('i');i.className=icon;
+   a.append(i,document.createTextNode(label));document.getElementById('branchActions').appendChild(a);
+ }
+ function escapeHtml(value){return value.replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+ function showBranchMap(branch,address){
+   const lat=Number(branch.Latitude),lng=Number(branch.Longitude);
+   const valid=Number.isFinite(lat)&&Number.isFinite(lng)&&lat>=-90&&lat<=90&&lng>=-180&&lng<=180&&(lat!==0||lng!==0);
+   const mapBox=document.getElementById('branchMap');
+   if(!valid){mapBox.innerHTML='<div class="p-4 text-center text-muted small"><i class="fa-solid fa-map-location-dot d-block fs-3 mb-2"></i>Exact map location has not been added for this branch yet.</div>';document.getElementById('directionsLink').style.display='none';return;}
+   if(!window.L){mapBox.innerHTML='<div class="p-4 text-center text-muted small">Map could not be loaded. Please try again.</div>';return;}
+   const map=L.map('branchMap',{scrollWheelZoom:false}).setView([lat,lng],15);
+   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'}).addTo(map);
+   const pin=L.divIcon({className:'',html:'<div class="branch-map-pin"><i class="fa-solid fa-graduation-cap"></i></div>',iconSize:[38,38],iconAnchor:[19,38],popupAnchor:[0,-34]});
+   L.marker([lat,lng],{icon:pin,title:clean(branch.Center)||'Gurukul Branch'}).addTo(map).bindPopup('<strong>'+escapeHtml(clean(branch.Center)||'Gurukul Branch')+'</strong><br>'+escapeHtml(address)).openPopup();
+   L.circle([lat,lng],{radius:120,color:'#2457a7',weight:1,fillColor:'#2457a7',fillOpacity:.08}).addTo(map);
+   document.getElementById('directionsLink').href='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(lat+','+lng);
  }
  if(!code||!mobile){fail();return;}
  fetch(MEMBERS_URL+'?v='+Date.now(),{cache:'no-store'})
@@ -145,19 +220,27 @@
    });
    if(!branch){sessionStorage.removeItem('gsp_verified_branch_code');sessionStorage.removeItem('gsp_verified_branch_mobile');fail();return;}
    const location=[branch.City,branch.District,branch.State].map(clean).filter(Boolean).join(', ');
+   document.getElementById('overviewLocation').textContent=location||'Location not specified';
    document.getElementById('branchName').textContent=clean(branch.Center)||'Affiliated Branch';
    document.getElementById('branchLocation').textContent=location||'Gurukul Affiliated Learning Centre';
-   const address=[branch.Address1,branch.Address2,branch.City,branch.District,branch.State,branch.Pincode||branch.PinCode].map(clean).filter(Boolean).join(', ');
-   addDetail('Branch Code',branch.ENROLNO||branch.ROLLNO);
-   addDetail('Branch / Institute Name',branch.Center,true);
-   addDetail('Branch Head / Owner',branch.NAME);
-   addDetail('District',branch.District);
-   addDetail('City',branch.City);
-   addDetail('State',branch.State);
-   addDetail('Complete Address',address,true);
-   addDetail('Registered Mobile',branch.Phone);
-   addDetail('Alternate Mobile',branch.Phone2);
-   addDetail('Email Address',branch.Email,true);
+   const address=[branch.Address1,branch.Address2,branch.City,branch.District,branch.State].map(clean).filter(Boolean).join(', ');
+   document.getElementById('mapAddress').textContent=address||location||'Branch location';
+   addDetail('Branch Code',branch.ENROLNO||branch.ROLLNO,false,'fa-solid fa-hashtag');
+   addDetail('Branch / Institute Name',branch.Center,true,'fa-solid fa-school');
+   addDetail('Branch Head / Owner',branch.NAME,false,'fa-solid fa-user-tie');
+   addDetail('District',branch.District,false,'fa-solid fa-map');
+   addDetail('City',branch.City,false,'fa-solid fa-city');
+   addDetail('State',branch.State,false,'fa-solid fa-location-dot');
+   addDetail('Complete Address',address,true,'fa-solid fa-house');
+   addDetail('Registered Mobile',branch.Phone,false,'fa-solid fa-phone');
+   addDetail('Alternate Mobile',branch.Phone2,false,'fa-solid fa-mobile-screen');
+   addDetail('Email Address',branch.Email,true,'fa-solid fa-envelope');
+   showBranchMap(branch,address||location);
+   const phone=clean(branch.Phone).replace(/\D/g,'');
+   const email=clean(branch.Email);
+   if(phone)addAction('Call Branch','tel:'+phone,'fa-solid fa-phone','primary');
+   if(phone)addAction('WhatsApp','https://wa.me/91'+phone.replace(/^91/,''),'fa-brands fa-whatsapp','whatsapp');
+   if(email)addAction('Email Branch','mailto:'+email,'fa-solid fa-envelope','');
    loading.style.display='none';card.style.display='block';
   })
   .catch(err=>{console.error(err);fail();});
