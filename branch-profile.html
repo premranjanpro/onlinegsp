@@ -212,7 +212,7 @@
    L.circle([lat,lng],{radius:120,color:'#2457a7',weight:1,fillColor:'#2457a7',fillOpacity:.08}).addTo(map);
    document.getElementById('directionsLink').href='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(lat+','+lng);
  }
- if(!code||!mobile){fail();return;}
+ if(!code||(!sharedCode&&!mobile)){fail();return;}
  fetch(MEMBERS_URL+'?v='+Date.now(),{cache:'no-store'})
   .then(r=>{if(!r.ok)throw new Error('Could not load branch data');return r.json();})
   .then(rows=>{
