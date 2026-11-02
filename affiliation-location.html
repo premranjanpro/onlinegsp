@@ -32,6 +32,8 @@
     .brandname{font:800 19px Manrope,sans-serif;letter-spacing:.8px;display:block}
     .brandtag{font-size:10px;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase}
     .navlinks{display:flex;align-items:center;gap:25px;margin:0;padding:0;list-style:none}
+    .menu-toggle{display:none;border:1px solid #dce3ed;background:#fff;color:#173b67;border-radius:9px;padding:9px 12px;font-size:18px;line-height:1;cursor:pointer}
+    .main-nav{margin-left:auto}
     .navlinks a{font-size:13px;font-weight:700;color:#43536a;text-decoration:none}
     .navlinks a:hover,.navlinks a.active{color:var(--blue)}
     .navlinks .resultlink{background:var(--navy);color:#fff;padding:11px 16px;border-radius:9px}
@@ -61,7 +63,8 @@
     .card-bottom span{font-size:11px;color:#78869a;font-weight:700}
     .view-btn{border:0;background:#173b67;color:#fff;border-radius:8px;padding:8px 11px;font-size:11px;font-weight:800}
     .view-btn:hover{background:#2457a7}
-    .privacy-note{    .directory-layout{display:grid;grid-template-columns:minmax(330px,.88fr) minmax(0,1.45fr);gap:18px;align-items:start}
+    .privacy-note{display:flex;gap:12px;align-items:flex-start;background:#fff9ec;border:1px solid #f4e4bf;border-radius:12px;padding:15px 17px;margin-top:20px;color:#76551b}
+    .directory-layout{display:grid;grid-template-columns:minmax(330px,.88fr) minmax(0,1.45fr);gap:18px;align-items:start}
     .city-side{min-width:0}
     .city-grid{display:grid;grid-template-columns:1fr;gap:10px;max-height:590px;overflow:auto;padding:2px 5px 2px 2px}
     .city-card{padding:15px;cursor:pointer}
@@ -78,8 +81,7 @@
     .custom-city-pin i{transform:rotate(45deg)}
     .leaflet-popup-content-wrapper{border-radius:10px}
     @media(max-width:991px){.directory-layout{grid-template-columns:1fr}.map-panel{position:relative;top:auto}.city-grid{max-height:390px}#osmMap{height:420px}}
-display:flex;gap:12px;align-items:flex-start;background:#fff9ec;border:1px solid #f4e4bf;border-radius:12px;padding:15px 17px;margin-top:20px;color:#76551b}
-    .privacy-note i{margin-top:2px}
+.privacy-note i{margin-top:2px}
     .privacy-note strong{display:block;font-size:12px;margin-bottom:3px}
     .privacy-note p{font-size:11px;line-height:1.6;margin:0;color:#876a36}
     .loading,.empty{grid-column:1/-1;text-align:center;padding:45px 15px;color:var(--muted);font-size:13px}
@@ -101,7 +103,7 @@ display:flex;gap:12px;align-items:flex-start;background:#fff9ec;border:1px solid
     .footer a{color:#dce6f3;text-decoration:none;font-size:12px}
     .footer-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:25px;padding-top:17px;font-size:11px;color:#9bacc0}
     @media(max-width:991px){.navlinks{gap:13px}.navlinks a{font-size:12px}.city-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:767px){.headinner{min-height:70px}.brand img{height:45px}.brandname{font-size:16px}.navlinks{display:none}.hero{padding:48px 0 75px}.directory-panel{padding:17px}.filters{grid-template-columns:1fr;gap:9px}.city-grid{grid-template-columns:1fr 1fr;gap:10px}.city-card{padding:14px}.city-name{font-size:14px}.branch-count{font-size:20px}}
+    @media(max-width:767px){.headinner{min-height:70px;position:relative}.brand img{height:45px}.brandname{font-size:16px}.menu-toggle{display:inline-flex;align-items:center;justify-content:center}.main-nav{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-top:1px solid var(--line);box-shadow:0 12px 24px rgba(17,39,68,.12);padding:12px 18px;z-index:20}.main-nav.open{display:block}.navlinks{display:flex;flex-direction:column;align-items:stretch;gap:0}.navlinks li a{display:block;padding:12px 8px;border-bottom:1px solid #eef1f5}.navlinks .resultlink{display:block;text-align:center;margin-top:8px}.hero{padding:48px 0 75px}.directory-panel{padding:17px}.filters{grid-template-columns:1fr;gap:9px}.city-grid{grid-template-columns:1fr 1fr;gap:10px}.city-card{padding:14px}.city-name{font-size:14px}.branch-count{font-size:20px}}
     @media(max-width:420px){.city-grid{grid-template-columns:1fr}.total-pill{font-size:11px}}
   </style>
 </head>
@@ -118,17 +120,11 @@ display:flex;gap:12px;align-items:flex-start;background:#fff9ec;border:1px solid
         <img src="images/gurukul_logo.png" alt="Gurukul Logo">
         <span><span class="brandname">GURUKUL</span><span class="brandtag">The School Of Professionals</span></span>
       </a>
-      <nav><ul class="navlinks">
+      <nav class="main-nav" id="mainNav"><ul class="navlinks">
         <li><a href="index.html">Home</a></li><li><a href="aboutus.html">About Us</a></li><li><a href="courses.html">Courses</a></li>
         <li><a class="active" href="affiliation-location.html">Branches</a></li><li><a href="news.html">News</a></li><li><a href="contact.html">Contact</a></li>
         <li><a class="resultlink" href="result.html"><i class="fa-solid fa-magnifying-glass me-1"></i> Check Result</a></li>
       </ul></nav>
-<!-- PR-ADSENSE-INJECTED -->
-<div class="pr-adsense-slot pr-adsense-horizontal">
-  <div class="pr-adsense-label">Advertisement</div>
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5097235456767325" data-ad-slot="5119886699" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
 </div>
   </header>
   <main>
@@ -313,6 +309,17 @@ display:flex;gap:12px;align-items:flex-start;background:#fff9ec;border:1px solid
       const modal=bootstrap.Modal.getOrCreateInstance(document.getElementById('branchVerifyModal'));
       modal.show();
     }
+    const menuToggle=document.getElementById('menuToggle');
+    const mainNav=document.getElementById('mainNav');
+    menuToggle.addEventListener('click',()=>{
+      const opened=mainNav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded',String(opened));
+      menuToggle.innerHTML=opened?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>';
+    });
+    mainNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+      mainNav.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');
+      menuToggle.innerHTML='<i class="fa-solid fa-bars"></i>';
+    }));
     stateFilter.addEventListener('change',()=>{fillCities(getCityRows());cityFilter.value='ALL';render();});
     cityFilter.addEventListener('change',render);
     citySearch.addEventListener('input',render);
