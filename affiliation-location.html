@@ -355,7 +355,7 @@
     document.getElementById('branchVerifyForm').addEventListener('submit',e=>{
       e.preventDefault();
       if(!e.currentTarget.reportValidity())return;
-      const code=normalise(document.getElementById('branchCode').value).toUpperCase().replace(/\\s+/g,'');
+      const code=normalise(document.getElementById('branchCode').value).toUpperCase().replace(/\s+/g,'');
       const mobile=normalise(document.getElementById('registeredMobile').value).replace(/\\D/g,'');
       const result=document.getElementById('branchVerificationResult');
       if(result)result.style.display='none';
@@ -364,7 +364,7 @@
         return;
       }
       const match=branches.find(b=>{
-        const codes=[b.ENROLNO,b.ROLLNO].map(x=>normalise(x).toUpperCase().replace(/\\s+/g,''));
+        const codes=[b.ENROLNO,b.ROLLNO].map(x=>normalise(x).toUpperCase().replace(/\s+/g,''));
         const phones=[b.Phone,b.Phone2].map(x=>normalise(x).replace(/\\D/g,''));
         return codes.includes(code)&&phones.includes(mobile);
       });
