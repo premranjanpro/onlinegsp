@@ -31,18 +31,21 @@
   },
   {
     "Id": "103",
-    "NAME": "MR. SANJEEV KUMAR",
-    "Center": "INSTITUTE OF COMPUTER AND MANUAL ACCOUNTS",
+    "NAME": "BRIJESH KUMAR",
+    "Center": "THE INSTITUTE OF COMPUTER & MANUAL ACCOUNTS",
     "State": "UTTARAKHAND",
     "City": "LAKSAR",
     "District": "HARIDWAR",
-    "Address1": "NEAR RAILWAY ROAD, LAKSAR",
-    "Phone": "9719000000",
-    "ENROLNO": "UK101",
-    "ROLLNO": "UK101",
+    "Address1": "NEAR BHARAT COMPUTER OPP .P.W.D OFFICE",
+    "Phone": "9927141360",
+    "ENROLNO": "GSP-UK101",
+    "ROLLNO": "GSP-UK101",
     "STATUS": "approved",
     "Latitude": 29.7497,
-    "Longitude": 78.0267
+    "Longitude": 78.0267,
+    "Address2": "GOVERDHAN PUR ROAD",
+    "Phone2": "9084725581",
+    "Email": "brijeshvishnoi@gmail.com"
   },
   {
     "Id": "104",
