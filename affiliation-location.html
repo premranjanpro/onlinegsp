@@ -99,6 +99,14 @@
     .verify-btn{height:46px;width:100%;border:0;border-radius:9px;background:#173b67;color:#fff;font-weight:800;font-size:13px}
     .verify-btn:hover{background:#2457a7}
     .pending-msg{display:none;margin-top:13px;padding:11px 12px;background:#fff8e8;border:1px solid #f1dfb6;border-radius:8px;color:#805c1b;font-size:12px;line-height:1.5}
+    .pending-msg.error{display:block;background:#fff1f1;border-color:#f3caca;color:#9a2525}
+    .pending-msg.success{display:block;background:#edf9f0;border-color:#c8e8d0;color:#216b35}
+    .branch-result{margin-top:15px;border:1px solid #dce7f4;border-radius:12px;padding:16px;background:#f8fbff;color:#263951;font-size:12px;line-height:1.7}
+    .branch-result h6{font:800 14px Manrope,sans-serif;color:#173b67;margin:0 0 10px}
+    .branch-result .branch-detail{padding:7px 0;border-bottom:1px solid #e8eef6}
+    .branch-result .branch-detail:last-child{border-bottom:0}
+    .branch-result strong{color:#344a65}
+
     .footer{background:#0b1d33;color:#c3cfdd;padding:38px 0 20px}
     .footer-brand{font:800 17px Manrope;color:#fff}
     .footer p{font-size:12px;line-height:1.7;color:#aebdce;max-width:390px;margin:10px 0 0}
@@ -196,7 +204,8 @@
             <div class="mb-3"><label class="form-label" for="branchCode">Branch Code</label><input class="form-control" id="branchCode" name="branchCode" autocomplete="off" placeholder="Enter branch code" required></div>
             <div class="mb-3"><label class="form-label" for="registeredMobile">Registered Mobile Number</label><input class="form-control" id="registeredMobile" name="registeredMobile" type="tel" inputmode="numeric" maxlength="10" pattern="[0-9]{10}" placeholder="10-digit mobile number" required></div>
             <button class="verify-btn" type="submit"><i class="fa-solid fa-shield-halved me-2"></i>Continue to Verification</button>
-            <div class="pending-msg" id="verificationPending" role="status">Secure branch verification is not connected yet. Server-side verification will be enabled in the next phase. No branch information has been exposed.</div>
+            <div class="pending-msg" id="verificationPending" role="status"></div>
+            <div id="branchVerificationResult" class="branch-result" style="display:none" aria-live="polite"></div>
           </form>
         </div>
       </div>
@@ -332,11 +341,72 @@
     stateFilter.addEventListener('change',()=>{fillCities(getCityRows());cityFilter.value='ALL';render();});
     cityFilter.addEventListener('change',render);
     citySearch.addEventListener('input',render);
+    let branchesLoaded=false;
+    function showVerificationMessage(message,type){
+      const el=document.getElementById('verificationPending');
+      el.textContent=message;
+      el.className='pending-msg '+(type||'error');
+      el.style.display='block';
+    }
+    function safeDetail(label,value){
+      const row=document.createElement('div');
+      row.className='branch-detail';
+      const strong=document.createElement('strong');
+      strong.textContent=label+': ';
+      row.appendChild(strong);
+      row.appendChild(document.createTextNode(value||'Not available'));
+      return row;
+    }
+    function showBranchProfile(branch){
+      const box=document.getElementById('branchVerificationResult');
+      box.innerHTML='';
+      const heading=document.createElement('h6');
+      heading.textContent='Branch Verified Successfully';
+      box.appendChild(heading);
+      const address=[branch.Address1,branch.Address2,branch.City,branch.District,branch.State,branch.Pincode||branch.PinCode]
+        .map(x=>normalise(x)).filter(Boolean).join(', ');
+      [
+        ['Branch Code',branch.ENROLNO||branch.ROLLNO],
+        ['Branch Name',branch.Center],
+        ['Owner Name',branch.NAME],
+        ['Address',address],
+        ['Registered Mobile',branch.Phone],
+        ['Alternate Mobile',branch.Phone2],
+        ['Email',branch.Email],
+        ['Status',branch.STATUS]
+      ].forEach(([label,value])=>box.appendChild(safeDetail(label,normalise(value))));
+      box.style.display='block';
+    }
     document.getElementById('branchVerifyForm').addEventListener('submit',e=>{
       e.preventDefault();
       if(!e.currentTarget.reportValidity())return;
-      // Intentionally no client-side credential check: verification must be performed by a private server endpoint.
-      document.getElementById('verificationPending').style.display='block';
+      const code=normalise(document.getElementById('branchCode').value).toUpperCase().replace(/\\s+/g,'');
+      const mobile=normalise(document.getElementById('registeredMobile').value).replace(/\\D/g,'');
+      const message=document.getElementById('verificationPending');
+      const result=document.getElementById('branchVerificationResult');
+      message.style.display='none';
+      message.className='pending-msg';
+      result.style.display='none';
+      result.innerHTML='';
+      if(!branchesLoaded){
+        showVerificationMessage('Branch data is still loading. Please try again in a moment.','error');
+        return;
+      }
+      const match=branches.find(b=>{
+        const codes=[b.ENROLNO,b.ROLLNO].map(x=>normalise(x).toUpperCase().replace(/\\s+/g,''));
+        const phones=[b.Phone,b.Phone2].map(x=>normalise(x).replace(/\\D/g,''));
+        return codes.includes(code)&&phones.includes(mobile);
+      });
+      if(!match){
+        showVerificationMessage('Branch Code or Registered Mobile Number is incorrect. Please check and try again.','error');
+        return;
+      }
+      if(normalise(match.STATUS).toLowerCase()!=='approved'){
+        showVerificationMessage('The branch record was found, but its current status is not approved. Please contact the office.','error');
+        return;
+      }
+      showVerificationMessage('Branch credentials matched. The branch profile is shown below.','success');
+      showBranchProfile(match);
     });
     async function loadBranches(){
       try{
@@ -345,6 +415,7 @@
         if(!response.ok)throw new Error('Unable to load locations');
         const data=await response.json();
         branches=Array.isArray(data)?data.filter(x=>normalise(x.City)&&normalise(x.State)):[];
+        branchesLoaded=true;
         fillFilters(getCityRows());
         render();
       }catch(err){
