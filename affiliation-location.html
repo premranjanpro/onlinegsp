@@ -1,989 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
-<style id="pr-adsense-layout">
-.pr-adsense-slot{width:100%;box-sizing:border-box;clear:both;margin:28px auto;padding:0 12px;text-align:center;min-height:50px}.pr-adsense-slot ins.adsbygoogle{margin:0 auto}.pr-adsense-horizontal{max-width:1100px}.pr-adsense-square{max-width:430px}.pr-adsense-vertical{max-width:330px}.pr-adsense-label{font-size:10px;line-height:1.2;color:#8a8a8a;text-align:center;margin:0 0 5px;font-weight:400}@media(max-width:767px){.pr-adsense-slot{margin:22px auto;padding:0 8px}.pr-adsense-vertical{max-width:100%}}
-</style>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
-<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Affiliated Branch Locations & Study Centers | Gurukul The School Of Professionals</title>
-    <meta name="description" content="Search verified affiliated training centers and study center branches across India with interactive OpenStreetMap geolocation and masked security filters.">
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-
-    <!-- CSS Dependencies -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/portal-theme.css" rel="stylesheet">
-
-    <!-- Leaflet CSS for OpenStreetMap (OSM) -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-
-    <style>
-        :root {
-            --portal-navy-dark: #09192f;
-            --portal-navy-mid: #0f2a4a;
-            --portal-blue-accent: #1e3a8a;
-            --portal-gold-primary: #d97706;
-            --portal-gold-light: #fbbf24;
-            --portal-emerald: #059669;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f8fafc;
-            color: #1e293b;
-        }
-
-        /* Page Sub Hero */
-        .page-sub-hero {
-            background: linear-gradient(135deg, var(--portal-navy-dark) 0%, var(--portal-navy-mid) 60%, var(--portal-blue-accent) 100%);
-            padding: 55px 0 45px;
-            color: #ffffff;
-            position: relative;
-        }
-
-        .page-hero-title {
-            font-family: 'Cinzel', serif;
-            font-size: 32px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-        }
-
-        .page-hero-title span {
-            color: var(--portal-gold-light);
-        }
-
-        .page-hero-sub {
-            color: #cbd5e1;
-            font-size: 15px;
-            max-width: 680px;
-            margin: 0 auto;
-        }
-
-        /* Search & Filter Card */
-        .branch-filter-card {
-            background: #ffffff;
-            border-radius: 18px;
-            padding: 24px;
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-            border: 1px solid #e2e8f0;
-            margin-top: -30px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .filter-label {
-            font-size: 11.5px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            color: #475569;
-            margin-bottom: 6px;
-        }
-
-        .branch-select-input {
-            border-radius: 10px;
-            border: 1.5px solid #cbd5e1;
-            padding: 10px 14px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #0f172a;
-            background-color: #ffffff;
-            transition: all 0.2s ease;
-        }
-
-        .branch-select-input:focus {
-            border-color: var(--portal-blue-accent);
-            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
-            outline: none;
-        }
-
-        /* Center Card Item */
-        .center-card-item {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 16px;
-            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
-            transition: all 0.25s ease;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .center-card-item:hover, .center-card-item.active-center {
-            border-color: var(--portal-gold-primary);
-            box-shadow: 0 12px 28px rgba(217, 119, 6, 0.12);
-            transform: translateY(-2px);
-        }
-
-        .center-card-item.active-center {
-            border-left: 5px solid var(--portal-gold-primary);
-            background: #fffdfa;
-        }
-
-        .center-header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 10px;
-        }
-
-        .center-masked-title {
-            font-size: 17px;
-            font-weight: 800;
-            color: #09192f;
-            line-height: 1.3;
-            margin: 0;
-            letter-spacing: 0.3px;
-        }
-
-        .center-code-badge {
-            background: linear-gradient(135deg, #09192f 0%, #1e3a8a 100%);
-            color: #fbbf24;
-            font-size: 11px;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 20px;
-            white-space: nowrap;
-            letter-spacing: 0.5px;
-        }
-
-        .masked-address-box {
-            background: #f8fafc;
-            border-radius: 10px;
-            padding: 10px 14px;
-            font-size: 13px;
-            color: #334155;
-            margin-bottom: 12px;
-            border: 1px dashed #cbd5e1;
-        }
-
-        .center-meta-row {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            font-size: 12px;
-        }
-
-        .pill-city-tag {
-            background: #e0e7ff;
-            color: #3730a3;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 6px;
-        }
-
-        .pill-state-tag {
-            background: #fef3c7;
-            color: #92400e;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 6px;
-        }
-
-        .btn-pin-map {
-            background: transparent;
-            border: 1px solid #cbd5e1;
-            color: #1e3a8a;
-            font-weight: 700;
-            font-size: 12px;
-            padding: 5px 12px;
-            border-radius: 20px;
-            transition: all 0.2s ease;
-        }
-
-        .btn-pin-map:hover {
-            background: #1e3a8a;
-            color: #ffffff;
-            border-color: #1e3a8a;
-        }
-
-        /* Map Container */
-        .map-sticky-wrap {
-            position: sticky;
-            top: 90px;
-            background: #ffffff;
-            border-radius: 18px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-            overflow: hidden;
-        }
-
-        .map-header-bar {
-            background: linear-gradient(135deg, #09192f 0%, #0f2a4a 100%);
-            color: #ffffff;
-            padding: 14px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        #osmMap {
-            height: 540px;
-            width: 100%;
-            z-index: 1;
-        }
-
-        @media (max-width: 991px) {
-            #osmMap {
-                height: 380px;
-            }
-            .map-sticky-wrap {
-                position: static;
-                margin-top: 24px;
-            }
-        }
-
-        /* Trade Classroom Showcase Grid */
-        .trade-gallery-section {
-            background: #ffffff;
-            padding: 70px 0;
-            border-top: 1px solid #e2e8f0;
-            margin-top: 60px;
-        }
-
-        .trade-photo-card {
-            background: #ffffff;
-            border-radius: 18px;
-            overflow: hidden;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
-            height: 100%;
-            transition: all 0.3s ease;
-        }
-
-        .trade-photo-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
-            border-color: var(--portal-gold-primary);
-        }
-
-        .trade-img-wrap {
-            position: relative;
-            height: 220px;
-            overflow: hidden;
-            background: #0f172a;
-        }
-
-        .trade-img-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .trade-photo-card:hover .trade-img-wrap img {
-            transform: scale(1.06);
-        }
-
-        .trade-badge-overlay {
-            position: absolute;
-            top: 14px;
-            left: 14px;
-            background: rgba(9, 25, 47, 0.85);
-            backdrop-filter: blur(8px);
-            color: #fbbf24;
-            font-size: 11px;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 20px;
-            border: 1px solid rgba(251, 191, 36, 0.4);
-        }
-
-        .trade-card-content {
-            padding: 20px;
-        }
-
-        .trade-card-title {
-            font-size: 16px;
-            font-weight: 800;
-            color: #09192f;
-            margin-bottom: 6px;
-        }
-
-        .trade-card-desc {
-            font-size: 12.5px;
-            color: #64748b;
-            line-height: 1.45;
-            margin-bottom: 0;
-        }
-
-        /* Custom Leaflet Map Marker Styling */
-        .custom-map-pin {
-            background: linear-gradient(135deg, #d97706, #fbbf24);
-            color: #09192f;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            border: 2px solid #ffffff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .leaflet-popup-content-wrapper {
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .leaflet-popup-content {
-            margin: 12px 14px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 13px;
-            line-height: 1.4;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Affiliated Branch Locations | Gurukul The School Of Professionals</title>
+  <meta name="description" content="Explore city-wise counts of Gurukul affiliated branches across India. Verify branch details through the official branch verification process.">
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/portal-theme.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root{--ink:#14243b;--navy:#102744;--blue:#2457a7;--gold:#e5a52e;--muted:#66758b;--line:#e5eaf1;--soft:#f4f7fb}
+    *{box-sizing:border-box}
+    body{margin:0;background:#f5f7fb;color:var(--ink);font-family:'DM Sans',sans-serif}
+    .topline{background:#0b1d33;color:#dce6f3;font-size:12px;padding:9px 0}
+    .topline a{color:#fff;text-decoration:none}
+    .sitehead{background:#fff;border-bottom:1px solid var(--line);position:relative;z-index:5}
+    .headinner{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+    .brand img{height:54px;width:auto}
+    .brandname{font:800 19px Manrope,sans-serif;letter-spacing:.8px;display:block}
+    .brandtag{font-size:10px;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase}
+    .navlinks{display:flex;align-items:center;gap:25px;margin:0;padding:0;list-style:none}
+    .navlinks a{font-size:13px;font-weight:700;color:#43536a;text-decoration:none}
+    .navlinks a:hover,.navlinks a.active{color:var(--blue)}
+    .navlinks .resultlink{background:var(--navy);color:#fff;padding:11px 16px;border-radius:9px}
+    .hero{background:radial-gradient(circle at 85% 15%,rgba(229,165,46,.2),transparent 25%),linear-gradient(120deg,#0b1d33,#173b67);color:#fff;padding:66px 0 92px;position:relative;overflow:hidden}
+    .hero:after{content:"";position:absolute;width:360px;height:360px;border:1px solid rgba(255,255,255,.1);border-radius:50%;right:-90px;bottom:-230px;box-shadow:0 0 0 35px rgba(255,255,255,.025),0 0 0 75px rgba(255,255,255,.02)}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);border-radius:30px;padding:8px 13px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#f5c86c}
+    .hero h1{font:800 clamp(30px,4vw,46px) Manrope,sans-serif;letter-spacing:-1.2px;margin:19px 0 12px}
+    .hero p{max-width:650px;color:#cfdaea;font-size:15px;line-height:1.8;margin:0}
+    .content-wrap{margin-top:-38px;position:relative;z-index:2;padding-bottom:70px}
+    .directory-panel{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 16px 45px rgba(17,39,68,.09);padding:24px}
+    .directory-top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:20px}
+    .directory-title{font:800 19px Manrope,sans-serif;margin:0}
+    .directory-sub{font-size:12px;color:var(--muted);margin-top:4px}
+    .total-pill{background:#edf4ff;color:#1e4d91;border-radius:30px;padding:9px 14px;font-size:12px;font-weight:800;white-space:nowrap}
+    .filters{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:12px;padding:16px;background:#f7f9fc;border:1px solid #edf0f5;border-radius:13px;margin-bottom:22px}
+    .filters select,.filters input{height:45px;border:1px solid #dce3ed;border-radius:9px;background:#fff;padding:0 13px;width:100%;font:600 13px 'DM Sans';color:#263951;outline:none}
+    .filters select:focus,.filters input:focus{border-color:#6c91c7;box-shadow:0 0 0 3px rgba(36,87,167,.1)}
+    .city-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .city-card{border:1px solid var(--line);border-radius:14px;padding:19px;background:#fff;transition:.2s ease;min-width:0}
+    .city-card:hover{border-color:#b9cbe5;transform:translateY(-2px);box-shadow:0 9px 22px rgba(17,39,68,.07)}
+    .city-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .city-icon{width:39px;height:39px;border-radius:11px;background:#edf3fc;color:#2457a7;display:grid;place-items:center;font-size:16px}
+    .branch-count{font:800 23px Manrope,sans-serif;color:#183a66}
+    .city-name{font:800 16px Manrope,sans-serif;margin:14px 0 3px;text-transform:capitalize}
+    .state-name{font-size:12px;color:var(--muted)}
+    .card-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid #eef1f5;margin-top:16px;padding-top:13px}
+    .card-bottom span{font-size:11px;color:#78869a;font-weight:700}
+    .view-btn{border:0;background:#173b67;color:#fff;border-radius:8px;padding:8px 11px;font-size:11px;font-weight:800}
+    .view-btn:hover{background:#2457a7}
+    .privacy-note{display:flex;gap:12px;align-items:flex-start;background:#fff9ec;border:1px solid #f4e4bf;border-radius:12px;padding:15px 17px;margin-top:20px;color:#76551b}
+    .privacy-note i{margin-top:2px}
+    .privacy-note strong{display:block;font-size:12px;margin-bottom:3px}
+    .privacy-note p{font-size:11px;line-height:1.6;margin:0;color:#876a36}
+    .loading,.empty{grid-column:1/-1;text-align:center;padding:45px 15px;color:var(--muted);font-size:13px}
+    .loading i{font-size:23px;color:#2457a7;margin-bottom:12px}
+    .modal-content{border:0;border-radius:17px;overflow:hidden}
+    .modal-header{background:#102744;color:#fff;padding:20px 23px;border:0}
+    .modal-header .btn-close{filter:invert(1);opacity:.8}
+    .modal-title{font:800 17px Manrope,sans-serif}
+    .modal-body{padding:24px}
+    .modal-hint{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:20px}
+    .form-label{font-size:11px;font-weight:800;color:#3f5067;margin-bottom:7px}
+    .form-control{height:46px;border-radius:9px;border-color:#dce3ed;font-size:13px}
+    .verify-btn{height:46px;width:100%;border:0;border-radius:9px;background:#173b67;color:#fff;font-weight:800;font-size:13px}
+    .verify-btn:hover{background:#2457a7}
+    .pending-msg{display:none;margin-top:13px;padding:11px 12px;background:#fff8e8;border:1px solid #f1dfb6;border-radius:8px;color:#805c1b;font-size:12px;line-height:1.5}
+    .footer{background:#0b1d33;color:#c3cfdd;padding:38px 0 20px}
+    .footer-brand{font:800 17px Manrope;color:#fff}
+    .footer p{font-size:12px;line-height:1.7;color:#aebdce;max-width:390px;margin:10px 0 0}
+    .footer a{color:#dce6f3;text-decoration:none;font-size:12px}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:25px;padding-top:17px;font-size:11px;color:#9bacc0}
+    @media(max-width:991px){.navlinks{gap:13px}.navlinks a{font-size:12px}.city-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:767px){.headinner{min-height:70px}.brand img{height:45px}.brandname{font-size:16px}.navlinks{display:none}.hero{padding:48px 0 75px}.directory-panel{padding:17px}.filters{grid-template-columns:1fr;gap:9px}.city-grid{grid-template-columns:1fr 1fr;gap:10px}.city-card{padding:14px}.city-name{font-size:14px}.branch-count{font-size:20px}}
+    @media(max-width:420px){.city-grid{grid-template-columns:1fr}.total-pill{font-size:11px}}
+  </style>
 </head>
 <body>
-
-    <!-- 1. TOP GOVERNMENT / BOARD BAR -->
-    <div class="gov-top-bar">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <div class="d-flex align-items-center flex-wrap">
-                    <span class="gov-badge me-3"><i class="fa-solid fa-shield-halved me-1"></i> ISO 9001:2015 Certified</span>
-                    <span class="info-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:gptiindia@yahoo.in">gptiindia@yahoo.in</a></span>
-                    <span class="info-item"><i class="fa-solid fa-phone"></i> <a href="tel:+918800959688">+91-88009-59688</a></span>
-                </div>
-                <div class="d-flex align-items-center gap-3">
-                    <a href="result.html" class="text-white text-decoration-none small"><i class="fa-solid fa-file-signature text-warning me-1"></i> Search Result</a>
-                    <span class="text-white-50">|</span>
-                    <a href="verify.html" class="text-white text-decoration-none small"><i class="fa-solid fa-qrcode me-1"></i> Certificate Verification</a>
-                </div>
-            </div>
-        </div>
+  <div class="topline">
+    <div class="container d-flex justify-content-between flex-wrap gap-2">
+      <div><i class="fa-solid fa-shield-halved me-1"></i> ISO 9001:2015 Certified <span class="mx-2">|</span><a href="mailto:gptiindia@yahoo.in">gptiindia@yahoo.in</a></div>
+      <div><a href="result.html">Search Result</a><span class="mx-2">|</span><a href="verify.html">Certificate Verification</a></div>
     </div>
-
-    <!-- 2. ANNOUNCEMENT TICKER MARQUEE -->
-    <div class="portal-ticker-wrap">
-        <div class="portal-ticker-title">
-            <i class="fa-solid fa-bullhorn"></i> Affiliated Centers
-        </div>
-        <div class="portal-ticker-content">
-            <div class="portal-ticker-item">
-                <i class="fa-solid fa-network-wired"></i> Verified Study Center Network & Skill Partner Locations Across India.
-            </div>
-            <div class="portal-ticker-item">
-                <i class="fa-solid fa-shield-check"></i> Center names and exact addresses are partially masked for data privacy & security.
-            </div>
-            <div class="portal-ticker-item">
-                <i class="fa-solid fa-school"></i> For full branch affiliation status & enrollment queries, contact Gurukul Central Board.
-            </div>
-        </div>
+  </div>
+  <header class="sitehead">
+    <div class="container headinner">
+      <a href="index.html" class="brand">
+        <img src="images/gurukul_logo.png" alt="Gurukul Logo">
+        <span><span class="brandname">GURUKUL</span><span class="brandtag">The School Of Professionals</span></span>
+      </a>
+      <nav><ul class="navlinks">
+        <li><a href="index.html">Home</a></li><li><a href="aboutus.html">About Us</a></li><li><a href="courses.html">Courses</a></li>
+        <li><a class="active" href="affiliation-location.html">Branches</a></li><li><a href="news.html">News</a></li><li><a href="contact.html">Contact</a></li>
+        <li><a class="resultlink" href="result.html"><i class="fa-solid fa-magnifying-glass me-1"></i> Check Result</a></li>
+      </ul></nav>
     </div>
-
-    <!-- 3. MAIN PORTAL HEADER & NAVIGATION -->
-    <header class="portal-header">
-        <div class="container">
-            <div class="portal-header-inner">
-                <a href="index.html" class="board-brand">
-                    <img src="images/gurukul_logo.png" alt="Gurukul Logo">
-                    <div class="board-brand-text">
-                        <span class="board-title">GURUKUL</span>
-                        <span class="board-subtitle">The School Of Professionals</span>
-                    </div>
-                </a>
-
-                <nav class="d-none d-lg-block">
-                    <ul class="portal-nav">
-                        <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-                        <li><a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
-                        <li><a href="courses.html"><i class="fa-solid fa-book-open"></i> Courses</a></li>
-                        <li class="active"><a href="affiliation-location.html"><i class="fa-solid fa-network-wired"></i> Branches</a></li>
-                        <li><a href="news.html"><i class="fa-solid fa-newspaper"></i> News</a></li>
-                        <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a></li>
-                        <li class="ms-2"><a href="result.html" class="btn-verify-nav"><i class="fa-solid fa-magnifying-glass"></i> Check Result</a></li>
-                    </ul>
-                </nav>
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5097235456767325" data-ad-slot="5119886699" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-            </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="eyebrow"><i class="fa-solid fa-location-dot"></i> Pan-India Network</span>
+        <h1>Affiliated Branch Locations</h1>
+        <p>Explore the reach of Gurukul's affiliated learning network. Browse city-wise branch availability and use the official verification option to request branch information.</p>
+      </div>
+    </section>
+    <section class="container content-wrap">
+      <div class="directory-panel">
+        <div class="directory-top">
+          <div><h2 class="directory-title">Explore Our Network</h2><div class="directory-sub">City-wise branch availability across India</div></div>
+          <div class="total-pill"><i class="fa-solid fa-building-columns me-1"></i> <span id="totalBranches">Loading...</span></div>
         </div>
-    </header>
-<!-- PR-ADSENSE-INJECTED -->
-<div class="pr-adsense-slot pr-adsense-horizontal">
-  <div class="pr-adsense-label">Advertisement</div>
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5097235456767325" data-ad-slot="5119886699" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-<main>
-        <!-- 4. PAGE HERO -->
-        <section class="page-sub-hero">
-            <div class="container text-center">
-                <div class="badge bg-warning text-dark fw-bold px-3 py-1 text-uppercase mb-2">
-                    <i class="fa-solid fa-location-dot me-1"></i> Pan-India Center Directory
-                </div>
-                <h1 class="page-hero-title">Affiliated <span>Branch Locations</span></h1>
-                <p class="page-hero-sub">
-                    Explore certified training partners, computer centers, and vocational study branches with interactive OpenStreetMap geolocation.
-                </p>
-            </div>
-        </section>
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5097235456767325" data-ad-slot="5405248145" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-
-        <!-- 5. FILTER CARD -->
-        <section class="container mb-4">
-            <div class="branch-filter-card">
-                <div class="row g-3 align-items-end">
-                    <div class="col-lg-4 col-md-6">
-                        <label for="stateSelect" class="filter-label">
-                            <i class="fa-solid fa-map-location-dot text-warning me-1"></i> Select State
-                        </label>
-                        <select id="stateSelect" class="form-select branch-select-input">
-                            <option value="ALL">All States (India)</option>
-                        </select>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <label for="citySelect" class="filter-label">
-                            <i class="fa-solid fa-city text-primary me-1"></i> Select City / District
-                        </label>
-                        <select id="citySelect" class="form-select branch-select-input">
-                            <option value="ALL">All Cities</option>
-                        </select>
-                    </div>
-
-                    <div class="col-lg-3 col-md-9">
-                        <label for="branchSearchInput" class="filter-label">
-                            <i class="fa-solid fa-magnifying-glass text-success me-1"></i> Search Center / Code
-                        </label>
-                        <input type="text" id="branchSearchInput" class="form-control branch-select-input" placeholder="Search by city or branch...">
-                    </div>
-
-                    <div class="col-lg-1 col-md-3 text-end">
-                        <button type="button" class="btn btn-outline-secondary w-100 rounded-3 py-2 fw-bold" onclick="resetBranchFilters()" title="Reset Filters">
-                            <i class="fa-solid fa-arrows-rotate"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. MAIN DIRECTORY & INTERACTIVE OSM MAP SECTION -->
-        <section class="container pb-5">
-            <div class="row g-4">
-                <!-- Left Column: Filtered Masked Center Cards List -->
-                <div class="col-lg-6">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="fw-bold text-navy mb-0 fs-5">
-                            <i class="fa-solid fa-building-columns text-warning me-2"></i> Verified Study Centers
-                        </h4>
-                        <span class="badge bg-primary text-white fw-bold px-3 py-2" id="branchCountBadge">
-                            Loading centers...
-                        </span>
-                    </div>
-
-                    <div id="branchListLoading" class="text-center py-5 text-muted fw-bold">
-                        <div class="spinner-border text-primary me-2" role="status"></div> Loading branch records...
-                    </div>
-
-                    <div id="branchListContainer" style="max-height: 560px; overflow-y: auto; padding-right: 6px;"></div>
-
-                    <div id="noBranchFound" class="text-center py-5 bg-white rounded-4 border p-4" style="display: none;">
-                        <i class="fa-solid fa-map-pin fs-1 text-warning mb-3"></i>
-                        <h5 class="fw-bold text-navy">No Centers Found In This Filter</h5>
-                        <p class="text-muted small">Try selecting another State or City from the dropdown above.</p>
-                        <button type="button" class="btn btn-primary btn-sm rounded-pill px-3 fw-bold" onclick="resetBranchFilters()">View All Centers</button>
-                    </div>
-                </div>
-
-                <!-- Right Column: Sticky OpenStreetMap (OSM) -->
-                <div class="col-lg-6">
-                    <div class="map-sticky-wrap">
-                        <div class="map-header-bar">
-                            <div class="d-flex align-items-center gap-2">
-                                <i class="fa-solid fa-earth-asia text-warning fs-5"></i>
-                                <div>
-                                    <h6 class="fw-bold mb-0 text-white">Live OpenStreetMap (OSM)</h6>
-                                    <small class="text-white-50" id="mapStatusText">Showing active study center pins</small>
-                                </div>
-                            </div>
-                            <span class="badge bg-success bg-opacity-25 text-white border border-success fw-bold">
-                                <i class="fa-solid fa-circle-check me-1"></i> Interactive
-                            </span>
-                        </div>
-                        <div id="osmMap"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-<!-- PR-ADSENSE-INJECTED -->
-<div class="pr-adsense-slot pr-adsense-square">
-  <div class="pr-adsense-label">Advertisement</div>
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5097235456767325" data-ad-slot="5405248145" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-<!-- 7. 4 TRADE CLASSROOMS SHOWCASE GALLERY -->
-        <section class="trade-gallery-section">
-            <div class="container">
-                <div class="text-center max-w-700 mx-auto mb-5">
-                    <span class="badge bg-warning text-dark fw-bold px-3 py-2 text-uppercase mb-2">
-                        <i class="fa-solid fa-chalkboard-user me-1"></i> Practical Learning Infrastructure
-                    </span>
-                    <h2 class="fw-extrabold text-navy display-6 mt-1">Four Core Trade Training Studios</h2>
-                    <p class="text-muted small">
-                        Every Gurukul affiliated center is equipped with branded modern lab workstations and vocational workshop studios.
-                    </p>
-                </div>
-
-                <div class="row g-4">
-                    <!-- Trade 1: Computer Science & IT Lab -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="trade-photo-card">
-                            <div class="trade-img-wrap">
-                                <img src="images/trade_computer_lab.jpg" alt="Computer & IT Lab - Gurukul">
-                                <span class="trade-badge-overlay"><i class="fa-solid fa-laptop-code me-1"></i> IT & Coding</span>
-                            </div>
-                            <div class="trade-card-content">
-                                <h4 class="trade-card-title">Computer & IT Lab</h4>
-                                <p class="trade-card-desc">High-speed workstations, programming tools, DCA, ADCA & Web Designing.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Trade 2: Fashion Designing & Tailoring Studio -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="trade-photo-card">
-                            <div class="trade-img-wrap">
-                                <img src="images/trade_fashion_tailoring_lab.jpg" alt="Fashion Designing & Tailoring Studio - Gurukul">
-                                <span class="trade-badge-overlay"><i class="fa-solid fa-scissors me-1"></i> Fashion & Apparel</span>
-                            </div>
-                            <div class="trade-card-content">
-                                <h4 class="trade-card-title">Fashion & Tailoring Studio</h4>
-                                <p class="trade-card-desc">Pattern drafting tables, electric sewing machines & garment creation labs.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Trade 3: Electrical & Technical Trades Lab -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="trade-photo-card">
-                            <div class="trade-img-wrap">
-                                <img src="images/trade_electrical_lab.jpg" alt="Electrical & Technical Trades Lab - Gurukul">
-                                <span class="trade-badge-overlay"><i class="fa-solid fa-bolt me-1"></i> Technical Trades</span>
-                            </div>
-                            <div class="trade-card-content">
-                                <h4 class="trade-card-title">Electrical & Technical Lab</h4>
-                                <p class="trade-card-desc">Circuit test benches, wiring panels, multimeter diagnostics & safety training.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Trade 4: Nursery Teacher Training (NTT) Lab -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="trade-photo-card">
-                            <div class="trade-img-wrap">
-                                <img src="images/trade_teacher_training_lab.jpg" alt="Teacher Training NTT Lab - Gurukul">
-                                <span class="trade-badge-overlay"><i class="fa-solid fa-children me-1"></i> NTT & Early Ed</span>
-                            </div>
-                            <div class="trade-card-content">
-                                <h4 class="trade-card-title">Teacher Training (NTT) Lab</h4>
-                                <p class="trade-card-desc">Montessori aids, storytelling puppet theaters & child development pedagogy.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ULTRA-PREMIUM GLOBAL FOOTER -->
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5097235456767325" data-ad-slot="7088021599" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-<!-- PR-ADSENSE-INJECTED -->
-<div class="pr-adsense-slot pr-adsense-vertical">
-  <div class="pr-adsense-label">Advertisement</div>
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5097235456767325" data-ad-slot="7088021599" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-<footer class="portal-global-footer">
-        <div class="portal-footer-top">
-            <div class="container">
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6">
-                        <a href="index.html" class="d-flex align-items-center gap-3 text-decoration-none mb-3">
-                            <img src="images/gurukul_logo.png" alt="Gurukul Logo" style="height: 55px; width: auto;">
-                            <div>
-                                <div class="footer-brand-title">GURUKUL</div>
-                                <div class="footer-brand-sub">The School Of Professionals</div>
-                            </div>
-                        </a>
-                        <p class="footer-about-text">
-                            Gurukul The School Of Professionals is an ISO 9001:2015 certified premier education board dedicated to delivering industry-aligned technical, computer, management, and vocational training across India.
-                        </p>
-                        <div class="d-flex align-items-center gap-2 mt-2">
-                            <span class="badge bg-warning text-dark fw-bold"><i class="fa-solid fa-shield-halved me-1"></i> ISO 9001:2015 Accredited Board</span>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-2 col-md-6">
-                        <h5 class="footer-heading">Quick Links</h5>
-                        <ul class="footer-links-list">
-                            <li><a href="index.html"><i class="fa-solid fa-angle-right"></i> Home Portal</a></li>
-                            <li><a href="aboutus.html"><i class="fa-solid fa-angle-right"></i> About Board</a></li>
-                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Course Catalog</a></li>
-                            <li><a href="result.html"><i class="fa-solid fa-angle-right"></i> Examination Result</a></li>
-                            <li><a href="verify.html"><i class="fa-solid fa-angle-right"></i> Certificate Verify</a></li>
-                            <li><a href="contact.html"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="footer-heading">Programs</h5>
-                        <ul class="footer-links-list">
-                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Computer Applications & IT</a></li>
-                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Financial Accounting & Tally</a></li>
-                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Vocational Skill Certification</a></li>
-                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Teacher Training (NTT / ECCE)</a></li>
-                            <li><a href="courses.html"><i class="fa-solid fa-angle-right"></i> Industrial & Electrical Trades</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="footer-heading">Head Office</h5>
-                        <div class="footer-contact-item">
-                            <div class="footer-contact-icon"><i class="fa-solid fa-location-dot"></i></div>
-                            <div class="footer-contact-text">
-                                WZ-85, Ram Nagar, Tilak Nagar,<br>New Delhi - 110018
-                            </div>
-                        </div>
-                        <div class="footer-contact-item">
-                            <div class="footer-contact-icon"><i class="fa-solid fa-phone"></i></div>
-                            <div class="footer-contact-text">
-                                <a href="tel:+918800959688">+91-88009-59688</a>
-                            </div>
-                        </div>
-                        <div class="footer-contact-item">
-                            <div class="footer-contact-icon"><i class="fa-solid fa-envelope"></i></div>
-                            <div class="footer-contact-text">
-                                <a href="mailto:gptiindia@yahoo.in">gptiindia@yahoo.in</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="filters">
+          <select id="stateFilter" aria-label="Filter by state"><option value="ALL">All States</option></select>
+          <select id="cityFilter" aria-label="Filter by city"><option value="ALL">All Cities</option></select>
+          <input id="citySearch" type="search" placeholder="Search city or state..." aria-label="Search city or state">
         </div>
-
-        <div class="portal-footer-bottom text-center">
-            <div class="container">
-                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-                    <div>
-                        Copyright © 2026 <strong>Gurukul The School Of Professionals</strong>. All Rights Reserved.
-                    </div>
-                    <div>
-                        <span>ISO 9001:2015 Certified Board</span> | 
-                        <a href="verify.html" class="text-warning text-decoration-none ms-1">Digital Verification System</a>
-                    </div>
-                </div>
-            </div>
+        <div id="cityGrid" class="city-grid"><div class="loading"><i class="fa-solid fa-circle-notch fa-spin d-block"></i>Loading affiliated locations...</div></div>
+        <div class="privacy-note">
+          <i class="fa-solid fa-lock"></i>
+          <div><strong>Branch information is protected</strong><p>Only city-wise branch counts are displayed publicly. Branch names, branch codes, contact numbers and addresses are not shown on this page.</p></div>
         </div>
-    </footer>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="d-flex justify-content-between flex-wrap gap-4">
+        <div><div class="footer-brand">GURUKUL — The School Of Professionals</div><p>Gurukul is committed to technical, computer, management and vocational learning through its affiliated education network.</p></div>
+        <div><div class="text-white fw-bold mb-2">Quick Links</div><div class="d-flex flex-column gap-2"><a href="aboutus.html">About Us</a><a href="courses.html">Courses</a><a href="result.html">Examination Result</a><a href="verify.html">Certificate Verification</a><a href="contact.html">Contact Us</a></div></div>
+        <div><div class="text-white fw-bold mb-2">Head Office</div><div class="small">WZ-85, Ram Nagar, Tilak Nagar,<br>New Delhi - 110018</div><div class="mt-2"><a href="tel:+918800959688">+91-88009-59688</a></div><div><a href="mailto:gptiindia@yahoo.in">gptiindia@yahoo.in</a></div></div>
+      </div>
+      <div class="footer-bottom d-flex justify-content-between flex-wrap gap-2"><span>Copyright © 2026 Gurukul The School Of Professionals. All Rights Reserved.</span><span>ISO 9001:2015 Certified Board</span></div>
+    </div>
+  </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Leaflet JS for OpenStreetMap -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-    <!-- Branch Filtering & Masking Application Script -->
-    <script>
-        const JSON_MEMBERS = 'db/members.json';
-        let allMembers = [];
-        let mapInstance = null;
-        let markerGroup = null;
-
-        // Elements
-        const stateSelect = document.getElementById('stateSelect');
-        const citySelect = document.getElementById('citySelect');
-        const branchSearchInput = document.getElementById('branchSearchInput');
-        const branchListContainer = document.getElementById('branchListContainer');
-        const branchListLoading = document.getElementById('branchListLoading');
-        const noBranchFound = document.getElementById('noBranchFound');
-        const branchCountBadge = document.getElementById('branchCountBadge');
-        const mapStatusText = document.getElementById('mapStatusText');
-
-        // Half-Masking Algorithm for Center Names
-        function maskCenterName(rawName) {
-            if (!rawName) return 'GURUKUL AFFILIATED ACADEMY';
-            const words = rawName.trim().split(/\s+/);
-            return words.map(w => {
-                const len = w.length;
-                if (len <= 2) return w[0] + '*';
-                if (len <= 4) return w.slice(0, 2) + '*'.repeat(len - 2);
-                const visible = Math.ceil(len / 2);
-                return w.slice(0, visible) + '*'.repeat(len - visible);
-            }).join(' ');
-        }
-
-        // Masking Algorithm for Address
-        function maskAddress(rawAddr, city, state) {
-            if (!rawAddr || rawAddr.trim().length <= 2) {
-                return `Main Road Area, ${city || ''}, ${state || ''}`;
-            }
-            const parts = rawAddr.trim().split(/[, ]+/);
-            const maskedParts = parts.map(p => {
-                if (p.length <= 2) return p;
-                const show = Math.min(2, Math.floor(p.length / 3));
-                return p.slice(0, Math.max(1, show)) + '*'.repeat(Math.max(2, p.length - show));
-            });
-            return maskedParts.join(' ') + `, ${city || ''}`;
-        }
-
-        // Masking Algorithm for Phone
-        function maskPhone(phone) {
-            if (!phone || phone.length < 5) return '+91 88009-XXXXX';
-            const p = phone.replace(/\D/g, '');
-            if (p.length >= 10) {
-                return `+91 ${p.slice(0, 5)}-XXXXX`;
-            }
-            return '+91 88009-XXXXX';
-        }
-
-        // Initialize OpenStreetMap (OSM)
-        function initMap() {
-            // Center roughly around North/Central India
-            mapInstance = L.map('osmMap', {
-                center: [28.6139, 77.2090],
-                zoom: 7,
-                scrollWheelZoom: false
-            });
-
-            // Add OpenStreetMap Tile Layer
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(mapInstance);
-
-            markerGroup = L.featureGroup().addTo(mapInstance);
-        }
-
-        // Populate State and City Dropdowns
-        function populateDropdowns() {
-            const states = [...new Set(allMembers.map(m => m.State).filter(Boolean))].sort();
-            stateSelect.innerHTML = '<option value="ALL">All States (India)</option>';
-            states.forEach(s => {
-                const opt = document.createElement('option');
-                opt.value = s;
-                opt.textContent = s;
-                stateSelect.appendChild(opt);
-            });
-
-            updateCityDropdown('ALL');
-        }
-
-        function updateCityDropdown(selectedState) {
-            let cities = [];
-            if (selectedState === 'ALL') {
-                cities = [...new Set(allMembers.map(m => m.City).filter(Boolean))].sort();
-            } else {
-                cities = [...new Set(allMembers.filter(m => m.State === selectedState).map(m => m.City).filter(Boolean))].sort();
-            }
-
-            citySelect.innerHTML = '<option value="ALL">All Cities / Districts</option>';
-            cities.forEach(c => {
-                const opt = document.createElement('option');
-                opt.value = c;
-                opt.textContent = c;
-                citySelect.appendChild(opt);
-            });
-        }
-
-        // Render Branch List & Map Markers
-        function renderBranches() {
-            const stateVal = stateSelect.value;
-            const cityVal = citySelect.value;
-            const searchVal = (branchSearchInput.value || '').toLowerCase().trim();
-
-            branchListContainer.innerHTML = '';
-            markerGroup.clearLayers();
-
-            const filtered = allMembers.filter(m => {
-                const stateMatch = (stateVal === 'ALL') || (m.State === stateVal);
-                const cityMatch = (cityVal === 'ALL') || (m.City === cityVal);
-                const searchMatch = !searchVal || 
-                    (m.City && m.City.toLowerCase().includes(searchVal)) || 
-                    (m.State && m.State.toLowerCase().includes(searchVal)) || 
-                    (m.ENROLNO && m.ENROLNO.toLowerCase().includes(searchVal)) || 
-                    (m.Center && m.Center.toLowerCase().includes(searchVal));
-
-                return stateMatch && cityMatch && searchMatch;
-            });
-
-            branchCountBadge.textContent = `${filtered.length} Active Centers Found`;
-            mapStatusText.textContent = `Showing ${filtered.length} geolocated branch markers`;
-
-            if (filtered.length === 0) {
-                noBranchFound.style.display = 'block';
-                return;
-            }
-
-            noBranchFound.style.display = 'none';
-
-            const bounds = [];
-
-            filtered.forEach((m, idx) => {
-                const maskedName = maskCenterName(m.Center);
-                const maskedAddr = maskAddress(m.Address1, m.City, m.State);
-                const maskedPh = maskPhone(m.Phone);
-                const branchCode = m.ENROLNO || `BR-${m.Id}`;
-
-                // Create Center Card Element
-                const card = document.createElement('div');
-                card.className = 'center-card-item animate-fade-up';
-                card.id = `center-card-${m.Id}`;
-
-                card.innerHTML = `
-                    <div class="center-header-row">
-                        <div>
-                            <h4 class="center-masked-title" title="Masked for Privacy">${maskedName}</h4>
-                            <span class="small text-muted"><i class="fa-solid fa-user-tie me-1"></i> Authorized Center Head: <strong>${m.NAME || 'Gurukul Partner'}</strong></span>
-                        </div>
-                        <span class="center-code-badge">${branchCode}</span>
-                    </div>
-
-                    <div class="masked-address-box">
-                        <i class="fa-solid fa-location-dot text-danger me-2"></i> <strong>Masked Location:</strong> ${maskedAddr}
-                    </div>
-
-                    <div class="center-meta-row">
-                        <div class="d-flex align-items-center gap-2 flex-wrap">
-                            <span class="pill-city-tag"><i class="fa-solid fa-city me-1"></i> ${m.City}</span>
-                            <span class="pill-state-tag"><i class="fa-solid fa-map-pin me-1"></i> ${m.State}</span>
-                            <span class="small text-muted"><i class="fa-solid fa-phone me-1"></i> ${maskedPh}</span>
-                        </div>
-                        <button type="button" class="btn-pin-map" onclick="focusOnMarker(${m.Latitude || 28.6139}, ${m.Longitude || 77.2090}, '${m.Id}', event)">
-                            <i class="fa-solid fa-crosshairs me-1"></i> View on Map
-                        </button>
-                    </div>
-                `;
-
-                card.addEventListener('click', () => {
-                    focusOnMarker(m.Latitude || 28.6139, m.Longitude || 77.2090, m.Id);
-                });
-
-                branchListContainer.appendChild(card);
-
-                // Add Pin to OpenStreetMap
-                if (m.Latitude && m.Longitude) {
-                    const latLng = [m.Latitude, m.Longitude];
-                    bounds.push(latLng);
-
-                    // Custom Leaflet DivIcon
-                    const pinIcon = L.divIcon({
-                        className: 'custom-pin-container',
-                        html: `<div class="custom-map-pin"><i class="fa-solid fa-building-columns"></i></div>`,
-                        iconSize: [32, 32],
-                        iconAnchor: [16, 16]
-                    });
-
-                    const marker = L.marker(latLng, { icon: pinIcon }).addTo(markerGroup);
-
-                    const popupContent = `
-                        <div style="font-family: 'Plus Jakarta Sans', sans-serif;">
-                            <div style="font-weight: 800; color: #09192f; font-size: 14px; margin-bottom: 4px;">
-                                ${maskedName}
-                            </div>
-                            <div style="color: #475569; font-size: 12px; margin-bottom: 6px;">
-                                <i class="fa-solid fa-location-dot text-warning me-1"></i> ${m.City}, ${m.State} (Code: <strong>${branchCode}</strong>)
-                            </div>
-                            <div style="font-size: 11px; color: #059669; font-weight: 700;">
-                                <i class="fa-solid fa-circle-check me-1"></i> ISO 9001:2015 Verified Study Center
-                            </div>
-                        </div>
-                    `;
-
-                    marker.bindPopup(popupContent);
-                }
-            });
-
-            // Auto-fit map to show all filtered markers
-            if (bounds.length > 0) {
-                mapInstance.fitBounds(bounds, { padding: [40, 40], maxZoom: 11 });
-            }
-        }
-
-        // Focus Map on a specific marker
-        function focusOnMarker(lat, lng, centerId, event) {
-            if (event) event.stopPropagation();
-
-            // Highlight card
-            document.querySelectorAll('.center-card-item').forEach(c => c.classList.remove('active-center'));
-            const targetCard = document.getElementById(`center-card-${centerId}`);
-            if (targetCard) {
-                targetCard.classList.add('active-center');
-                targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-
-            mapInstance.flyTo([lat, lng], 13, { duration: 1.2 });
-        }
-
-        // Reset Filters
-        function resetBranchFilters() {
-            stateSelect.value = 'ALL';
-            updateCityDropdown('ALL');
-            citySelect.value = 'ALL';
-            branchSearchInput.value = '';
-            renderBranches();
-        }
-
-        // Event Listeners
-        stateSelect.addEventListener('change', () => {
-            updateCityDropdown(stateSelect.value);
-            renderBranches();
-        });
-
-        citySelect.addEventListener('change', renderBranches);
-        branchSearchInput.addEventListener('input', renderBranches);
-
-        // Fetch Data from members.json
-        async function loadBranchData() {
-            initMap();
-            try {
-                const res = await fetch(JSON_MEMBERS + '?v=' + Date.now());
-                if (res.ok) {
-                    allMembers = await res.json();
-                }
-            } catch (e) {
-                console.error('Error fetching members:', e);
-            }
-
-            branchListLoading.style.display = 'none';
-            populateDropdowns();
-            renderBranches();
-        }
-
-        // Initialize on DOM load
-        document.addEventListener('DOMContentLoaded', loadBranchData);
-    </script>
+  <div class="modal fade" id="branchVerifyModal" tabindex="-1" aria-labelledby="branchVerifyTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div><div class="small text-white-50 mb-1">BRANCH ACCESS</div><h5 class="modal-title" id="branchVerifyTitle">Verify Branch Details</h5></div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-hint">Enter your registered branch code and mobile number to access the branch profile.</p>
+          <form id="branchVerifyForm">
+            <div class="mb-3"><label class="form-label" for="branchCode">Branch Code</label><input class="form-control" id="branchCode" name="branchCode" autocomplete="off" placeholder="Enter branch code" required></div>
+            <div class="mb-3"><label class="form-label" for="registeredMobile">Registered Mobile Number</label><input class="form-control" id="registeredMobile" name="registeredMobile" type="tel" inputmode="numeric" maxlength="10" pattern="[0-9]{10}" placeholder="10-digit mobile number" required></div>
+            <button class="verify-btn" type="submit"><i class="fa-solid fa-shield-halved me-2"></i>Continue to Verification</button>
+            <div class="pending-msg" id="verificationPending" role="status">Secure branch verification is not connected yet. Server-side verification will be enabled in the next phase. No branch information has been exposed.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const MEMBERS_URL='db/members.json';
+    let branches=[];
+    const stateFilter=document.getElementById('stateFilter');
+    const cityFilter=document.getElementById('cityFilter');
+    const citySearch=document.getElementById('citySearch');
+    const cityGrid=document.getElementById('cityGrid');
+    const totalBranches=document.getElementById('totalBranches');
+    const normalise=v=>String(v||'').trim();
+    const unique=a=>[...new Set(a)].sort((x,y)=>x.localeCompare(y));
+    function getCityRows(){
+      const counts=new Map();
+      branches.forEach(b=>{
+        const city=normalise(b.City),state=normalise(b.State);
+        if(!city||!state)return;
+        const key=city.toLowerCase()+'|'+state.toLowerCase();
+        if(!counts.has(key))counts.set(key,{city,state,count:0});
+        counts.get(key).count++;
+      });
+      return [...counts.values()].sort((a,b)=>a.state.localeCompare(b.state)||a.city.localeCompare(b.city));
+    }
+    function fillFilters(rows){
+      const states=unique(rows.map(x=>x.state));
+      stateFilter.innerHTML='<option value="ALL">All States</option>'+states.map(s=>'<option value="'+encodeURIComponent(s)+'">'+escapeHtml(s)+'</option>').join('');
+      fillCities(rows);
+    }
+    function fillCities(rows){
+      const state=stateFilter.value==='ALL'?'ALL':decodeURIComponent(stateFilter.value);
+      const cities=unique(rows.filter(x=>state==='ALL'||x.state===state).map(x=>x.city));
+      const previous=cityFilter.value;
+      cityFilter.innerHTML='<option value="ALL">All Cities</option>'+cities.map(c=>'<option value="'+encodeURIComponent(c)+'">'+escapeHtml(c)+'</option>').join('');
+      if([...cityFilter.options].some(o=>o.value===previous))cityFilter.value=previous;
+    }
+    function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+    function render(){
+      const rows=getCityRows();
+      const state=stateFilter.value==='ALL'?'ALL':decodeURIComponent(stateFilter.value);
+      const city=cityFilter.value==='ALL'?'ALL':decodeURIComponent(cityFilter.value);
+      const q=citySearch.value.trim().toLowerCase();
+      const visible=rows.filter(x=>(state==='ALL'||x.state===state)&&(city==='ALL'||x.city===city)&&(!q||x.city.toLowerCase().includes(q)||x.state.toLowerCase().includes(q)));
+      const total=visible.reduce((n,x)=>n+x.count,0);
+      totalBranches.textContent=total+' Branches';
+      if(!visible.length){cityGrid.innerHTML='<div class="empty"><i class="fa-solid fa-location-crosshairs d-block mb-2"></i>No affiliated locations found for this filter.</div>';return;}
+      cityGrid.innerHTML=visible.map(x=>'<article class="city-card"><div class="city-top"><div class="city-icon"><i class="fa-solid fa-location-dot"></i></div><div class="branch-count">'+x.count+'</div></div><h3 class="city-name">'+escapeHtml(x.city)+'</h3><div class="state-name">'+escapeHtml(x.state)+'</div><div class="card-bottom"><span>Affiliated branches</span><button class="view-btn" type="button" data-city="'+encodeURIComponent(x.city)+'" data-state="'+encodeURIComponent(x.state)+'">View Details <i class="fa-solid fa-arrow-right ms-1"></i></button></div></article>').join('');
+      cityGrid.querySelectorAll('.view-btn').forEach(btn=>btn.addEventListener('click',()=>openVerification(decodeURIComponent(btn.dataset.city),decodeURIComponent(btn.dataset.state))));
+    }
+    function openVerification(city,state){
+      document.getElementById('branchCode').value='';
+      document.getElementById('registeredMobile').value='';
+      document.getElementById('verificationPending').style.display='none';
+      document.getElementById('branchVerifyTitle').textContent='Verify Branch Details';
+      const modal=bootstrap.Modal.getOrCreateInstance(document.getElementById('branchVerifyModal'));
+      modal.show();
+    }
+    stateFilter.addEventListener('change',()=>{fillCities(getCityRows());cityFilter.value='ALL';render();});
+    cityFilter.addEventListener('change',render);
+    citySearch.addEventListener('input',render);
+    document.getElementById('branchVerifyForm').addEventListener('submit',e=>{
+      e.preventDefault();
+      if(!e.currentTarget.reportValidity())return;
+      // Intentionally no client-side credential check: verification must be performed by a private server endpoint.
+      document.getElementById('verificationPending').style.display='block';
+    });
+    async function loadBranches(){
+      try{
+        const response=await fetch(MEMBERS_URL+'?v='+Date.now(),{cache:'no-store'});
+        if(!response.ok)throw new Error('Unable to load locations');
+        const data=await response.json();
+        branches=Array.isArray(data)?data.filter(x=>normalise(x.City)&&normalise(x.State)):[];
+        fillFilters(getCityRows());
+        render();
+      }catch(err){
+        totalBranches.textContent='Unavailable';
+        cityGrid.innerHTML='<div class="empty"><i class="fa-solid fa-triangle-exclamation d-block mb-2"></i>Location data could not be loaded. Please try again later.</div>';
+        console.error(err);
+      }
+    }
+    loadBranches();
+  </script>
 </body>
 </html>
