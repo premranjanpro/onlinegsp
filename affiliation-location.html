@@ -17,6 +17,7 @@
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/portal-theme.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
   <style>
     :root{--ink:#14243b;--navy:#102744;--blue:#2457a7;--gold:#e5a52e;--muted:#66758b;--line:#e5eaf1;--soft:#f4f7fb}
     *{box-sizing:border-box}
@@ -59,7 +60,24 @@
     .card-bottom span{font-size:11px;color:#78869a;font-weight:700}
     .view-btn{border:0;background:#173b67;color:#fff;border-radius:8px;padding:8px 11px;font-size:11px;font-weight:800}
     .view-btn:hover{background:#2457a7}
-    .privacy-note{display:flex;gap:12px;align-items:flex-start;background:#fff9ec;border:1px solid #f4e4bf;border-radius:12px;padding:15px 17px;margin-top:20px;color:#76551b}
+    .privacy-note{    .directory-layout{display:grid;grid-template-columns:minmax(330px,.88fr) minmax(0,1.45fr);gap:18px;align-items:start}
+    .city-side{min-width:0}
+    .city-grid{display:grid;grid-template-columns:1fr;gap:10px;max-height:590px;overflow:auto;padding:2px 5px 2px 2px}
+    .city-card{padding:15px;cursor:pointer}
+    .city-card.active-city{border-color:#d49a2b;background:#fffdf7;box-shadow:0 8px 22px rgba(17,39,68,.08)}
+    .city-card .city-name{margin:9px 0 2px}
+    .city-card .card-bottom{margin-top:10px;padding-top:10px}
+    .map-panel{background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:0 8px 24px rgba(17,39,68,.06);position:sticky;top:18px}
+    .map-head{background:linear-gradient(120deg,#102744,#1d4778);color:#fff;padding:15px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .map-head strong{font:800 14px Manrope,sans-serif}
+    .map-head span{font-size:11px;color:#cbd8e8}
+    #osmMap{height:590px;width:100%;background:#e9eef4}
+    .map-foot{padding:10px 14px;color:#738198;font-size:11px;border-top:1px solid #edf0f5}
+    .custom-city-pin{width:34px;height:34px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#173b67;border:2px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.28);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px}
+    .custom-city-pin i{transform:rotate(45deg)}
+    .leaflet-popup-content-wrapper{border-radius:10px}
+    @media(max-width:991px){.directory-layout{grid-template-columns:1fr}.map-panel{position:relative;top:auto}.city-grid{max-height:390px}#osmMap{height:420px}}
+display:flex;gap:12px;align-items:flex-start;background:#fff9ec;border:1px solid #f4e4bf;border-radius:12px;padding:15px 17px;margin-top:20px;color:#76551b}
     .privacy-note i{margin-top:2px}
     .privacy-note strong{display:block;font-size:12px;margin-bottom:3px}
     .privacy-note p{font-size:11px;line-height:1.6;margin:0;color:#876a36}
@@ -131,7 +149,16 @@
           <select id="cityFilter" aria-label="Filter by city"><option value="ALL">All Cities</option></select>
           <input id="citySearch" type="search" placeholder="Search city or state..." aria-label="Search city or state">
         </div>
-        <div id="cityGrid" class="city-grid"><div class="loading"><i class="fa-solid fa-circle-notch fa-spin d-block"></i>Loading affiliated locations...</div></div>
+        <div class="directory-layout">
+          <div class="city-side">
+            <div id="cityGrid" class="city-grid"><div class="loading"><i class="fa-solid fa-circle-notch fa-spin d-block"></i>Loading affiliated locations...</div></div>
+          </div>
+          <div class="map-panel">
+            <div class="map-head"><div><strong><i class="fa-solid fa-map-location-dot me-2"></i>Branch Network Map</strong><div><span>City-level locations across India</span></div></div><span id="mapStatus">Loading map...</span></div>
+            <div id="osmMap" role="img" aria-label="Map showing city-level affiliated branch locations"></div>
+            <div class="map-foot"><i class="fa-solid fa-circle-info me-1"></i> Map pins represent approximate city locations, not individual branch addresses.</div>
+          </div>
+        </div>
         <div class="privacy-note">
           <i class="fa-solid fa-lock"></i>
           <div><strong>Branch information is protected</strong><p>Only city-wise branch counts are displayed publicly. Branch names, branch codes, contact numbers and addresses are not shown on this page.</p></div>
@@ -170,6 +197,7 @@
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script>
     const MEMBERS_URL='db/members.json';
     let branches=[];
@@ -204,6 +232,32 @@
       if([...cityFilter.options].some(o=>o.value===previous))cityFilter.value=previous;
     }
     function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+    let mapInstance=null, markerLayer=null, cityMarkers=new Map();
+    function initMap(){
+      mapInstance=L.map('osmMap',{center:[22.9734,78.6569],zoom:5,scrollWheelZoom:false});
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap contributors'}).addTo(mapInstance);
+      markerLayer=L.featureGroup().addTo(mapInstance);
+      setTimeout(()=>mapInstance.invalidateSize(),250);
+    }
+    function cityCoordinates(cityRows){
+      const groups=new Map();
+      branches.forEach(b=>{
+        const city=normalise(b.City),state=normalise(b.State),lat=Number(b.Latitude),lng=Number(b.Longitude);
+        if(!city||!state||!Number.isFinite(lat)||!Number.isFinite(lng)||!lat||!lng)return;
+        const key=city.toLowerCase()+'|'+state.toLowerCase();
+        if(!groups.has(key))groups.set(key,[]);
+        groups.get(key).push([lat,lng]);
+      });
+      const coords=new Map();
+      cityRows.forEach(x=>{
+        const key=x.city.toLowerCase()+'|'+x.state.toLowerCase(),pts=groups.get(key)||[];
+        if(!pts.length)return;
+        const lat=pts.reduce((n,p)=>n+p[0],0)/pts.length,lng=pts.reduce((n,p)=>n+p[1],0)/pts.length;
+        // Round to city-scale precision so the public map does not expose branch-level coordinates.
+        coords.set(key,[Math.round(lat*10)/10,Math.round(lng*10)/10]);
+      });
+      return coords;
+    }
     function render(){
       const rows=getCityRows();
       const state=stateFilter.value==='ALL'?'ALL':decodeURIComponent(stateFilter.value);
@@ -212,9 +266,43 @@
       const visible=rows.filter(x=>(state==='ALL'||x.state===state)&&(city==='ALL'||x.city===city)&&(!q||x.city.toLowerCase().includes(q)||x.state.toLowerCase().includes(q)));
       const total=visible.reduce((n,x)=>n+x.count,0);
       totalBranches.textContent=total+' Branches';
-      if(!visible.length){cityGrid.innerHTML='<div class="empty"><i class="fa-solid fa-location-crosshairs d-block mb-2"></i>No affiliated locations found for this filter.</div>';return;}
-      cityGrid.innerHTML=visible.map(x=>'<article class="city-card"><div class="city-top"><div class="city-icon"><i class="fa-solid fa-location-dot"></i></div><div class="branch-count">'+x.count+'</div></div><h3 class="city-name">'+escapeHtml(x.city)+'</h3><div class="state-name">'+escapeHtml(x.state)+'</div><div class="card-bottom"><span>Affiliated branches</span><button class="view-btn" type="button" data-city="'+encodeURIComponent(x.city)+'" data-state="'+encodeURIComponent(x.state)+'">View Details <i class="fa-solid fa-arrow-right ms-1"></i></button></div></article>').join('');
-      cityGrid.querySelectorAll('.view-btn').forEach(btn=>btn.addEventListener('click',()=>openVerification(decodeURIComponent(btn.dataset.city),decodeURIComponent(btn.dataset.state))));
+      if(!visible.length){cityGrid.innerHTML='<div class="empty"><i class="fa-solid fa-location-crosshairs d-block mb-2"></i>No affiliated locations found for this filter.</div>';}
+      else{
+        cityGrid.innerHTML=visible.map(x=>'<article class="city-card" tabindex="0" role="button" data-city="'+encodeURIComponent(x.city)+'" data-state="'+encodeURIComponent(x.state)+'"><div class="city-top"><div class="city-icon"><i class="fa-solid fa-location-dot"></i></div><div class="branch-count">'+x.count+'</div></div><h3 class="city-name">'+escapeHtml(x.city)+'</h3><div class="state-name">'+escapeHtml(x.state)+'</div><div class="card-bottom"><span>Affiliated branches</span><button class="view-btn" type="button" data-city="'+encodeURIComponent(x.city)+'" data-state="'+encodeURIComponent(x.state)+'">View Details <i class="fa-solid fa-arrow-right ms-1"></i></button></div></article>').join('');
+        cityGrid.querySelectorAll('.city-card').forEach(card=>{
+          const focus=()=>focusCity(decodeURIComponent(card.dataset.city),decodeURIComponent(card.dataset.state));
+          card.addEventListener('click',e=>{if(e.target.closest('.view-btn'))return;focus();});
+          card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();focus();}});
+        });
+        cityGrid.querySelectorAll('.view-btn').forEach(btn=>btn.addEventListener('click',e=>{e.stopPropagation();openVerification(decodeURIComponent(btn.dataset.city),decodeURIComponent(btn.dataset.state));}));
+      }
+      markerLayer.clearLayers();cityMarkers.clear();
+      const coords=cityCoordinates(visible),bounds=[];
+      visible.forEach(x=>{
+        const key=x.city.toLowerCase()+'|'+x.state.toLowerCase(),ll=coords.get(key);
+        if(!ll)return;
+        bounds.push(ll);
+        const icon=L.divIcon({className:'',html:'<div class="custom-city-pin"><i class="fa-solid fa-location-dot"></i></div>',iconSize:[34,34],iconAnchor:[17,32]});
+        const marker=L.marker(ll,{icon}).addTo(markerLayer);
+        marker.bindPopup('<div style="font-weight:800;color:#173b67">'+escapeHtml(x.city)+', '+escapeHtml(x.state)+'</div><div style="font-size:12px;margin-top:4px">'+x.count+' affiliated branches</div>');
+        marker.on('click',()=>highlightCity(x.city,x.state));
+        cityMarkers.set(key,marker);
+      });
+      document.getElementById('mapStatus').textContent=visible.length+' cities shown';
+      if(bounds.length===1)mapInstance.setView(bounds[0],8);
+      else if(bounds.length>1)mapInstance.fitBounds(bounds,{padding:[28,28],maxZoom:7});
+      else mapInstance.setView([22.9734,78.6569],5);
+      setTimeout(()=>mapInstance.invalidateSize(),100);
+    }
+    function highlightCity(city,state){
+      document.querySelectorAll('.city-card').forEach(c=>c.classList.remove('active-city'));
+      const card=[...document.querySelectorAll('.city-card')].find(c=>decodeURIComponent(c.dataset.city)===city&&decodeURIComponent(c.dataset.state)===state);
+      if(card){card.classList.add('active-city');card.scrollIntoView({behavior:'smooth',block:'nearest'});}
+    }
+    function focusCity(city,state){
+      highlightCity(city,state);
+      const marker=cityMarkers.get(city.toLowerCase()+'|'+state.toLowerCase());
+      if(marker){mapInstance.flyTo(marker.getLatLng(),8,{duration:.8});marker.openPopup();}
     }
     function openVerification(city,state){
       document.getElementById('branchCode').value='';
@@ -235,6 +323,7 @@
     });
     async function loadBranches(){
       try{
+        initMap();
         const response=await fetch(MEMBERS_URL+'?v='+Date.now(),{cache:'no-store'});
         if(!response.ok)throw new Error('Unable to load locations');
         const data=await response.json();
