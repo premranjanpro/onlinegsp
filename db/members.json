@@ -45,7 +45,8 @@
     "Longitude": 78.0267,
     "Address2": "GOVERDHAN PUR ROAD",
     "Phone2": "9084725581",
-    "Email": "brijeshvishnoi@gmail.com"
+    "Email": "brijeshvishnoi@gmail.com",
+    "Pincode": "247663"
   },
   {
     "Id": "104",
@@ -524,5 +525,22 @@
     "STATUS": "approved",
     "Latitude": 28.812590645837446,
     "Longitude": 77.66172888558016
+  },
+  {
+    "Id": "106",
+    "NAME": "SUHEB",
+    "Center": "HIDAYAH DIGITAL COMPUTER ACADEMY",
+    "State": "UTTARAKHAND",
+    "City": "RATNAPUR",
+    "District": "HARIDWAR",
+    "Address1": "RATNAPUR, MARGOOBPUR",
+    "Address2": "",
+    "Phone": "9012524737",
+    "Phone2": "",
+    "Email": "suheb0603@gmail.com",
+    "Pincode": "247667",
+    "ENROLNO": "GSP-UK115",
+    "ROLLNO": "GSP-UK115",
+    "STATUS": "approved"
   }
 ]
