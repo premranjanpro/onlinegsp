@@ -4,6 +4,77 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5097235456767325" crossorigin="anonymous"></script>
 <style id="pr-adsense-layout">
 .pr-adsense-slot{width:100%;box-sizing:border-box;clear:both;margin:28px auto;padding:0 12px;text-align:center;min-height:50px}.pr-adsense-slot ins.adsbygoogle{margin:0 auto}.pr-adsense-horizontal{max-width:1100px}.pr-adsense-square{max-width:430px}.pr-adsense-vertical{max-width:330px}.pr-adsense-label{font-size:10px;line-height:1.2;color:#8a8a8a;text-align:center;margin:0 0 5px;font-weight:400}@media(max-width:767px){.pr-adsense-slot{margin:22px auto;padding:0 8px}.pr-adsense-vertical{max-width:100%}}
+
+/* Final visual polish — branch profile */
+:root{--profile-ink:#152b46;--profile-blue:#2457a7;--profile-line:#e7edf5}
+html{scroll-behavior:smooth}
+body{color:var(--profile-ink);background:linear-gradient(180deg,#edf3fa 0,#f8fafd 460px,#f4f7fb 100%)}
+.portal-header{border-bottom:1px solid #e8edf4}
+.portal-header-inner{gap:20px}
+.portal-nav>li>a{border-radius:9px;transition:background .18s ease,color .18s ease}
+.portal-nav>li>a:hover{background:#edf3fb;color:#174d8e}
+.hero{padding:72px 0 125px}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,20,39,.16),transparent 70%);pointer-events:none}
+.hero h1{max-width:760px;text-shadow:0 2px 18px rgba(0,0,0,.12)}
+.profile-wrap{width:min(100% - 32px,1040px);margin:-82px auto 0}
+.profile-card{border:1px solid rgba(220,230,242,.95);border-radius:24px;box-shadow:0 26px 75px rgba(16,39,68,.14)}
+.profile-head{padding:32px 36px}
+.branch-mark{width:72px;height:72px;flex:0 0 72px;border-radius:21px}
+.branch-title h2{font-size:clamp(19px,2.4vw,26px);line-height:1.25}
+.branch-title p{font-size:13px}
+.status{font-size:10px;letter-spacing:.7px}
+.profile-body{padding:32px 36px 36px}
+.profile-overview{gap:15px;margin-bottom:34px}
+.overview-tile{min-height:82px;border-radius:16px;padding:17px}
+.overview-tile strong{font-size:13px;line-height:1.45}
+.section-heading{padding-bottom:11px;border-bottom:1px solid #edf1f6}
+.section-title{font-size:16px;letter-spacing:-.2px}
+.details-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.detail{min-height:78px;border:1px solid #e8edf4;border-radius:14px;padding:16px 16px 16px 55px;box-shadow:0 4px 14px rgba(16,39,68,.025)}
+.detail.wide{grid-column:1/-1}
+.detail:hover{transform:translateY(-2px);border-color:#c9d8eb;box-shadow:0 10px 22px rgba(16,39,68,.07)}
+.detail strong{display:block;font-size:13px;line-height:1.55}
+.location-panel{border:1px solid #e4eaf2;border-radius:18px;overflow:hidden;box-shadow:0 12px 30px rgba(16,39,68,.07)}
+.location-head{padding:20px 22px}
+#branchMap{height:360px}
+.location-actions{padding:15px 19px}
+.location-actions a{border-radius:9px;font-size:11px}
+.branch-actions{padding-top:3px}
+.branch-actions a{min-height:43px}
+.branch-actions a.primary{box-shadow:0 7px 16px rgba(36,87,167,.16)}
+.profile-footer{background:#f9fbfe;padding:20px 36px}
+.profile-footer .action{border:1px solid #dce7f5}
+.state-message{border-radius:18px;box-shadow:0 14px 35px rgba(16,39,68,.07)}
+@media(min-width:900px){
+ .details-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .detail.wide{grid-column:1/-1}
+}
+@media(max-width:767px){
+ .hero{padding:48px 0 112px}
+ .profile-wrap{width:calc(100% - 24px);margin-top:-72px}
+ .profile-card{border-radius:19px}
+ .profile-head{padding:22px 18px}
+ .profile-body{padding:22px 17px 24px}
+ .profile-overview{grid-template-columns:1fr;gap:9px;margin-bottom:25px}
+ .overview-tile{min-height:70px;padding:12px 14px}
+ .section-heading{margin:26px 0 13px}
+ .details-grid{grid-template-columns:1fr;gap:10px}
+ .detail,.detail.wide{grid-column:auto;min-height:72px;padding:14px 13px 14px 51px}
+ .detail:before{left:13px;top:15px}
+ .detail .detail-icon{left:21px;top:23px}
+ #branchMap{height:275px}
+ .location-head{padding:15px 16px}
+ .location-actions{padding:12px 14px}
+ .branch-actions{gap:8px}
+ .branch-actions a{flex:1 1 calc(50% - 8px);padding:11px 9px}
+ .profile-footer{padding:16px 17px}
+ .status{margin-left:67px}
+}
+@media(max-width:380px){
+ .branch-actions a{flex-basis:100%}
+ .branch-title h2{font-size:17px}
+}
+
 </style>
 
 <meta charset="utf-8">
